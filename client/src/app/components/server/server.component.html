@@ -1,4 +1,6 @@
-<div class="card">
+<app-alert type="danger" [message]="errorMessage" *ngIf="!data"></app-alert>
+
+<div class="card" *ngIf="data">
     <div class="card-title bg-info">
         <h1>Server Information</h1>
     </div>

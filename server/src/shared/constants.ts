@@ -1,3 +1,6 @@
+import { IServerInfo } from '@entities/IServerInfo';
+import { IUserBio } from '@entities/IUserBio';
+
 /**
  * PORT
  */
@@ -29,3 +32,21 @@ export const DEVELOPER_NAME = 'Ahmet Emrebas';
 export const DEVELOPMENT_STACK = 'MongoDB, Express, Angular, NodeJS';
 export const START_DATE = 'April 27 2020';
 export const END_DATE = 'UNDEFINED';
+
+
+export const SERVER_INFORMATION: IServerInfo = {
+    name: SERVER_NAME,
+    author: DEVELOPER_NAME,
+    date: {
+        start: START_DATE,
+        end: END_DATE
+    },
+    stack: DEVELOPMENT_STACK
+}
+
+export const DEVELOPER_INFORMATION: IUserBio = {
+    name: DEVELOPER_NAME,
+    expertise: 'MongoDB, Express, Angular, NodeJS, Typescript, JavaScript, C#, Java',
+    location: 'Houston,TX | College Station,TX'
+}
+
