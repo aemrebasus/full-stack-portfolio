@@ -1,0 +1,1 @@
+export {mongoose, Schema, Document } from './database';

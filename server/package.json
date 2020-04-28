@@ -15,6 +15,7 @@
     "@server": "dist/Server"
   },
   "dependencies": {
+    "@types/mongoose": "^5.7.14",
     "command-line-args": "^5.1.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -23,6 +24,7 @@
     "helmet": "^3.22.0",
     "http-status-codes": "^1.4.0",
     "module-alias": "^2.2.2",
+    "mongoose": "^5.9.10",
     "morgan": "^1.10.0",
     "winston": "^3.2.1"
   },

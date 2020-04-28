@@ -1,5 +1,5 @@
-import { IServerInfo } from '@entities/IServerInfo';
-import { IUserBio } from '@entities/IUserBio';
+import { IServerInfo } from '@entities/EServerInfo';
+import { IUserBio } from '@entities/EUserBio';
 
 /**
  * PORT
@@ -49,4 +49,11 @@ export const DEVELOPER_INFORMATION: IUserBio = {
     expertise: 'MongoDB, Express, Angular, NodeJS, Typescript, JavaScript, C#, Java',
     location: 'Houston,TX | College Station,TX'
 }
+
+
+
+/**
+ * Database connection string
+ */
+export const MONGO_CONNECTION_STRING = 'mongodb://127.0.0.1:27017/full-stack';
 

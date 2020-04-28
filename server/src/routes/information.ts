@@ -1,14 +1,16 @@
 import { Router } from 'express';
 import { SERVER_INFORMATION, DEVELOPER_INFORMATION } from '@shared/constants';
 import { OK, UNAUTHORIZED } from 'http-status-codes';
-import { IUser } from '@entities/IUser';
+import { IUser, MUser } from '@entities/EUser';
+
 
 /**
  * Information about the software.
  */
 export const information = Router()
+
     .get('/information', (req, res) => {
-        res.send(SERVER_INFORMATION)
+        res.send(SERVER_INFORMATION);
     })
 
     .get('/developer', (req, res) => {
@@ -34,7 +36,7 @@ export const information = Router()
                 .send({ msg: 'Successfully signed out.' })
         } else {
             res.status(OK)
-                .send({msg:'You are already signed out!'});
+                .send({ msg: 'You are already signed out!' });
         }
     })
 
@@ -55,7 +57,7 @@ export const information = Router()
                 email: 'aemrebasus@gmail.com',
                 organization: 'TechBig',
                 role: 'Admin'
-            }
+            };
             res.status(OK)
                 .send(user);
         } else {
@@ -63,3 +65,16 @@ export const information = Router()
                 .send({ msg: 'You did not sign in.' });
         }
     })
+
+
+    .get('/add', (req, res) => {
+        new MUser({
+            firstName: 'Ahmet',
+            lastName: 'Emrebas',
+            email: 'aemrebasus@gmail.com',
+            role: 'Admin',
+            organization: 'Techbig'
+        })
+            .save();
+    })
+
