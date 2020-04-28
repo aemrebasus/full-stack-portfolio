@@ -1,24 +1,30 @@
 import { mongoose, Schema, Document } from '@mongo';
 
-/**
- * User interface
- */
-export interface IUser {
-    _id?: any,
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    role?: string;
-    organization?: string;
+export const PreUserSchema = {
+    firstName: String,
+    lastName: String,
+    email: String,
+    role: String,
+    organization: String
 }
 
 
+/**
+ * User interface
+ */
+export interface UserInterface {
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: string;
+    organization: string;
+}
 
 
 /**
  * User document class
  */
-export class DUser extends Document implements IUser {
+export class UserDocument extends Document implements UserInterface {
     constructor(public firstName: string, public lastName: string, public email: string, public role: string, public organization: string) {
         super();
     }
@@ -27,7 +33,7 @@ export class DUser extends Document implements IUser {
 /**
  * User Schema
  */
-export const SUser = new Schema({
+export const UserSchema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true },
@@ -39,7 +45,7 @@ export const SUser = new Schema({
 /**
  * User Model
  */
-export const MUser = mongoose.model<DUser>('users', SUser);
+export const UserModel = mongoose.model<UserDocument>('users', UserSchema);
 
 
 

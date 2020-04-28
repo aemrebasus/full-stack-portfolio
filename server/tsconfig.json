@@ -19,6 +19,9 @@
       "@entities/*": [
         "src/entities/*"
       ],
+      "@entities": [
+        "src/entities"
+      ],
       "@mongo": [
         "src/database"
       ],

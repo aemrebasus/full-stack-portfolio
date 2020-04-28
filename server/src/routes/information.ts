@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import { SERVER_INFORMATION, DEVELOPER_INFORMATION } from '@shared/constants';
 import { OK, UNAUTHORIZED } from 'http-status-codes';
-import { IUser, MUser } from '@entities/EUser';
-
+import { UserInterface, UserModel } from '@entities';
 
 /**
  * Information about the software.
@@ -51,7 +50,7 @@ export const information = Router()
 
     .get('/users/currentuser', (req, res) => {
         if (req.cookies.token === 'YourToken') {
-            const user: IUser = {
+            const user: UserInterface = {
                 firstName: 'Ahmet',
                 lastName: 'Emrebas',
                 email: 'aemrebasus@gmail.com',
@@ -68,7 +67,7 @@ export const information = Router()
 
 
     .get('/add', (req, res) => {
-        new MUser({
+        new UserModel({
             firstName: 'Ahmet',
             lastName: 'Emrebas',
             email: 'aemrebasus@gmail.com',
@@ -77,4 +76,5 @@ export const information = Router()
         })
             .save();
     })
+
 

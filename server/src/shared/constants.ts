@@ -1,5 +1,5 @@
-import { IServerInfo } from '@entities/EServerInfo';
-import { IUserBio } from '@entities/EUserBio';
+import { IServerInfo } from '@entities/ServerInfo';
+import { IUserInfo } from '@entities';
 
 /**
  * PORT
@@ -44,7 +44,7 @@ export const SERVER_INFORMATION: IServerInfo = {
     stack: DEVELOPMENT_STACK
 }
 
-export const DEVELOPER_INFORMATION: IUserBio = {
+export const DEVELOPER_INFORMATION: IUserInfo = {
     name: DEVELOPER_NAME,
     expertise: 'MongoDB, Express, Angular, NodeJS, Typescript, JavaScript, C#, Java',
     location: 'Houston,TX | College Station,TX'
