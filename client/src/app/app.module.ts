@@ -10,6 +10,7 @@ import { DeveloperComponent } from '@components/developer/developer.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { MainComponent } from './components/main/main.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MainComponent } from './components/main/main.component';
     DeveloperComponent,
     AlertComponent,
     SigninComponent,
-    MainComponent
+    MainComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

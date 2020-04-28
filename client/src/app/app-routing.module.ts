@@ -4,12 +4,17 @@ import { ServerComponent } from '@components/server/server.component';
 import { DeveloperComponent } from '@components/developer/developer.component';
 import { SigninComponent } from '@components/signin/signin.component';
 import { MainComponent } from '@components/main/main.component';
+import { ProfileComponent } from '@components/profile/profile.component';
 
 const routes: Routes = [
   { path: 'information', component: ServerComponent },
   { path: 'developer', component: DeveloperComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'app', component: MainComponent }
+  { path: 'signout', component: SigninComponent },
+  { path: 'app', component: MainComponent },
+  { path: 'profile', component: ProfileComponent },
+
+
 ];
 
 @NgModule({

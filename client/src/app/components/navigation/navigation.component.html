@@ -4,9 +4,22 @@
         data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
         aria-label="Toggle navigation">|||</button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="profile" [routerLinkActive]="['active']">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="signin" [routerLinkActive]="['active']">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="signout" [routerLinkActive]="['active']" (click)="signout()">Sign
+                    Out</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="signup" [routerLinkActive]="['active']">Sign Up</a>
+            </li>
 
-            <li class="nav-item dropdown ">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#information" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">Config</a>
                 <div class="dropdown-menu" id="information" aria-labelledby="information">

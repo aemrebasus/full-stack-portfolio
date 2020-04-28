@@ -12,4 +12,7 @@ export class SigninService {
   signin(credentials: ICredential) {
     return this.httpService.post<any>('/api/v1/signin', credentials);
   }
+  signout() {
+    return this.httpService.get<any>('/api/v1/signout');
+  }
 }

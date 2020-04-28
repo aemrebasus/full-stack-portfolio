@@ -4,6 +4,6 @@ export interface IServerInfo {
     date: {
         start: string,
         end: string
-    }
+    };
     stack?: string;
 }

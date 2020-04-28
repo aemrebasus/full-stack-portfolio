@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidatorService } from '@services/validator/validator.service';
 import { SigninService } from '@services/auth/signin.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -9,7 +9,7 @@ import { SigninService } from '@services/auth/signin.service';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private validatorService: ValidatorService, private signinService: SigninService) { }
+  constructor(private validatorService: ValidatorService, private signinService: SigninService, private router: Router) { }
 
 
   /**
@@ -54,13 +54,19 @@ export class SigninComponent implements OnInit {
 
   signin() {
     this.signinService.signin({ email: this.email, password: this.password })
-      .subscribe(res => {
-        alert(res.msg);
-        this.resetForm();
-      }, err => {
-        this.errorMessage = err;
-        this.resetForm();
-      });
+      .subscribe(
+        res => {
+          this.resetForm();
+          this.router.navigate(['profile'], { replaceUrl: true });
+          /**
+           * Alert must come later than navigation becuase it stops navigation.
+           */
+          alert(res.msg);
+        },
+        err => {
+          this.errorMessage = err;
+          this.resetForm();
+        });
   }
 
   resetForm() {
