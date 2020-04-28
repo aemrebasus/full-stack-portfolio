@@ -34,8 +34,16 @@ export class HttpService {
     return throwError(errorMessage);
   }
 
-  getServerInfo() {
-    return this.http.get<IServerInfo>('/api/v1/information')
+  get<T>(path: string) {
+    return this.http.get<T>(path)
+      .pipe(
+        retry(2),
+        catchError(this.errorHandler)
+      );
+  }
+
+  post<T>(path: string, body: T, options?: object) {
+    return this.http.post<T>(path, body, options)
       .pipe(
         retry(2),
         catchError(this.errorHandler)
@@ -43,12 +51,14 @@ export class HttpService {
   }
 
 
+
+  getServerInfo() {
+    return this.get<IServerInfo>('/api/v1/information');
+  }
+
+
   getDeveloperInfo() {
-    return this.http.get<IUserBio>('/api/v1/developer')
-      .pipe(
-        retry(2),
-        catchError(this.errorHandler)
-      );
+    return this.get<IUserBio>('/api/v1/developer');
   }
 
 }

@@ -2,8 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-alert',
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss']
+  template: `
+  <div class="alert alert-{{type}}" role="alert">
+    <p>{{message}}</p>
+  </div>
+`
 })
 export class AlertComponent implements OnInit {
 

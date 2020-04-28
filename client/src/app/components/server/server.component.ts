@@ -18,7 +18,7 @@ export class ServerComponent implements OnInit {
   ngOnInit(): void {
     this.httpService.getServerInfo().subscribe(
       data => this.data = data,
-      error => this.errorMessage = error.message || error.msg || 'There is no error message'
+      error => this.errorMessage = error
     );
   }
 
