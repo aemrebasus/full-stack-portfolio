@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { SERVER_INFORMATION, DEVELOPER_INFORMATION } from '@shared/constants';
 import { OK, UNAUTHORIZED } from 'http-status-codes';
-import { UserInterface, UserModel } from 'src/models';
+import { UserInterface, UserModel } from '@models';
 
 /**
  * Information about the software.

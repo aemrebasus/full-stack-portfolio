@@ -3,19 +3,19 @@ export {
     IssueInterface,
     IssueModel,
     CommentInterface
-} from 'src/models/Issue';
+} from '@models/Issue';
 
 export {
     UserInterface,
     UserModel,
-} from 'src/models/User';
+} from '@models/User';
 
 
 export {
     IServerInfo
-} from 'src/models/ignorethisfolder/ServerInfo'
+} from '@models/ignorethisfolder/ServerInfo'
 
 
 export {
     IUserInfo
-} from 'src/models/ignorethisfolder/UserInfo'
+} from '@models/ignorethisfolder/UserInfo'

@@ -10,12 +10,12 @@ import { ObjectID } from 'mongodb';
  *   userId:...,
  *   comments:['comment 1 ', 'comment 2', 'commnet 3'],
  * };
- * 
+ *
  * const issue:IssueInterface = {
  *      ...,
  *      comments: [comment, ...]
  * };
- * 
+ *
  * new IssueModel(issue).save();
  * ```
  */
@@ -35,12 +35,12 @@ export interface CommentInterface {
  *   userId:...,
  *   comments:['comment 1 ', 'comment 2', 'commnet 3'],
  * };
- * 
+ *
  * const issue:IssueInterface = {
  *      ...,
  *      comments: [comment, ...]
  * };
- * 
+ *
  * new IssueModel(issue).save();
  * ```
  */
@@ -72,7 +72,8 @@ class IssueDocument extends Document implements IssueInterface {
 
 
 /**
- * Issue Schema
+ * Use this to validate data before saving.
+ * @Note checkout scheama middleware documentation.
  */
 const IssueSchema = new Schema({
     title: { type: String, default: 'Not provided' },
@@ -85,7 +86,17 @@ const IssueSchema = new Schema({
 
 
 /**
- * Issue Model
+ * Use this to create issue in database
+ * #### Example
+ * ```
+ * const issue:IssueInterface = {
+ *      ....
+ * };
+ *
+ * const newIssue = new IssueModel(issue);
+ *
+ * newIssue.save();
+ * ```
  */
 export const IssueModel = mongoose.model<IssueDocument>('issues', IssueSchema);
 

@@ -37,7 +37,20 @@ const UserSchema = new Schema({
 
 
 /**
- * User Model
+ * User this model to create a user
+ * #### Example
+ * ```
+ * const user:UserInterface = {
+ * ...
+ * }
+ *
+ * const newUser = new UserModel({
+ *  ....
+ * })
+ *
+ * newUser.save();
+ *
+ * ```
  */
 export const UserModel = mongoose.model<UserDocument>('users', UserSchema);
 
