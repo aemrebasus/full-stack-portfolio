@@ -1,5 +1,5 @@
-import { IServerInfo } from '@entities/ServerInfo';
-import { IUserInfo } from '@entities';
+import { IServerInfo } from '@models';
+import { IUserInfo } from '@models';
 
 /**
  * PORT

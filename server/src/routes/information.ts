@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { SERVER_INFORMATION, DEVELOPER_INFORMATION } from '@shared/constants';
 import { OK, UNAUTHORIZED } from 'http-status-codes';
-import { UserInterface, UserModel } from '@entities';
+import { UserInterface, UserModel } from 'src/models';
 
 /**
  * Information about the software.
@@ -54,6 +54,7 @@ export const information = Router()
                 firstName: 'Ahmet',
                 lastName: 'Emrebas',
                 email: 'aemrebasus@gmail.com',
+                password: '21231231',
                 organization: 'TechBig',
                 role: 'Admin'
             };
