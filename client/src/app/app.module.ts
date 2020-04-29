@@ -11,6 +11,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { MainComponent } from './components/main/main.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { IssueViewComponent } from './components/issue-view/issue-view.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     AlertComponent,
     SigninComponent,
     MainComponent,
-    ProfileComponent
+    ProfileComponent,
+    IssueViewComponent
   ],
   imports: [
     BrowserModule,

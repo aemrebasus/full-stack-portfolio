@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@services/http/http.service';
-import { ICredential } from '@app/entities/ICredential';
+import { ICredential } from '@app/models/ICredential';
 
 @Injectable({
   providedIn: 'root'

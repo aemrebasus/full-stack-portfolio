@@ -21,7 +21,7 @@ import { ObjectID } from 'mongodb';
  */
 export interface CommentInterface {
     userId?: ObjectID,
-    comments?: string[],
+    comment?: string,
     createdOn?: Date
 }
 

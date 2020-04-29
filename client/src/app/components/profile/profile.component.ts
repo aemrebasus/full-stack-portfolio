@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '@app/entities/IUser';
+import { UserInterface } from '@app/models/User';
 import { UserService } from '@services/user/user.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserService } from '@services/user/user.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user: IUser = {
+  user: UserInterface = {
     firstName: 'Ahmet',
     lastName: 'Emrebas',
     email: 'aemrebasus@gmail.com',

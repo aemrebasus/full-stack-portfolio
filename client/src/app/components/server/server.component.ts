@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '@services/http/http.service';
-import { IServerInfo } from '@app/entities';
+import { IServerInfo } from '@app/models';
 
 @Component({
   selector: 'app-server',

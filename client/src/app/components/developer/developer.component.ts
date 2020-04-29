@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUserBio } from '@app/entities';
+import { IUserBio } from '@app/models';
 import { HttpService } from '@services/http/http.service';
 
 @Component({
