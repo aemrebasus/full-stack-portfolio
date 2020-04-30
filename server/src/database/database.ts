@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import _mongoose from 'mongoose';
 import { MONGO_CONNECTION_STRING } from '@shared/constants';
 import logger from '@shared/Logger';
 
@@ -6,7 +6,7 @@ export { Schema, Document } from 'mongoose'
 
 
 
-mongoose.connect(MONGO_CONNECTION_STRING, { useUnifiedTopology: true, useNewUrlParser: true })
+ _mongoose.connect(MONGO_CONNECTION_STRING, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(res => {
         logger.info(res);
     })
@@ -15,4 +15,4 @@ mongoose.connect(MONGO_CONNECTION_STRING, { useUnifiedTopology: true, useNewUrlP
     })
 
 
-export default mongoose;
+export const mongoose =  _mongoose;

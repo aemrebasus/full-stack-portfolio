@@ -99,5 +99,3 @@ const IssueSchema = new Schema({
  * ```
  */
 export const IssueModel = mongoose.model<IssueDocument>('issues', IssueSchema);
-
-
