@@ -3,20 +3,42 @@
     <div class="row p-3">
         <div class="col col-3 m-3">
             <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action"
-                    (click)="setViewIssues()">Issues</button>
-                <button type="button" class="list-group-item list-group-item-action"
-                    (click)="setViewUsers()">Users</button>
+
+                <!-- Issues' Operations -->
+                <div id="issues-accordion">
+                    <div role="tab" class="list-group-item list-group-item-action" data-toggle="collapse"
+                        data-parent="#issues-accordion" href="#issue-controller" aria-expanded="true"
+                        aria-controls="issue-controller">
+                        Issues
+                    </div>
+                    <div id="issue-controller" class="collapse in pl-4 bg-primary" aria-labelledby="section1HeaderId">
+                        <div class="list-group-item list-group-item-action" routerLink="issues">View Issues</div>
+                        <div class="list-group-item list-group-item-action" routerLink="issueform">Create Issue</div>
+                        <div class="list-group-item list-group-item-action" routerLink="issueUpdate">Update Issue</div>
+                        <div class="list-group-item list-group-item-action" routerLink="issueDelete">Delete Issue</div>
+                    </div>
+                </div>
+
+                <!-- Users' Operations -->
+                <div id="users-accordion">
+                    <div role="tab" class="list-group-item list-group-item-action" data-toggle="collapse"
+                        data-parent="#users-accordion" href="#user-controler" aria-expanded="true"
+                        aria-controls="user-controler">
+                        Users
+                    </div>
+                    <div id="user-controler" class="collapse in pl-4 bg-primary" aria-labelledby="section1HeaderId">
+                        <div class="list-group-item list-group-item-action" routerLink="users">View Users</div>
+                        <div class="list-group-item list-group-item-action" routerLink="useform">Create User</div>
+                        <div class="list-group-item list-group-item-action" routerLink="useform">Update User</div>
+                        <div class="list-group-item list-group-item-action" routerLink="useform">Delete User</div>
+                        <div class="list-group-item list-group-item-action" routerLink="useform">View User</div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="col col-8 m-3">
-            <div class="btn-group pb-3">
-                <div class="btn btn-success ml-3 rounded-0">Create</div>
-                <div class="btn btn-warning ml-3 rounded-0">Update</div>
-                <div class="btn btn-danger ml-3 rounded-0">Delete</div>
-                <div class="btn btn-info ml-3 rounded-0">View</div>
-            </div>
-            <app-issue-view *ngIf="currentView=='issues'"></app-issue-view>
+            <router-outlet></router-outlet>
         </div>
     </div>
 

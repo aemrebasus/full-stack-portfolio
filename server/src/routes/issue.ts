@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { OK, UNAUTHORIZED } from 'http-status-codes';
-import { UserInterface, UserModel, IssueModel } from '@models';
+import { IssueModel } from '@models';
+import logger from '@shared/Logger';
 
 /**
  * Issues Router
@@ -12,13 +12,21 @@ export const issue = Router()
             .then(data => {
                 res.send(data);
             })
+            .catch(err => {
+                res.send(err.message)
+                logger.error(err.message);
+            })
     })
 
     .post('/issues', (req, res) => {
         IssueModel.insertMany([req.body])
             .then(data => {
                 res.send(data);
-            });
+            })
+            .catch(err => {
+                res.send(err.message)
+                logger.error(err.message);
+            })
     })
 
     .put('/issues', (req, res) => {
@@ -26,12 +34,20 @@ export const issue = Router()
             .then(data => {
                 res.send(data);
             })
+            .catch(err => {
+                res.send(err.message)
+                logger.error(err.message);
+            })
     })
 
-    .delete('/issues', (req, res) => {
-        IssueModel.deleteOne(req.body)
+    .delete('/issues/:id', (req, res) => {
+        IssueModel.deleteOne({ _id: req.params.id })
             .then(data => {
                 res.send(data);
+            })
+            .catch(err => {
+                res.send("NOTE ...")
+                logger.error(err.message);
             })
     });
 

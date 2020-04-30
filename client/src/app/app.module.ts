@@ -13,6 +13,10 @@ import { MainComponent } from '@components/main/main.component';
 import { ProfileComponent } from '@components/profile/profile.component';
 import { IssueViewComponent } from '@components/issue-view/issue-view.component';
 import { AdminConsoleComponent } from '@components/admin-console/admin-console.component';
+import { IssueFormComponent } from './components/issue-form/issue-form.component';
+import { UserViewComponent } from './components/user-view/user-view.component';
+import { IssueUpdateComponent } from './components/issue-update/issue-update.component';
+import { IssueDeleteComponent } from './components/issue-delete/issue-delete.component';
 
 
 @NgModule({
@@ -26,7 +30,11 @@ import { AdminConsoleComponent } from '@components/admin-console/admin-console.c
     MainComponent,
     ProfileComponent,
     IssueViewComponent,
-    AdminConsoleComponent
+    AdminConsoleComponent,
+    IssueFormComponent,
+    UserViewComponent,
+    IssueUpdateComponent,
+    IssueDeleteComponent
   ],
   imports: [
     BrowserModule,

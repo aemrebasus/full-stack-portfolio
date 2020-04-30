@@ -1,0 +1,12 @@
+<div class="container">
+    <form>
+        <div class="form-group row">
+            <label for="inputName" class="col-sm-1-12 col-form-label">ID</label>
+            <div class="col-sm-1-12">
+                <input type="text" class="form-control" name="inputName" id="_id" placeholder="ID"
+                    [(ngModel)]="issue._id">
+            </div>
+        </div>
+        <div class="btn btn-primary" (click)="delete()">Submit</div>
+    </form>
+</div>

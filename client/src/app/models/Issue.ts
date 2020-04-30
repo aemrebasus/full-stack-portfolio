@@ -43,10 +43,11 @@ export interface CommentInterface {
  * ```
  */
 export interface IssueInterface {
+    _id?: string;
     title?: string;
     description?: string;
     status?: string;
     assignee?: UserInterface;
     createdOn?: string;
-    comments?: CommentInterface[]
+    comments?: CommentInterface[];
 }

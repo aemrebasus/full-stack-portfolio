@@ -19,6 +19,7 @@ export class HttpService {
        */
       errorMessage = `Error: ${error.error.message}`;
 
+
     } else if (error.status || error.message) {
 
       /**
@@ -33,6 +34,23 @@ export class HttpService {
      */
     return throwError(errorMessage);
   }
+
+
+
+  /**
+   * @deprecated
+   */
+  getServerInfo() {
+    return this.get<IServerInfo>('/api/v1/information');
+  }
+
+  /**
+   * @deprecated
+   */
+  getDeveloperInfo() {
+    return this.get<IUserBio>('/api/v1/developer');
+  }
+
 
   get<T>(path: string) {
     return this.http.get<T>(path)
@@ -51,14 +69,22 @@ export class HttpService {
   }
 
 
+  put<T>(path: string, body: T, options?: object) {
+    return this.http.put<T>(path, body, options)
+      .pipe(
+        retry(2),
+        catchError(this.errorHandler)
+      );
+  }
 
-  getServerInfo() {
-    return this.get<IServerInfo>('/api/v1/information');
+  delete<T>(path: string, options?: object) {
+    return this.http.delete<T>(path, options)
+      .pipe(
+        retry(2),
+        catchError(this.errorHandler)
+      );
   }
 
 
-  getDeveloperInfo() {
-    return this.get<IUserBio>('/api/v1/developer');
-  }
 
 }

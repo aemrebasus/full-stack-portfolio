@@ -7,19 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminConsoleComponent implements OnInit {
 
-  currentView = 'users';
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  setViewIssues() {
-    this.currentView = 'issues';
-  }
-
-  setViewUsers() {
-    this.currentView = 'users';
-  }
 
 }
