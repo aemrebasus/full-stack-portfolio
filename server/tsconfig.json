@@ -16,11 +16,14 @@
       "@router": [
         "src/routes/index.ts"
       ],
+      "@domain/*": [
+        "src/domain/*"
+      ],
       "@models/*": [
-        "src/models/*"
+        "src/database/models/*"
       ],
       "@models": [
-        "src/models"
+        "src/database/models"
       ],
       "@mongo": [
         "src/database"

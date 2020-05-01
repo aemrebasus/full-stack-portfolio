@@ -1,10 +1,7 @@
-import { information } from './information';
-import { issue } from './issue';
-import { user } from './user';
+
+import { authentication } from './auth';
 
 export const routers = [
-    information,
-    issue,
-    user
+    authentication
 ]
 
