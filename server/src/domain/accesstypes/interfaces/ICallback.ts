@@ -1,0 +1,1 @@
+export type ICallback<T> = (err: Error | null, result: T | null) => void;

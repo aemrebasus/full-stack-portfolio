@@ -17,6 +17,7 @@ import { IssueFormComponent } from './components/issue-form/issue-form.component
 import { UserViewComponent } from './components/user-view/user-view.component';
 import { IssueUpdateComponent } from './components/issue-update/issue-update.component';
 import { IssueDeleteComponent } from './components/issue-delete/issue-delete.component';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { IssueDeleteComponent } from './components/issue-delete/issue-delete.com
     IssueFormComponent,
     UserViewComponent,
     IssueUpdateComponent,
-    IssueDeleteComponent
+    IssueDeleteComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,

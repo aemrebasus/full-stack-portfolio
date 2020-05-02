@@ -1,0 +1,106 @@
+<div class="container col col-md-6 col-sm-12">
+
+    <div class="card text-white bg-dark">
+        <div class="card-header bg-warning text-center">
+            <h1>Sign Up</h1>
+        </div>
+
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col col-sm-12 col-md-6">
+
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <!-- First Name  -->
+                            <input type="text" name="firstName" id="firstName" class="form-control"
+                                placeholder="First Name" aria-describedby="firstNameHelper" autocomplete="name"
+                                [(ngModel)]="form.firstName.value"
+                                [class.valid]="!form.firstName.validation && isSubmitted" required>
+                            <small id="firstNameHelper" class="text-muted">Type your first name.</small>
+
+                            <!-- First Name Alert -->
+                            <div class="alert alert-danger p-1" *ngIf="form.firstName.validation && isSubmitted">
+                                {{form.firstName.validation}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" name="lastName" id="lastName" class="form-control"
+                                placeholder="Last Name" aria-describedby="lastNameHelper" autocomplete="family-name"
+                                [(ngModel)]="form.lastName.value"
+                                [class.valid]="!form.lastName.validation && isSubmitted" required>
+                            <small id="lastNameHelper" class="text-muted">Type your last name</small>
+                            <div class="alert alert-danger p-1" *ngIf="form.lastName.validation && isSubmitted">
+                                {{form.lastName.validation}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailAddress">Email Address Name</label>
+                            <input type="text" name="emailAddress" id="emailAddress" class="form-control"
+                                placeholder="Email Address Name" aria-describedby="emailAddressHelper"
+                                autocomplete="email" 
+                                [(ngModel)]="form.email.value"
+                                [class.valid]="!form.email.validation && isSubmitted" 
+                                required>
+                            <small id="emailAddressHelper" class="text-muted">Type your email address</small>
+                            <div class="alert alert-danger p-1" *ngIf="form.email.validation && isSubmitted">
+                                {{form.email.validation}}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="companyName">Company Name</label>
+                            <input type="text" name="companyName" id="companyName" class="form-control"
+                                placeholder="Company Name" aria-describedby="companyNameHelper"
+                                autocomplete="organization"
+                                 [(ngModel)]="form.companyName.value"
+                                 [class.valid]="!form.companyName.validation && isSubmitted" 
+                                 required>
+                            <small id="companyNameHelper" class="text-muted">Type your company address</small>
+                            <div class="alert alert-danger p-1" *ngIf="form.companyName.validation && isSubmitted">
+                                {{form.companyName.validation}}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text" name="password" id="password" class="form-control" placeholder="Password"
+                                aria-describedby="passwordHelper" autocomplete="new-password"
+                                [(ngModel)]="form.password.value" 
+                                [class.valid]="!form.password.validation && isSubmitted" 
+                                required>
+                            <small id="passwordHelper" class="text-muted">Type your password </small>
+                            <div class="alert alert-danger p-1" *ngIf="form.password.validation && isSubmitted">
+                                {{form.password.validation}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password again</label>
+                            <input type="text" name="password" id="password" class="form-control"
+                                placeholder="Password again" aria-describedby="passwordHelper"
+                                autocomplete="new-password" 
+                                [(ngModel)]="form.passwordAgain.value" 
+                                [class.valid]="!form.passwordAgain.validation && isSubmitted" 
+                                required>
+                            <small id="passwordHelper" class="text-muted">Type your password again</small>
+                            <div class="alert alert-danger p-1" *ngIf="form.passwordAgain.validation && isSubmitted">
+                                {{form.passwordAgain.validation}}
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="btn btn-success float-right m-3" (click)="submitForm()">Submit</div>
+                <input type="reset" class="btn btn-warning m-3 float-right" (click)="reset()" value="Reset" />
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

@@ -1,5 +1,6 @@
 import { IComment } from '@domain/entities/IComment';
+import { ICallback } from '../ICallback';
 
 export interface ICanCreateComment<TComment = IComment, TReturn = boolean> {
-    createNewComment(comment: TComment, callback?: (result: TReturn) => void): Promise<TReturn>;
+    createNewComment(comment: TComment, callback?: ICallback<TReturn>): Promise<TReturn>;
 }

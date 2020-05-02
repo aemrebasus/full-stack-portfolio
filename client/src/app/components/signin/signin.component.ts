@@ -44,11 +44,7 @@ export class SigninComponent implements OnInit {
   }
 
   validateCredentials() {
-    const result = this.validatorService.validateSigninForm(this.email, this.password, this.agreement);
-    this.isEmail = result.isEmail;
-    this.isPassword = result.isPassword;
-    this.agreement = result.isAgreementAccepted;
-
+    //TODO
     return this.isEmail && this.isPassword && this.agreement;
   }
 

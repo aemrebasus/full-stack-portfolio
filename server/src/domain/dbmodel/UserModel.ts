@@ -1,4 +1,5 @@
-import { mongoose, Schema } from '@mongo';
+import { mongoose, Schema, Document } from '@mongo';
+import { IUser } from '@domain/entities/IUser';
 
 
 const UserSchema = new Schema({
@@ -10,4 +11,6 @@ const UserSchema = new Schema({
     organizationId: { type: String, required: true }
 })
 
-export const UserModel = mongoose.model('users', UserSchema);
+
+
+export const UserModel = mongoose.model<IUser & Document>('users', UserSchema);

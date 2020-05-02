@@ -14,7 +14,7 @@
     "moduleResolution": "node",
     "paths": {
       "@router": [
-        "src/routes/index.ts"
+        "src/routers/index.ts"
       ],
       "@domain/*": [
         "src/domain/*"

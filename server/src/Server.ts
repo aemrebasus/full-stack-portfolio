@@ -6,7 +6,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
 import 'express-async-errors';
 import logger from '@shared/Logger';
-import { routers } from '@router';
+import { routers } from 'src/routers';
 import { BASE_ROUTE } from '@shared/constants';
 
 /**
