@@ -44,8 +44,6 @@ export class SignupFormComponent implements OnInit {
       i[1].value = '';
       i[1].validation = '';
     }
-
-
   }
 
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ValidatorService } from '@services/validator/validator.service';
+import { ValidatorService, SignInFormType } from '@services/validator/validator.service';
 import { SigninService } from '@services/auth/signin.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -9,73 +10,34 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private validatorService: ValidatorService, private signinService: SigninService, private router: Router) { }
+  constructor(private validator: ValidatorService, private signinService: SigninService, private router: Router) { }
 
 
-  /**
-   * Bindings
-   */
-  email: string;
-  password: string;
-  agreement: boolean;
+  public isSubmitted = false;
 
-  /**
-   * Validations
-   */
-  isSubmitted = false;
-  isEmail = false;
-  isPassword = false;
+  public form: SignInFormType = {
+    email: { value: '', validation: '' },
+    password: { value: '', validation: '' },
+    agreement: { value: '', validation: '' }
+  };
+
+  ngOnInit(): void {  }
 
 
-  /**
-   * Error Message shown under the form.
-   */
-  errorMessage;
+  submitForm() {
+    this.isSubmitted = true;
+    this.validator.isSignInFormValid(this.form);
 
-
-  ngOnInit(): void {
   }
 
-  onSubmit() {
-    this.isSubmitted = true;
-    if (this.validateCredentials()) {
-      this.signin();
+  reset() {
+    // Submitted
+    this.isSubmitted = false;
+
+    for (let i of Object.entries(this.form)) {
+      i[1].value = '';
+      i[1].validation = '';
     }
   }
 
-  validateCredentials() {
-    //TODO
-    return this.isEmail && this.isPassword && this.agreement;
-  }
-
-  signin() {
-    this.signinService.signin({ email: this.email, password: this.password })
-      .subscribe(
-        res => {
-          this.resetForm();
-          this.router.navigate(['profile'], { replaceUrl: true });
-          /**
-           * Alert must come later than navigation becuase it stops navigation.
-           */
-          alert(res.msg);
-        },
-        err => {
-          this.errorMessage = err;
-          this.resetForm();
-        });
-  }
-
-  resetForm() {
-    this.email = '';
-    this.password = '';
-    this.agreement = false;
-
-    this.isSubmitted = false;
-    this.isEmail = false;
-    this.isPassword = false;
-    this.agreement = false;
-    setTimeout(() => {
-      this.errorMessage = undefined;
-    }, 2000);
-  }
 }

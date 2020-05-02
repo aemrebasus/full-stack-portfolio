@@ -1,80 +1,93 @@
-<div class="container  p-4">
+<div class="container col col-md-6 col-sm-12">
 
-    <div class="card ">
+    <div class="card text-white bg-dark">
 
         <!-- HEADER -->
-        <div class="card-header bg-success">
+        <div class="card-header bg-success text-white text-center">
             <h4 class="card-title">SIGN IN</h4>
         </div>
 
-
         <!-- BODY -->
-        <div class="card-body text-dark">
+        <div class="card-body">
 
             <!-- FORM -->
             <form>
+
                 <div class="form-group">
-
-
-                    <label for="emailField">Email</label>
+                    <label for="emailAddress">Email Address</label>
                     <div class="input-group">
+
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="emailFieldPrepend">
-                                <i class="fas fa-mail-bulk"></i>
+                            <span class="input-group-text" id="passwordField">
+                                <i class="fa fa-mail-bulk"></i>
                             </span>
                         </div>
-                        <!-- Email  -->
-                        <input name="email" type="text" class="form-control" id="emailField" placeholder="Email Address"
-                            aria-describedby="emailFieldPrepend" [(ngModel)]='email'
-                            [class.is-valid]="isEmail && isSubmitted "
-                            [class.is-invalid]="!isEmail && isSubmitted || errorMessage" required />
-                        <div class="invalid-feedback" *ngIf="isSubmitted">
-                            {{email}} is not a valid e-mail.
-                        </div>
+                        <!-- Email address -->
+                        <input type="text" name="emailAddress" id="emailAddress" class="form-control"
+                            placeholder="Email Address " aria-describedby="emailAddressHelper" autocomplete="email"
+                            [(ngModel)]="form.email.value" [class.is-invalid]='form.email.validation && isSubmitted'
+                            [class.is-valid]="!form.email.validation && isSubmitted" required />
                     </div>
+                    <small id="emailAddressHelper" class="text-muted">Type your email address</small>
+                    <div class="alert alert-danger p-1" *ngIf="form.email.validation && isSubmitted">
+                        {{form.email.validation}}
+                    </div>
+                </div>
 
+
+
+                <div class="form-group">
                     <label for="passwordField">Password</label>
                     <div class="input-group">
+
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="passwordField">
                                 <i class="fa fa-lock"></i>
                             </span>
                         </div>
-                        <!-- Password -->
-                        <input name="pasword" type="password" class="form-control" id="passwordField"
-                            placeholder="Password" aria-describedby="passwordField" [(ngModel)]='password'
-                            [class.is-valid]="isPassword && isSubmitted"
-                            [class.is-invalid]="!isPassword && isSubmitted || errorMessage" required />
-                        <div class="invalid-feedback" *ngIf="isSubmitted">
-                            Please type your password
-                        </div>
+                        <!-- Password  -->
+                        <input type="password" name="password" id="passwordField" class="form-control"
+                            placeholder="Password" aria-describedby="passwordFieldPrepend" autocomplete="new-password"
+                            [(ngModel)]="form.password.value"
+                            [class.is-invalid]='form.password.validation && isSubmitted'
+                            [class.is-valid]="!form.password.validation && isSubmitted" required>
                     </div>
+                    <small id="passwordHelper" class="text-muted">Type your password </small>
+                    <!-- Alert message -->
+                    <div class="alert alert-danger p-1" *ngIf="form.password.validation && isSubmitted">
+                        {{form.password.validation}}</div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <!-- Agreement -->
+                        <input name="agreement" class="form-check-input" type="checkbox" id="invalidCheck3"
+                            [(ngModel)]="form.agreement.value" required />
+                        <label class="form-check-label" for="invalidCheck3"
+                            [class.is-invalid]="!form.agreement.validation && isSubmitted "
+                            [class.is-valid]="form.agreement.validation && isSubmitted">
+                            Agree to terms and conditions
+                        </label>
+                    </div>
+                    <div class="alert alert-danger p-1" *ngIf="form.agreement.validation && isSubmitted">
+                        {{form.agreement.validation}}</div>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="btn btn-success float-right m-3" (click)="submitForm()">Submit</div>
+                    <input type="reset" class="btn btn-warning m-3 float-right" (click)="reset()" value="Reset" />
+
+                    <a class="btn btn-outline-info col col-12 text-center" routerLink="/policy/agreement">@AhmetEmrebas
+                        Terms and Conditions
+                    </a>
+
                 </div>
             </form>
-        </div>
-        <div class="card-footer">
-
-            <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
-
-            <div class="form-group">
-                <div class="form-check">
-
-                    <!-- Agreement -->
-                    <input name="agreement" class="form-check-input" type="checkbox" id="invalidCheck3"
-                        [(ngModel)]="agreement" required />
-                    <label class="form-check-label" for="invalidCheck3" [class.is-invalid]="!agreement && isSubmitted "
-                        [class.is-valid]="agreement && isSubmitted">
-                        Agree to terms and conditions
-                    </label>
-                    <div class="invalid-feedback">
-                        You must agree before submitting.
-                    </div>
-                </div>
-            </div>
-
-            <button class="btn btn-primary" type="button" (click)="onSubmit()">Submit form</button>
-
-            <a class="float-right" routerLink="/policy/agreement">@AhmetEmrebas Terms and Conditions </a>
         </div>
     </div>
 

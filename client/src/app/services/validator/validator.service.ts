@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import _validator from 'validator';
-import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -65,16 +64,29 @@ export class ValidatorService {
   }
 
 
+  isSignInFormValid(form: SignInFormType) {
+    form.email.validation = this.isEmailValid(form.email.value);
+    form.password.validation = this.isPasswordValid(form.password.value);
+    form.agreement.validation = ((!form.agreement.value) && 'Please accept the terms and conditions.');
+  }
+
 
 }
 
 export type VType = string;
 
-export type SingUpFormType = {
-  firstName: { value: '', validation: boolean | string },
-  lastName: { value: '', validation: boolean | string },
-  email: { value: '', validation: boolean | string },
-  companyName: { value: '', validation: boolean | string },
-  password: { value: '', validation: boolean | string },
-  passwordAgain: { value: '', validation: boolean | string }
+export interface SingUpFormType {
+  firstName: { value: '', validation: boolean | string };
+  lastName: { value: '', validation: boolean | string };
+  email: { value: '', validation: boolean | string };
+  companyName: { value: '', validation: boolean | string };
+  password: { value: '', validation: boolean | string };
+  passwordAgain: { value: '', validation: boolean | string };
 }
+
+
+export interface SignInFormType {
+  email: { value: '', validation: boolean | string };
+  password: { value: '', validation: boolean | string };
+  agreement: { value: '', validation: boolean | string };
+};
