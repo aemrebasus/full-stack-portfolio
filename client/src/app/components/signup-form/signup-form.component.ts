@@ -7,12 +7,10 @@ import { ValidatorService, SingUpFormType } from '@services/validator/validator.
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss']
 })
-export class SignupFormComponent implements OnInit {
+export class SignupFormComponent {
 
 
-  constructor(private validator: ValidatorService) {
-
-  }
+  constructor(private validator: ValidatorService) {  }
 
   // When submit button clicks then this turns to true.
   public isSubmitted = false;
@@ -26,8 +24,6 @@ export class SignupFormComponent implements OnInit {
     passwordAgain: { value: '', validation: '' }
   };
 
-  ngOnInit(): void {
-  }
 
   submitForm() {
     this.isSubmitted = true;
@@ -35,11 +31,9 @@ export class SignupFormComponent implements OnInit {
 
   }
 
-
   reset() {
     // Submitted
     this.isSubmitted = false;
-
     for (let i of Object.entries(this.form)) {
       i[1].value = '';
       i[1].validation = '';

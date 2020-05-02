@@ -18,6 +18,11 @@ import { UserViewComponent } from './components/user-view/user-view.component';
 import { IssueUpdateComponent } from './components/issue-update/issue-update.component';
 import { IssueDeleteComponent } from './components/issue-delete/issue-delete.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { SignOutComponent } from './components/sign-out/sign-out.component';
+import { ConfirmationComponent } from './components/modals/confirmation/confirmation.component';
+import { SignoutConfirmationComponent } from './components/modals/confirmation/signout-confirmation/signout-confirmation.component';
+import { DeleteConfirmationComponent } from './components/modals/confirmation/delete-confirmation/delete-confirmation.component';
+import { UpdateConfirmationComponent } from './components/modals/confirmation/update-confirmation/update-confirmation.component';
 
 
 @NgModule({
@@ -36,7 +41,12 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
     UserViewComponent,
     IssueUpdateComponent,
     IssueDeleteComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    SignOutComponent,
+    ConfirmationComponent,
+    SignoutConfirmationComponent,
+    DeleteConfirmationComponent,
+    UpdateConfirmationComponent
   ],
   imports: [
     BrowserModule,

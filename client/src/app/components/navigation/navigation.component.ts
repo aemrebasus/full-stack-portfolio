@@ -11,21 +11,8 @@ export class NavigationComponent implements OnInit {
   constructor(private siginService: SigninService, private router: Router) { }
 
   ngOnInit(): void {
-
   }
 
-  signout() {
-    this.siginService
-      .signout()
-      .subscribe(
-        data => {
-          /**
-           * Alert comes after the navigation becasue it stops the navigation.
-           */
-          alert(data.msg);
-        },
-        error => { alert(error); }
-      );
-  }
+
 
 }

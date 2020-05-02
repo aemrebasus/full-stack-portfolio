@@ -12,12 +12,13 @@ import { UserViewComponent } from '@components/user-view/user-view.component';
 import { IssueUpdateComponent } from '@components/issue-update/issue-update.component';
 import { IssueDeleteComponent } from '@components/issue-delete/issue-delete.component';
 import { SignupFormComponent } from '@components/signup-form/signup-form.component';
+import { SignOutComponent } from '@components/sign-out/sign-out.component';
 
 const routes: Routes = [
   { path: 'information', component: ServerComponent },
   { path: 'developer', component: DeveloperComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'signout', component: SigninComponent },
+  { path: 'signout', component: SignOutComponent },
   { path: 'app', component: MainComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'issues', component: IssueViewComponent },
