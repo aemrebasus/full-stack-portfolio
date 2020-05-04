@@ -23,8 +23,5 @@ export class SignupFormComponent {
         .isPasswordAgainValid(value, this.form.getValueById('password'))
       )
     );
-
-
-
 }
 

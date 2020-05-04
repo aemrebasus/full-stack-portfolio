@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
-  template: '<app-navigation></app-navigation><router-outlet></router-outlet>'
+  styleUrls: ['../app/components/landing/landing.component.scss'],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'Project Management';

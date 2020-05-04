@@ -1,4 +1,11 @@
-
 .bg-happy {
     background-color: tomato;
+}
+
+* {
+    box-sizing: border-box;
+}
+body,
+html {
+    overflow-x: hidden;
 }

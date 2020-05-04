@@ -1,0 +1,244 @@
+$bigBorderColor: rgb(17, 41, 63);
+$light-1: 10;
+$light-2: 30;
+$light-3: 50;
+
+* {
+    transition: all ease-in-out 400ms;
+}
+
+*:hover {
+    transition: all ease-in-out 400ms;
+}
+
+// Specific rules
+
+.card:first-child {
+    text-align: right;
+    color: white;
+    background-image: linear-gradient(to right, $bigBorderColor, orange);
+    border-top-left-radius: 30px;
+    border-bottom: 10px solid $bigBorderColor;
+    border-right: 10px solid $bigBorderColor;
+    box-shadow: -100px -30px 1px $bigBorderColor, -100px 30px 1px $bigBorderColor;
+}
+
+.card:nth-child(2) {
+    text-align: right;
+    color: white;
+    background-color: lighten(rgb(17, 101, 180), 10);
+    border-bottom: 10px solid $bigBorderColor;
+}
+
+.card:nth-child(3) {
+    text-align: right;
+    color: white;
+    background-image: linear-gradient(to left, $bigBorderColor, lighten(rgb(211, 49, 8), 10));
+    border-top-right-radius: 30px;
+    border-bottom: 10px solid $bigBorderColor;
+    border-left: 10px solid $bigBorderColor;
+    box-shadow: 100px 30px 1px $bigBorderColor, 100px -30px 1px $bigBorderColor;
+}
+
+// General rules
+.card {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: none;
+    outline: none;
+    border: none;
+    border-radius: 0px;
+    opacity: 0.8;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px black;
+}
+
+.card-title {
+    letter-spacing: 4px;
+    box-shadow: none;
+}
+
+.card-text {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-deck {
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        box-shadow: none;
+    }
+    .footer {
+        border: none;
+        background-color: gray;
+    }
+
+    .mobile-card {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        box-shadow: none;
+        margin-top: 10px;
+    }
+
+    .mobile-card > * {
+        box-shadow: none;
+        border-radius: 0px;
+        border: none;
+        text-align: center;
+        width: 100%;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+    body {
+        overflow: hidden;
+        overflow-y: hidden;
+    }
+}
+
+.page {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+
+    border-top: 70vh solid lighten($bigBorderColor, $light-3);
+    border-right: 50vw solid lighten($bigBorderColor, $light-1);
+    border-left: 50vw solid lighten($bigBorderColor, $light-1);
+    border-bottom: 30vh solid $bigBorderColor;
+}
+
+.modal {
+    border-radius: 0px;
+}
+.modal * {
+    border-radius: 0px;
+}
+
+[class^="btn"] {
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 4px black;
+    letter-spacing: 3px;
+}
+
+[class*="title"] {
+    letter-spacing: 3px;
+}
+
+[class^="btn"]:hover {
+    box-shadow: inset 0px 0px 10px black;
+}
+
+.btn-group .btn {
+    box-shadow: none;
+}
+
+.btn-text {
+    width: 150px;
+}
+.search-icon {
+    position: absolute;
+    margin-top: 10px;
+}
+.search-box {
+    color: white;
+    padding-left: 30px;
+}
+
+input[type],
+textarea {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(156, 152, 152, 0.5);
+    border-radius: 0px;
+    letter-spacing: 2px;
+    background-color: rgba(white, 0);
+    text-align: left;
+    font-size: 12px;
+    width: 100%;
+}
+input[type]:placeholder-shown {
+    font-size: 15px;
+}
+
+input[type]:focus,
+textarea:focus {
+    box-shadow: none;
+    border-bottom-color: rgba($color: #19cec5, $alpha: 0.8);
+}
+
+input[type]:valid,
+textarea:valid {
+    border-bottom: 1em thin yellowgreen;
+}
+
+input[type]:invalid,
+textarea:invalid {
+    border-bottom: 1em thin red;
+}
+
+input:vlaid,
+textarea:valid,
+input:invalid,
+textarea:invalid,
+input:focus,
+textarea:focus,
+input:placeholder-shown,
+input:active {
+    background-color: transparent;
+}
+
+.card-title {
+    text-shadow: 0px 0px 3px black;
+}
+
+#logo {
+    width: 100px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: transparent;
+    border-right: 40vw solid lighten($bigBorderColor, $light-1);
+    border-left: 40vw solid lighten($bigBorderColor, $light-1);
+    border-top: 30px solid lighten($bigBorderColor, $light-2);
+
+    width: 100%;
+}
+
+.btn-group {
+    box-shadow: none;
+    border-top: thin solid $bigBorderColor;
+    border-bottom: 10px solid $bigBorderColor;
+    border-radius: 20px;
+    box-shadow: 600px -100px 200px lighten($bigBorderColor, $light-2),
+        -400px 100px 200px lighten($bigBorderColor, $light-3);
+}
+.btn-group:hover {
+    // box-shadow: none;
+    box-shadow: -600px -100px 200px lighten($bigBorderColor, $light-3),
+        400px 100px 200px lighten($bigBorderColor, $light-2);
+}
+.btn {
+    font-size: 13px;
+    // transform: rotate(10deg);
+    margin: 18px;
+    box-shadow: 0px 0px 4px black;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}

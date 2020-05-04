@@ -1,6 +1,5 @@
-<div class="form-group">
+<div class="form-group col col-md-6 col-sm-12 float-left">
     <label for={{input.id}}>{{input.label}}</label>
-
     <div class="input-group">
 
         <div class="input-group-prepend">
@@ -14,8 +13,7 @@
             [(ngModel)]="input.value" [class.is-invalid]='input.isValid && input.isSubmitted'
             [class.is-valid]="!input.isValid && input.isSubmitted" required={{input.required}} />
     </div>
-
-    <small id="{{input.name}}Helper" class="text-muted">{{input.helperText}}</small>
+    <small id="{{input.name}}Helper">{{input.helperText}}</small>
 
     <!-- Validaton -->
     <div class="alert alert-danger p-1" *ngIf="input.isValid && input.isSubmitted"> {{input.isValid}}</div>

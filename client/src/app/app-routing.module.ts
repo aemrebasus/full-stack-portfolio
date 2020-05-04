@@ -3,9 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupFormComponent } from '@components/form/signup-form/signup-form.component';
 import { SigninFormComponent } from '@components/form/signin-form/signin-form.component';
 import { ConfirmationComponent } from '@components/confirmation/confirmation.component';
+import { LandingComponent } from '@components/landing/landing.component';
 
 
 const routes: Routes = [
+  { path: '', component: LandingComponent },
   { path: 'signup', component: SignupFormComponent },
   { path: 'signin', component: SigninFormComponent },
   { path: 'con', component: ConfirmationComponent }

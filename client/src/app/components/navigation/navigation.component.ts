@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styles: ['.active{ border-bottom:thin solid white;}']
+  styleUrls:['./navigation.style.scss']
 })
 export class NavigationComponent  {
 

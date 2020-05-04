@@ -1,0 +1,44 @@
+.active,
+.active * {
+    border-bottom: thin solid rgb(241, 70, 70);
+}
+
+.nav-item {
+    margin-left: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nav-link {
+    color: white;
+}
+
+.navbar {
+    background-image: linear-gradient(to top, rgba(11, 19, 90, 0.8), rgba(107, 153, 252, 0.8));
+    user-select: none;
+    cursor: pointer;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 1000;
+}
+
+.logo {
+    width: 50px;
+    margin-right: 100px;
+}
+
+.search-box {
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.search-box:focus,
+.search-box:active {
+    border: none;
+    outline: none;
+    border-bottom: thin solid white;
+    box-shadow: none;
+}

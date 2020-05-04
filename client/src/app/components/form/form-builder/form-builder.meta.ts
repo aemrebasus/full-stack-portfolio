@@ -58,6 +58,7 @@ export class FormBuilder {
 
     public setTitle(title: string) {
         this.title = title;
+        return this;
     }
 
     public getFieldById(id: string) {

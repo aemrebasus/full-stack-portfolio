@@ -11,6 +11,7 @@ import { InputComponent } from './components/form/input/input.component';
 import { FormCardComponent } from './components/form/form-card/form-card.component';
 import { SigninFormComponent } from './components/form/signin-form/signin-form.component';
 import { FormBuilderComponent } from './components/form/form-builder/form-builder.component';
+import { LandingComponent } from '@components/landing/landing.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormBuilderComponent } from './components/form/form-builder/form-builde
     InputComponent,
     FormCardComponent,
     SigninFormComponent,
-    FormBuilderComponent
+    FormBuilderComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
