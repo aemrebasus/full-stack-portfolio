@@ -1,0 +1,22 @@
+<div class="form-group">
+    <label for={{input.id}}>{{input.label}}</label>
+
+    <div class="input-group">
+
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="passwordField">
+                <i class="{{input.icon}}"></i>
+            </span>
+        </div>
+        <!-- Input -->
+        <input type={{input.type}} name={{input.name}} id={{input.id}} class="form-control"
+            placeholder={{input.placeHolder}} aria-describedby="inputComponent" autocomplete="{{input.autocomplete}}"
+            [(ngModel)]="input.value" [class.is-invalid]='input.isValid && input.isSubmitted'
+            [class.is-valid]="!input.isValid && input.isSubmitted" required={{input.required}} />
+    </div>
+
+    <small id="{{input.name}}Helper" class="text-muted">{{input.helperText}}</small>
+
+    <!-- Validaton -->
+    <div class="alert alert-danger p-1" *ngIf="input.isValid && input.isSubmitted"> {{input.isValid}}</div>
+</div>

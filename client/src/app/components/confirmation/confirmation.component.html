@@ -1,0 +1,35 @@
+<a type="button" class="btn btn-outline-{{modal.color}} btn-lg" data-toggle="modal" href='#{{modal.id}}'>
+    Launch
+</a>
+
+<!-- Modal -->
+<div class=" modal fade" id={{modal.id}} tabindex="-1" role="dialog" aria-labelledby="confirmation" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-{{modal.color}} text-light">
+                <h5 class="modal-title">{{modal.title}}</h5>
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    {{modal.message}}
+                    <ng-content></ng-content>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="confirm()" data-dismiss="modal">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#exampleModal').on('show.bs.modal', event => {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        // Use above variables to manipulate the DOM
+    });
+</script>

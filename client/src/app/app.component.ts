@@ -4,5 +4,5 @@ import { Component } from '@angular/core';
   template: '<app-navigation></app-navigation><router-outlet></router-outlet>'
 })
 export class AppComponent {
-
+  title = 'Project Management';
 }
