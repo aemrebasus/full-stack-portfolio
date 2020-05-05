@@ -11,7 +11,7 @@ export class ConsoleComponent implements OnInit {
   constructor() { }
 
   buttons: ConsoleButton[] = [
-    new ConsoleButton('dashboard', 'Dashboard', 'Dashboard', 'warning'),
+    new ConsoleButton('dashboard', 'Dashboard', 'dashboard', 'warning'),
     new ConsoleButton('project', 'New Project', 'newproject', 'primary'),
     new ConsoleButton('sprint', 'New Sprint', 'newsprint', 'primary'),
     new ConsoleButton('issue', 'New Issue', 'newissue', 'primary'),
