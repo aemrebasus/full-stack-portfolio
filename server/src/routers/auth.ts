@@ -6,16 +6,21 @@ import { sign } from '@shared/jwt';
  */
 export const Auth = Router();
 
-Auth.post('/signin', (req, res) => {
-    const { email, password } = req.body;
+Auth
+    .post('/signin', (req, res) => {
+        const { email, password } = req.body;
 
-    if (email === 'email' && password === 'password') {
-        const token = sign({ email, password, role: 'developer' });
-        res.cookie('token', token)
-            .send('Successfully signed in');
-    } else {
+        if (email === 'email' && password === 'password') {
+            const token = sign({ email, password, role: 'developer' });
+            res.cookie('token', token)
+                .send('Successfully signed in');
+        } else {
 
-        res.send('Not Signed in');
+            res.send('Not Signed in');
 
-    }
-})
+        }
+    })
+
+    .get('/auth/isValidUser', (req, res) => {
+        res.send(true);
+    })

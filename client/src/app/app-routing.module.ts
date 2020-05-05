@@ -11,6 +11,8 @@ import { NewUserComponent } from '@components/form/new-user/new-user.component';
 import { NewIssueComponent } from '@components/form/new-issue/new-issue.component';
 import { NewProjectComponent } from '@components/form/new-project/new-project.component';
 import { NewSprintComponent } from '@components/form/new-sprint/new-sprint.component';
+import { AppBoardComponent } from '@components/app-board/app-board.component';
+import { UsersListComponent } from '@components/users-list/users-list.component';
 
 
 const routes: Routes = [
@@ -18,13 +20,19 @@ const routes: Routes = [
   { path: 'signup', component: SignupFormComponent },
   { path: 'signin', component: SigninFormComponent },
   { path: 'con', component: ConfirmationComponent },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'issues', component: IssuesComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'newuser', component: NewUserComponent },
-  { path: 'newissue', component: NewIssueComponent },
-  { path: 'newproject', component: NewProjectComponent },
-  { path: 'newsprint', component: NewSprintComponent },
+  {
+    path: 'app', component: AppBoardComponent,
+    children: [
+      { path: 'projects', component: ProjectsComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'newuser', component: NewUserComponent },
+      { path: 'newissue', component: NewIssueComponent },
+      { path: 'newproject', component: NewProjectComponent },
+      { path: 'newsprint', component: NewSprintComponent },
+      { path: 'issues', component: IssuesComponent },
+      { path: 'users', component: UsersListComponent }
+    ]
+  },
 
 
 ];

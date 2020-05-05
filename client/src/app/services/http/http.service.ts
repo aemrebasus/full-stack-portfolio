@@ -11,7 +11,6 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   errorHandler(error) {
-    
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       errorMessage = `Error: ${error.error.message}`;

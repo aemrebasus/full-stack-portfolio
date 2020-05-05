@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IModal, Modal } from './confirmation.meta';
+import { Component,  Input, Output, EventEmitter } from '@angular/core';
+import {  Modal } from './confirmation.meta';
 
 @Component({
   selector: 'app-confirmation',

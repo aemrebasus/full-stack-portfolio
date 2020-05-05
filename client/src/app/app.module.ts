@@ -24,6 +24,7 @@ import { InputListComponent } from './components/form/input-list/input-list.comp
 import { NewSprintComponent } from './components/form/new-sprint/new-sprint.component';
 import { ConsoleButtonComponent } from './components/form/console-button/console-button.component';
 import { ListButtonComponent } from './components/form/list-button/list-button.component';
+import { AppBoardComponent } from './components/app-board/app-board.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { ListButtonComponent } from './components/form/list-button/list-button.c
     InputListComponent,
     NewSprintComponent,
     ConsoleButtonComponent,
-    ListButtonComponent
+    ListButtonComponent,
+    AppBoardComponent
   ],
   imports: [
     BrowserModule,
