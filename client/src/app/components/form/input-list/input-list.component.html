@@ -1,0 +1,32 @@
+<div class="form-group col col-md-6 col-sm-12 float-left">
+    <label for={{input.id}}>{{input.label}}</label>
+    <div class="input-group">
+
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="passwordField">
+                <i class="{{input.icon}}"></i>
+            </span>
+        </div>
+        <!-- Input -->
+        <input type={{input.type}} name={{input.name}} id={{input.id}} class="form-control"
+            placeholder={{input.placeHolder}} aria-describedby="inputComponent" autocomplete="{{input.autocomplete}}"
+            [(ngModel)]="input.value" [class.is-invalid]='input.isValid && input.isSubmitted'
+            [class.is-valid]="!input.isValid && input.isSubmitted" required={{input.required}}
+            (keydown)="keyDown($event)" />
+
+        <div class=" input-group-prepend" (click)="add()">
+            <a class=" btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+        </div>
+        <div class="input-group-prepend" (click)="delete()">
+            <a class="btn btn-danger"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
+        </div>
+
+    </div>
+    <small id="{{input.name}}Helper">{{input.helperText}}</small>
+
+    <!-- Validaton -->
+    <div class="alert alert-danger p-1" *ngIf="input.isValid && input.isSubmitted">{{input.isValid}}</div>
+    <ul class="list-group">
+        <li class="list-group-item text-dark" *ngFor="let i of input.list">{{i}}</li>
+    </ul>
+</div>

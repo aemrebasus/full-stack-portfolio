@@ -12,6 +12,16 @@ import { FormCardComponent } from './components/form/form-card/form-card.compone
 import { SigninFormComponent } from './components/form/signin-form/signin-form.component';
 import { FormBuilderComponent } from './components/form/form-builder/form-builder.component';
 import { LandingComponent } from '@components/landing/landing.component';
+import { ConsoleComponent } from './components/console/console.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { IssuesComponent } from './components/issues/issues.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NewUserComponent } from './components/form/new-user/new-user.component';
+import { NewIssueComponent } from './components/form/new-issue/new-issue.component';
+import { NewProjectComponent } from './components/form/new-project/new-project.component';
+import { InputListComponent } from './components/form/input-list/input-list.component';
+import { NewSprintComponent } from './components/form/new-sprint/new-sprint.component';
 
 
 @NgModule({
@@ -24,7 +34,17 @@ import { LandingComponent } from '@components/landing/landing.component';
     FormCardComponent,
     SigninFormComponent,
     FormBuilderComponent,
-    LandingComponent
+    LandingComponent,
+    ConsoleComponent,
+    UsersListComponent,
+    ProjectsComponent,
+    IssuesComponent,
+    DashboardComponent,
+    NewUserComponent,
+    NewIssueComponent,
+    NewProjectComponent,
+    InputListComponent,
+    NewSprintComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="form-group">
+        <select class="form-control" name="projects" id="projects" title="Select Project">
+            <option>Select Project</option>
+            <option>Project 1</option>
+            <option>Project 2</option>
+            <option>Project 3</option>
+        </select>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-success" routerLink="dashboard" routerLinkActive="active">
+            <div class="btn p-0 text-white" title="Show the current project statistics">Dashboard</div>
+        </li>
+        <li class="list-group-item bg-primary " routerLink="newproject" routerLinkActive="active">
+            <div class="btn p-0  text-white" title="Create new project">New Project</div>
+        </li>
+        <li class="list-group-item bg-primary " routerLink="newsprint" routerLinkActive="active">
+            <div class="btn p-0  text-white" title="Create new project">New Sprint</div>
+        </li>
+        <li class="list-group-item bg-primary" routerLink="newissue" routerLinkActive="active">
+            <div class="btn p-0  text-white" title="Create a new issue">New Issue</div>
+        </li>
+        <li class="list-group-item bg-primary " routerLink="newuser" routerLinkActive="active">
+            <div class="btn p-0  text-white" title="Create a new user">New User</div>
+        </li>
+        <li class="list-group-item bg-info" routerLink="issues" routerLinkActive="active">
+            <div class="btn p-0 text-white" title="View issues of the current project">Issues</div>
+        </li>
+        <li class="list-group-item bg-info" routerLink="issues" routerLinkActive="active">
+            <div class="btn p-0 text-white" title="View issues of the current project">Sprints</div>
+        </li>
+        <li class="list-group-item bg-warning" routerLink="issues" routerLinkActive="active">
+            <div class="btn p-0 text-white" title="View issues of the current project">Developers</div>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,11 @@
+.col:first-child {
+    border-right: 2px solid white;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.col:last-child {
+    border-left: 2px solid white;
+    padding-left: 30px;
+    margin-bottom: 200px;
+}

@@ -9,7 +9,11 @@ const icons = {
     education: 'fas fa-user-graduate',
     university: 'fas fa-user-graduate',
     date: 'far fa-calendar-alt',
-    time: 'far fa-clock'
+    time: 'far fa-clock',
+    projectName: 'fas fa-project-diagram',
+    title: 'fas fa-heading',
+    description: 'fas fa-list-ol',
+    assignee: 'fa fa-user'
 };
 
 
@@ -38,7 +42,7 @@ export class FormInput implements IFormInput {
         this.placeHolder = this.name.toUpperCase();
         this.autocomplete = this.type;
         this.icon = icons[this.id];
-        
+
     }
 
     public validate() {
@@ -65,7 +69,7 @@ export interface IFormInput {
 
 
 
-type IInputType = 'text' | 'password' | 'email' | 'checkbox';
+type IInputType = 'text' | 'password' | 'email' | 'checkbox' | 'textarea';
 
 type ValidationFunction = (value: string) => string;
 

@@ -24,14 +24,14 @@ $light-3: 50;
 }
 
 .card:nth-child(2) {
-    text-align: right;
+    text-align: center;
     color: white;
     background-color: lighten(rgb(17, 101, 180), 10);
     border-bottom: 10px solid $bigBorderColor;
 }
 
 .card:nth-child(3) {
-    text-align: right;
+    text-align: left;
     color: white;
     background-image: linear-gradient(to left, $bigBorderColor, lighten(rgb(211, 49, 8), 10));
     border-top-right-radius: 30px;
