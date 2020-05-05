@@ -21,6 +21,7 @@ export class NewIssueComponent {
   public form = new FormBuilder(this.formName, this.color)
     .addFields(
       new FormInput('title', 'Title', 'text', (value: string) => this.validator.isNameValid(value)),
-      new FormInput('assignee', 'Assignee', 'text', (value: string) => this.validator.isNameValid(value))
+      new FormInput('assignee', 'Assignee', 'text', (value: string) => this.validator.isNameValid(value)),
+      new FormInput('sprintName', 'Sprint Name', 'text', (value: string) => this.validator.isNameValid(value))
     );
 }

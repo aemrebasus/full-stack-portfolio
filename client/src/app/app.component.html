@@ -4,13 +4,13 @@
 <app-navigation></app-navigation>
 
 <div class="row mt-5" style="padding-top: 50px; padding-bottom: 100px;">
-    <div class="col col-12 col-md-2 ">
+    <div class="console col col-12 col-md-2" *ngIf="isSignedIn">
         <app-console></app-console>
     </div>
-    <div class="col col-12 col-md-8">
+    <div class="col col-12 col-md-8" [class.col-md-12]="!isSignedIn">
         <router-outlet></router-outlet>
     </div>
-    <div class="col col-12 col-md-2">
+    <div class=" user-list col col-12 col-md-2" *ngIf="isSignedIn">
         <app-users-list></app-users-list>
     </div>
 </div>

@@ -13,7 +13,8 @@ const icons = {
     projectName: 'fas fa-project-diagram',
     title: 'fas fa-heading',
     description: 'fas fa-list-ol',
-    assignee: 'fa fa-user'
+    assignee: 'fa fa-user',
+    sprintName: 'fas fa-users-cog'
 };
 
 

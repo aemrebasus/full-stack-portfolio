@@ -22,6 +22,8 @@ import { NewIssueComponent } from './components/form/new-issue/new-issue.compone
 import { NewProjectComponent } from './components/form/new-project/new-project.component';
 import { InputListComponent } from './components/form/input-list/input-list.component';
 import { NewSprintComponent } from './components/form/new-sprint/new-sprint.component';
+import { ConsoleButtonComponent } from './components/form/console-button/console-button.component';
+import { ListButtonComponent } from './components/form/list-button/list-button.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { NewSprintComponent } from './components/form/new-sprint/new-sprint.comp
     NewIssueComponent,
     NewProjectComponent,
     InputListComponent,
-    NewSprintComponent
+    NewSprintComponent,
+    ConsoleButtonComponent,
+    ListButtonComponent
   ],
   imports: [
     BrowserModule,

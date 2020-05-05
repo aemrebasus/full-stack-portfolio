@@ -7,30 +7,40 @@
             <option>Project 3</option>
         </select>
     </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item bg-success" routerLink="dashboard" routerLinkActive="active">
+
+    <app-list-button [buttons]="buttons"></app-list-button>
+    <!-- <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-success" routerLink="dashboard">
+
             <div class="btn p-0 text-white" title="Show the current project statistics">Dashboard</div>
         </li>
-        <li class="list-group-item bg-primary " routerLink="newproject" routerLinkActive="active">
-            <div class="btn p-0  text-white" title="Create new project">New Project</div>
+        <li class="list-group-item" routerLink="newproject">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="passwordField">
+                        <i class="fas fa-mail-bulk"></i>
+                    </span>
+                </div>
+                <input type="button" class="btn btn-primary" title="Create new project" value="New Project">
+            </div>
         </li>
-        <li class="list-group-item bg-primary " routerLink="newsprint" routerLinkActive="active">
+        <li class="list-group-item bg-primary " routerLink="newsprint">
             <div class="btn p-0  text-white" title="Create new project">New Sprint</div>
         </li>
-        <li class="list-group-item bg-primary" routerLink="newissue" routerLinkActive="active">
+        <li class="list-group-item bg-primary" routerLink="newissue">
             <div class="btn p-0  text-white" title="Create a new issue">New Issue</div>
         </li>
-        <li class="list-group-item bg-primary " routerLink="newuser" routerLinkActive="active">
+        <li class="list-group-item bg-primary " routerLink="newuser">
             <div class="btn p-0  text-white" title="Create a new user">New User</div>
         </li>
-        <li class="list-group-item bg-info" routerLink="issues" routerLinkActive="active">
+        <li class="list-group-item bg-info" routerLink="issues">
             <div class="btn p-0 text-white" title="View issues of the current project">Issues</div>
         </li>
-        <li class="list-group-item bg-info" routerLink="issues" routerLinkActive="active">
+        <li class="list-group-item bg-info" routerLink="issues">
             <div class="btn p-0 text-white" title="View issues of the current project">Sprints</div>
         </li>
-        <li class="list-group-item bg-warning" routerLink="issues" routerLinkActive="active">
+        <li class="list-group-item bg-warning" routerLink="issues">
             <div class="btn p-0 text-white" title="View issues of the current project">Developers</div>
         </li>
-    </ul>
+    </ul> -->
 </div>
