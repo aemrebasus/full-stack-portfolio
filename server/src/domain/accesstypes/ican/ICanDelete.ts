@@ -24,6 +24,6 @@ export interface ICanDeleteIssue<TID = IID, TIssue = IIssue, TStatus = IIssueSta
 
 
 export interface ICanDeleteUser<TID = IID, TUser = IUser, TReturn = boolean | null> {
-    deleteUserById(id: TID, callback?: (back: TReturn) => void): Promise<TReturn>;
+    deleteUserById(orgId: TID, id: TID, callback?: (back: TReturn) => void): Promise<TReturn>;
     deleteUser(user: TUser, callback?: (back: TReturn) => void): Promise<TReturn>;
 }

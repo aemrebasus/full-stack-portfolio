@@ -1,24 +1,28 @@
 import { ScrumMaster } from './ScrumMaster';
 import { IUser, UserModel } from '@domain/entities/IUser';
 import { ICanCreateUser } from './ican/ICanCreate';
-import { ICanValidate } from './ican/ICanValidate';
+import { hashPassword } from '@shared/jwt';
+import { ICanDeleteUser } from './ican/ICanDelete';
 
 
 
 export class Admin extends ScrumMaster implements
-    ICanCreateUser, ICanValidate {
+    ICanCreateUser, ICanDeleteUser {
 
-
-    async validateUser(credentials: { email: string; password: string; }): Promise<IUser | null> {
-        return await UserModel.findOne(credentials);
+    deleteUserById(orgId: string, id: string, callback?: ((back: boolean | null) => void) | undefined): Promise<any> {
+        return UserModel.deleteOne({ _id: id, organizationId: orgId }).then(result => result);
     }
 
-
-    async createNewUser(user: IUser, callback?: ((back: IUser) => void) | undefined): Promise<IUser> {
-        return await new UserModel(user).save();
+    deleteUser(user: IUser, callback?: ((back: boolean | null) => void) | undefined): Promise<any> {
+        return UserModel.deleteOne({ email: user.email, organizationId: user.organizationId }).then(result => result);
     }
 
-
-
+    createNewUser(user: IUser, callback?: ((back: IUser) => void) | undefined): Promise<IUser> {
+        return hashPassword(user.password)
+            .then(hashed => {
+                user.password = hashed;
+                return new UserModel(user).save();
+            })
+    }
 
 }

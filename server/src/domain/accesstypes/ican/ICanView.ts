@@ -25,14 +25,15 @@ export interface ICanViewMyIssue<TID = IID, TIssue = IIssue | null, TIssueStatus
 
 export interface ICanViewUser<TID = IID, TUser = IUser, TReturn = IUser | null> {
     viewUser(user: TUser, callback?: ICallback<TReturn>): Promise<TReturn>;
-    viewUserById(id: TID, callback?: ICallback<TReturn>): Promise<TReturn>;
-    viewAllUsers(callback?: ICallback<TReturn[]>): Promise<TReturn[]>;
+    viewUserById(organizationId: TID, id: TID, callback?: ICallback<TReturn>): Promise<TReturn>;
+    viewUserByEmail(organizationId: TID, email: string, callback?: ICallback<TReturn>): Promise<TReturn>;
+    viewAllUsers(organizationId: TID, callback?: ICallback<TReturn[]>): Promise<TReturn[]>;
 }
 
 
 
 export interface ICanViewMyself<TID = IID, TReturn = IUser> {
-    viewMyself(id: TID, callback?: (back: TReturn) => void): Promise<TReturn | null>;
+    viewMyself(email: string, callback?: (back: TReturn) => void): Promise<TReturn | null>;
 }
 
 

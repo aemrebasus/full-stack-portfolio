@@ -1,37 +1,39 @@
 import { Developer } from './Developer';
-
-
-import { IIssue } from '../entities/IIssue';
 import { IUser } from '@domain/entities/IUser';
-import { IComment } from '../entities/IComment';
-import { IIssueStatus } from '../entities/IIssueStatus';
-import { ICanAssignIssue } from './ican/ICanAssignIssue';
 import { UserModel } from '@domain/entities/IUser';
 import { ICallback } from './ican/ICallback';
-import { ICanCreateIssue, ICanCreateComment } from './ican/ICanCreate';
-import { ICanDeleteIssue, ICanDeleteComment } from './ican/ICanDelete';
-import { ICanViewIssue, ICanViewUser, ICanViewComment } from './ican/ICanView';
-import { ICanUpdateIssue, ICanUpdateComment } from './ican/ICanUpdate';
+import { ICanViewUser } from './ican/ICanView';
 
-export class ScrumMaster extends Developer 
+export class ScrumMaster extends Developer implements
+    //     ICanCreateIssue,
+    //     ICanDeleteIssue,
+    //     ICanViewIssue,
+    //     ICanUpdateIssue,
 
-// implements
-//     ICanCreateIssue,
-//     ICanDeleteIssue,
-//     ICanViewIssue,
-//     ICanUpdateIssue,
+    ICanViewUser
 
-    // ICanViewUser,
-
-//     ICanViewComment,
+// ICanViewComment,
 //     ICanCreateComment,
 //     ICanDeleteComment,
 //     ICanUpdateComment,
 
-    // ICanAssignIssue 
-    {
+// ICanAssignIssue 
+{
+    viewUser(user: IUser, callback?: ICallback<IUser | null> | undefined): Promise<IUser | null> {
+        return UserModel.findOne({ email: user.email }).then(_user => _user);
+    }
+    viewUserById(organizationId: string, id: string, callback?: ICallback<IUser> | undefined): Promise<IUser | null> {
+        return UserModel.findOne({ organizationId, _id: id }).then(user => user);
+    }
+    viewUserByEmail(organizationId: string, email: string, callback?: ICallback<IUser | null> | undefined): Promise<IUser | null> {
+        return UserModel.findOne({ organizationId, email }).then(user => user);
+    }
+    viewAllUsers(organizationId: string, callback?: ICallback<IUser[]> | undefined): Promise<(IUser[])> {
+        return UserModel.find({ organizationId }).then(users => users);
 
-    
+    }
+
+
 
 
 }

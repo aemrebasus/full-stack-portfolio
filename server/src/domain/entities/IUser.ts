@@ -12,7 +12,7 @@ export interface IUser {
     email: string;
     password: string;
     organizationId: IID;
-    role: string
+    role: IRole
 }
 
 
@@ -33,7 +33,7 @@ class UserDoc extends Document implements IUser {
         public email: string,
         public password: string,
         public organizationId: string,
-        public role: string,
+        public role: IRole,
     ) {
         super();
     }

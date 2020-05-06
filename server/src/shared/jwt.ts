@@ -29,8 +29,7 @@ export function sign(payload: IUser): Promise<string> {
 
             res(token);
         } catch (err) {
-            console.log(err);
-            rej('COuld not make it');
+            rej('Could not create the token!');
         }
     });
 }
