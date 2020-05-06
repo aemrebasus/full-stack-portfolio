@@ -1,29 +1,23 @@
 import { ScrumMaster } from './ScrumMaster';
-import { ICanCreateUser } from '@domain/accesstypes/interfaces/user/ICanCreteUser';
-import { ICanViewUser } from '@domain/accesstypes/interfaces/user/ICanViewUser';
-import { ICanUpdateUser } from '@domain/accesstypes/interfaces/user/ICanUpdateUser';
-import { ICanDeleteUser } from '@domain/accesstypes/interfaces/user/ICanDeleteUser';
-import { IUser } from '@domain/entities/IUser';
+import { IUser, UserModel } from '@domain/entities/IUser';
+import { ICanCreateUser } from './ican/ICanCreate';
+import { ICanValidate } from './ican/ICanValidate';
+
+
 
 export class Admin extends ScrumMaster implements
-    ICanCreateUser,
-    ICanUpdateUser,
-    ICanDeleteUser {
-    createNewUser(user: IUser, callback?: ((back: boolean) => void) | undefined): Promise<boolean | null> {
-        throw new Error("Method not implemented.");
+    ICanCreateUser, ICanValidate {
+
+
+    async validateUser(credentials: { email: string; password: string; }): Promise<IUser | null> {
+        return await UserModel.findOne(credentials);
     }
-    updateUserById(userid: string, updatedUser: IUser, callback?: ((back: boolean) => void) | undefined): Promise<boolean | null> {
-        throw new Error("Method not implemented.");
+
+
+    async createNewUser(user: IUser, callback?: ((back: IUser) => void) | undefined): Promise<IUser> {
+        return await new UserModel(user).save();
     }
-    updateUserByEmail(email: string, updatedUser: IUser, callback?: ((back: boolean) => void) | undefined): Promise<boolean | null> {
-        throw new Error("Method not implemented.");
-    }
-    deleteUserById(id: string, callback?: ((back: boolean) => void) | undefined): Promise<boolean | null> {
-        throw new Error("Method not implemented.");
-    }
-    deleteUser(user: IUser, callback?: ((back: boolean) => void) | undefined): Promise<boolean | null> {
-        throw new Error("Method not implemented.");
-    }
+
 
 
 

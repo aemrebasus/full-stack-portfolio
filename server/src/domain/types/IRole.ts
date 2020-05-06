@@ -1,1 +1,0 @@
-export type IRole = 'admin' | 'scrummaster' | 'developer' | 'guest';

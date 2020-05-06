@@ -1,44 +1,49 @@
 import jwt from 'jsonwebtoken';
 import { salt } from 'src/secrets';
-import { IUser } from '@domain/entities/IUser';
-import { IRole } from '@domain/types/IRole';
+import bcrypt from 'bcrypt'
+import { IUser, } from '@domain/entities/IUser';
 
-export function sign(payload: object, options?: object): string {
-    return jwt.sign(payload, salt, options)
+
+
+export function hashPassword(password: string) {
+    return bcrypt.genSalt(7).then((slt) => {
+        return bcrypt.hash(password, slt);;
+    })
 }
 
-export function verify(token: string): IUser | null {
-    try {
-        const user = jwt.verify(token, salt) as IUser
-        return user;
-    } catch (err) {
-        return null;
-    }
-}
+export function verifyPassword(password: string, hashedPassword: string) {
+    return bcrypt.compare(password, hashedPassword)
 
-function isRoleMatch(token: string, role: IRole): boolean {
-    const user = verify(token);
-    if (user) {
-        return user.role === role
-    } else {
-        return false;
-    }
-}
-
-export function isAdmin(token: string): boolean {
-    return isRoleMatch(token, 'admin');
-}
-
-export function isDeveloper(token: string): boolean {
-    return isRoleMatch(token, 'developer');
 }
 
 
-export function isScrumMaster(token: string): boolean {
-    return isRoleMatch(token, 'scrummaster')
+
+export function sign(payload: IUser): Promise<string> {
+    return new Promise((res, rej) => {
+        try {
+            const token = jwt.sign({
+                email: payload.email,
+                role: payload.role,
+                organizationId: payload.organizationId
+            }, salt);
+
+            res(token);
+        } catch (err) {
+            console.log(err);
+            rej('COuld not make it');
+        }
+    });
 }
 
-export function isGuest(token: string): boolean {
-    return isRoleMatch(token, 'guest');
+export function verify(token: string): Promise<IUser> {
+    return new Promise((res, rej) => {
+        try {
+            const user = jwt.verify(token, salt) as IUser
+            res(user);
+        } catch (err) {
+            rej('Could not verify the user');
+        }
+    });
 }
+
 

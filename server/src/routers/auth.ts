@@ -1,26 +1,17 @@
-import { Router } from 'express';
-import { sign } from '@shared/jwt';
+import { sign, verify } from '@shared/jwt';
+import { RequestHandler, NextFunction, Request, Response } from 'express';
+import { OK, UNAUTHORIZED } from 'http-status-codes';
 
 /**
  * Information about the software.
  */
-export const Auth = Router();
+export const Authentication: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const _ = verify(req.cookies.token) && next();
 
-Auth
-    .post('/signin', (req, res) => {
-        const { email, password } = req.body;
+    } catch (err) {
+        res.send('invalid');
+    }
 
-        if (email === 'email' && password === 'password') {
-            const token = sign({ email, password, role: 'developer' });
-            res.cookie('token', token)
-                .send('Successfully signed in');
-        } else {
 
-            res.send('Not Signed in');
-
-        }
-    })
-
-    .get('/auth/isValidUser', (req, res) => {
-        res.send(true);
-    })
+}

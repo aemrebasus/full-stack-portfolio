@@ -1,8 +1,8 @@
-
-import { Auth } from './auth';
 import { UserRouter } from './UserRouter';
+import { Sign } from './sign';
+
 export const routers = [
-    Auth,
-    UserRouter
+    UserRouter,
+    Sign
 ]
 

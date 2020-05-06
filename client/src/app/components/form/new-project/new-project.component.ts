@@ -24,7 +24,6 @@ export class NewProjectComponent {
     .addFields(
       new FormInput('projectName', 'Project Name', 'text', (value: string) => this.validator.isNameValid(value)),
       new FormInput('title', 'Title', 'text', (value: string) => this.validator.isNameValid(value)),
-      new FormInput('assignee', 'Assignee', 'text', (value: string) => this.validator.isNameValid(value)),
-
+      new FormInput('assignee', 'Assignee', 'text', (value: string) => this.validator.isNameValid(value))
     );
 }

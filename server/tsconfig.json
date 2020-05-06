@@ -19,12 +19,6 @@
       "@domain/*": [
         "src/domain/*"
       ],
-      "@models/*": [
-        "src/database/models/*"
-      ],
-      "@models": [
-        "src/database/models"
-      ],
       "@mongo": [
         "src/database"
       ],

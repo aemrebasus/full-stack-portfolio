@@ -1,4 +1,4 @@
-import { IRole } from './types/IRole';
+import { IRole } from './entities/IUser';
 import { Admin } from './accesstypes/Admin';
 import { ScrumMaster } from './accesstypes/ScrumMaster';
 import { Developer } from './accesstypes/Developer';
