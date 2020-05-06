@@ -1,9 +1,12 @@
 
 import { mongoose, Schema, Document } from '@mongo';
+import { IID } from './IID';
 
 const String = Schema.Types.String;
 
 export interface IOrganization {
+    _id: IID,
+    name: string;
     firstName: string;
     lastName: string;
     email: string;
@@ -13,6 +16,7 @@ export interface IOrganization {
 
 
 const OrganizationSchema = new Schema({
+    name: { type: String, required: true },
     firstName: { type: String, required: true, },
     lastName: { type: String, required: true, },
     email: { type: String, required: true, unique: true },
@@ -22,6 +26,7 @@ const OrganizationSchema = new Schema({
 
 class OrganizationDoc extends Document implements IOrganization {
     constructor(
+        public name: string,
         public firstName: string,
         public lastName: string,
         public email: string,

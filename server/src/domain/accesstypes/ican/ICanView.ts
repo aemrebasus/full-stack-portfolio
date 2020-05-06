@@ -3,23 +3,29 @@ import { IID } from '@domain/entities/IID';
 import { IIssue } from '@domain/entities/IIssue';
 import { IIssueStatus } from '@domain/entities/IIssueStatus';
 import { IUser } from '@domain/entities/IUser';
+import { IComment } from '@domain/entities/IComment';
 
 export interface ICanViewComment<TID = IID, TReturn = IIssue> {
-    viewCommentById(id: TID, callback?: ICallback<TReturn>): Promise<TReturn>;
-    viewAllComments(callback?: ICallback<TReturn[]>): Promise<TReturn[]>;
+    viewCommentById(organizationId: string, id: TID, callback?: ICallback<TReturn>): Promise<TReturn>;
+    viewAllComments(organizationId: string, callback?: ICallback<TReturn[]>): Promise<TReturn[]>;
+}
+
+
+export interface ICanViewCommentsOfMyIssue<TID = IID, TReturn = IComment> {
+    viewAllCommentsOfMyIssue(organizationId: TID, userId: TID, issueId: TID): Promise<TReturn>;
 }
 
 
 export interface ICanViewIssue<TID = IID, TIssue = IIssue | null, TIssueStatus = IIssueStatus> {
-    viewIssueById(id: TID, callback?: (data: TIssue) => void): Promise<TIssue>;
-    viewIssueByStatus(status: TIssueStatus, callback?: (data: TIssue) => void): Promise<TIssue[]>;
-    viewAllIssues(callback: (issues: TIssue) => void): Promise<TIssue[]>;
+    viewIssueById(organizationId: TID, id: TID, callback?: (data: TIssue) => void): Promise<TIssue>;
+    viewIssueByStatus(organizationId: TID, status: TIssueStatus, callback?: (data: TIssue) => void): Promise<TIssue[]>;
+    viewAllIssues(organizationId: TID, callback: (issues: TIssue) => void): Promise<TIssue[]>;
 }
 
 export interface ICanViewMyIssue<TID = IID, TIssue = IIssue | null, TIssueStatus = IIssueStatus> {
-    viewMyIssueById(id: TID, callback?: ICallback<TIssue>): Promise<TIssue>;
-    viewMyIssueByStatus(status: TIssueStatus, callback?: ICallback<TIssue>): Promise<TIssue[]>;
-    viewMyAllIssues(callback?: ICallback<TIssue[]>): Promise<TIssue[]>;
+    viewMyIssueById(organizationId: TID, userId: TID, id: TID, callback?: ICallback<TIssue>): Promise<TIssue>;
+    viewMyIssueByStatus(organizationId: TID, userId: TID, status: TIssueStatus, callback?: ICallback<TIssue>): Promise<TIssue[]>;
+    viewMyAllIssues(organizationId: TID, userId: TID, callback?: ICallback<TIssue[]>): Promise<TIssue[]>;
 }
 
 

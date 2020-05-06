@@ -7,6 +7,7 @@ export type IRole = 'admin' | 'scrummaster' | 'developer' | 'guest';
 const String = Schema.Types.String;
 
 export interface IUser {
+    _id?: IID
     firstName: string
     lastName: string;
     email: string;

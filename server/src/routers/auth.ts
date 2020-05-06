@@ -12,8 +12,10 @@ export const Authentication: RequestHandler = (req: Request, res: Response, next
             .then(user => {
                 res.locals.user = UserFactory.getUser(user.role);
                 res.locals.orgId = user.organizationId;
+                res.locals.userId = user._id;
                 res.locals.role = user.role;
                 res.locals.email = user.email;
+
                 next();
             })
             .catch(err => {

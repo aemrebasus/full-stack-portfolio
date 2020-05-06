@@ -5,7 +5,7 @@ import { IIssue } from '@domain/entities/IIssue';
 import { IUser } from '@domain/entities/IUser';
 
 export interface ICanUpdateComment<TID = IID, TComment = IComment, TReturn = boolean> {
-    updateCommentById(id: TID, updatedComment: TComment, callback?: ICallback<TReturn>): Promise<TReturn>;
+    updateCommentById(orgId: TID, id: TID, updatedComment: TComment, callback?: ICallback<TReturn>): Promise<TReturn>;
 }
 
 
@@ -16,16 +16,16 @@ export interface IOwnCommentUpdate<TID = IID, TComment = IComment, TReturn = boo
 
 
 export interface ICanUpdateIssue<TID = IID, TIssue = IIssue, TReturn = boolean> {
-    updateIssueById(id: TID, updatedIssue: TIssue, callback?: (back: TReturn) => void): Promise<TReturn | null>;
+    updateIssueById(organizationId: TID, id: TID, updatedIssue: TIssue, callback?: (back: TReturn) => void): Promise<TReturn | null>;
 }
 
 
 export interface ICanUpdateMyIssueStatus<TID = IID, TIssue = IIssue, TReturn = boolean> {
-    updateMyIssueById(id: TID, updatedIssue: TIssue, callback?: (back: TReturn) => void): Promise<TReturn | null>;
+    updateMyIssueById(organizationId: TID, userId: TID, id: TID, updatedIssue: TIssue, callback?: (back: TReturn) => void): Promise<TReturn | null>;
 }
 
 
 export interface ICanUpdateUser<TID = IID, TUser = IUser, TReturn = boolean> {
-    updateUserById(userid: TID, updatedUser: TUser, callback?: (back: TReturn) => void): Promise<TReturn | null>;
-    updateUserByEmail(email: string, updatedUser: TUser, callback?: (back: TReturn) => void): Promise<TReturn | null>;
+    updateUserById(orgId: TID, userid: TID, updatedUser: TUser, callback?: (back: TReturn) => void): Promise<TReturn | null>;
+    updateUserByEmail(orgId: TID, email: string, updatedUser: TUser, callback?: (back: TReturn) => void): Promise<TReturn | null>;
 }
