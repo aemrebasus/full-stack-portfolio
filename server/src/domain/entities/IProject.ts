@@ -22,7 +22,7 @@ const ProjectSchema = new Schema({
 
 
 
-class ProjectDoc extends Document implements IProject {
+export class ProjectDoc extends Document implements IProject {
     constructor(
         public _id: string,
         public organizationId: string,

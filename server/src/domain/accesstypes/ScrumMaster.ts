@@ -114,7 +114,6 @@ export class ScrumMaster extends Developer implements
     }
     viewAllUsers(organizationId: string, callback?: ICallback<IUser[]> | undefined): Promise<(IUser[])> {
         return UserModel.find({ organizationId }).then(users => users);
-
     }
 
 

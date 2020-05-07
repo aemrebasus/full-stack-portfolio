@@ -6,7 +6,14 @@ export { Schema, Document } from 'mongoose'
 
 
 
- _mongoose.connect(MONGO_CONNECTION_STRING, { useUnifiedTopology: true, useNewUrlParser: true })
+_mongoose.connect(MONGO_CONNECTION_STRING,
+    {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+        connectTimeoutMS: 5,
+        serverSelectionTimeoutMS: 5,
+        socketTimeoutMS: 5,
+    })
     .then(res => {
         logger.info(res);
     })
@@ -15,4 +22,4 @@ export { Schema, Document } from 'mongoose'
     })
 
 
-export const mongoose =  _mongoose;
+export const mongoose = _mongoose;

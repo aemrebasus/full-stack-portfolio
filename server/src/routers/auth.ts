@@ -3,6 +3,7 @@ import { RequestHandler, NextFunction, Request, Response } from 'express';
 import { OK, UNAUTHORIZED } from 'http-status-codes';
 import { UserFactory } from '@domain/UserFactory';
 
+
 /**
  * Information about the software.
  */

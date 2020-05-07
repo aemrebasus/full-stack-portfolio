@@ -27,7 +27,7 @@ const UserSchema = new Schema<IUser>({
 });
 
 
-class UserDoc extends Document implements IUser {
+export class UserDoc extends Document implements IUser {
     constructor(
         public firstName: string,
         public lastName: string,

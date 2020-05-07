@@ -15,7 +15,7 @@ export interface IIssue {
     createdOn?: Date;
 }
 
-class IssueDoc extends Document implements IIssue {
+export class IssueDoc extends Document implements IIssue {
     constructor(
         public _id: string,
         public userId: string,

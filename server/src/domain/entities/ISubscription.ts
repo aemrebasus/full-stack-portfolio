@@ -14,7 +14,7 @@ export interface ISubscription {
 
 }
 
-class SubscriptionDoc extends Document implements ISubscription {
+export class SubscriptionDoc extends Document implements ISubscription {
     constructor(
         public _id: IID,
         public organizationId: IID,
@@ -32,9 +32,8 @@ const SubscriptionSchema = new Schema({
     start: { type: Date, required: true },
     end: { type: Date, required: true },
     issueLimit: { type: Number, required: true, default: 10 },
-    userLimit: { type: Number, required: true, default: 10 },
-    type: { type: String, required: true },
+    userLimit: { type: Number, required: true, default: 10 }
 })
 
 
-export const SubscriptionModel = mongoose.model<SubscriptionDoc>('subscriptions', SubscriptionSchema)
+export const SubscriptionModel = mongoose.model<SubscriptionDoc>('subs', SubscriptionSchema)

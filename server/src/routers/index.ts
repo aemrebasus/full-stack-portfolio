@@ -1,10 +1,12 @@
 import { UserRouter } from './UserRouter';
 import { IssueRouter } from './IssueRouter';
-import { Sign } from './sign';
+import { SignInUpOut } from './SignInUpOut';
+import { CommentRouter } from './CommentRouter';
 
 export const routers = [
     UserRouter,
+    CommentRouter,
     IssueRouter,
-    Sign,
+    SignInUpOut,
 ]
 
