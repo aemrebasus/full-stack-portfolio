@@ -3,6 +3,7 @@ import { ValidatorService } from '@services/form/validator.service';
 import { FormBuilder } from '../form-builder/form-builder.meta';
 import { FormInput } from '../input/input.meta';
 import { HttpService } from '@services/http/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin-form',
@@ -14,7 +15,7 @@ import { HttpService } from '@services/http/http.service';
 })
 export class SigninFormComponent {
 
-  constructor(private validator: ValidatorService, private httpService: HttpService) { }
+  constructor(private validator: ValidatorService, private httpService: HttpService, private router: Router) { }
 
   public form: FormBuilder = new FormBuilder('Sign In', 'success')
     .addFields(
@@ -28,6 +29,7 @@ export class SigninFormComponent {
   }
 
   public submit() {
+
     const org: { email: string, password: string } = {
       email: this.getFieldValue('email'),
       password: this.getFieldValue('password'),
@@ -35,7 +37,14 @@ export class SigninFormComponent {
 
     this.httpService.post('/api/v1/signin', org, { responseType: 'text' })
       .subscribe(
-        response => alert(response),
+        response => {
+          if (response.toString() === 'Congrats! Successfully signed in.') {
+            this.router.navigateByUrl('/app/dashboard');
+          } else { 
+            this.form.reset();
+          }
+
+        },
         err => alert(err)
       );
 
