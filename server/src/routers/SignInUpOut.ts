@@ -23,6 +23,7 @@ export const SignInUpOut = Router()
 
     .get('/signout', (req, res) => {
         res.cookie('token', '')
+            .status(OK)
             .send('See you later!');
     })
 

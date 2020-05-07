@@ -8,16 +8,12 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
 
-            <!-- <li class="nav-item" title="Sign in">
-                <a class="nav-link" routerLink="signin" [routerLinkActive]="['active']">Sign In</a>
-            </li>
-            <li class="nav-item" title="Sign up">
-                <a class="nav-link" routerLink="signup" [routerLinkActive]="['active']">Sign Up</a>
-            </li> -->
+
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class=" search-box  form-control mr-sm-2" type="text" placeholder="Search">
         </form>
+        <a class="nav-link btn btn-outline-warning" (click)="signOut()">Sign Out</a>
     </div>
 </nav>

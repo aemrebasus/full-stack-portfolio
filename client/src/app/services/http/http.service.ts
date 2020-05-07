@@ -22,8 +22,8 @@ export class HttpService {
     return throwError(errorMessage);
   }
 
-  get<T>(path: string) {
-    return this.http.get<T>(path);
+  get<T>(path: string, options?: object) {
+    return this.http.get<T>(path, options);
   }
 
   post<T>(path: string, body: T, options?: object) {
