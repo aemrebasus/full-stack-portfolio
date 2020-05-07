@@ -10,6 +10,8 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
+
+
   errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -21,35 +23,19 @@ export class HttpService {
   }
 
   get<T>(path: string) {
-    return this.http.get<T>(path)
-      .pipe(
-        retry(2),
-        catchError(this.errorHandler)
-      );
+    return this.http.get<T>(path);
   }
 
   post<T>(path: string, body: T, options?: object) {
-    return this.http.post<T>(path, body, options)
-      .pipe(
-        retry(2),
-        catchError(this.errorHandler)
-      );
+    return this.http.post<T>(path, body, options);
   }
 
 
   put<T>(path: string, body: T, options?: object) {
-    return this.http.put<T>(path, body, options)
-      .pipe(
-        retry(2),
-        catchError(this.errorHandler)
-      );
+    return this.http.put<T>(path, body, options);
   }
 
   delete<T>(path: string, options?: object) {
-    return this.http.delete<T>(path, options)
-      .pipe(
-        retry(2),
-        catchError(this.errorHandler)
-      );
+    return this.http.delete<T>(path, options);
   }
 }

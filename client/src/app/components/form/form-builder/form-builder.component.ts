@@ -18,7 +18,9 @@ export class FormBuilderComponent {
 
   submit() {
     this.form.submit();
-
+    if (this.form.isFormValid) {
+      this.submitted.emit();
+    }
   }
 
   reset() {

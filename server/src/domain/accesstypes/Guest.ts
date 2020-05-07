@@ -31,9 +31,10 @@ export class Guest implements ICanSignUp {
                 if (isExist) {
                     throw new Error('Organization exists!')
                 } else {
-                    return new OrganizationModel(signUpForm).save()
-
+                    return hashPassword(signUpForm.password)
                 }
+            }).then(hashedPassword => {
+                return new OrganizationModel({ ...signUpForm, password: hashedPassword }).save()
             })
     }
 
@@ -43,12 +44,10 @@ export class Guest implements ICanSignUp {
                 if (isExist) {
                     throw new Error('User exists!')
                 } else {
-                    return hashPassword(user.password)
+                    return new UserModel(user).save()
                 }
             })
-            .then(hashedPass => {
-                return new UserModel({ ...user, password: hashedPass }).save()
-            })
+
 
     }
 

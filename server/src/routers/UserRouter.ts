@@ -3,6 +3,8 @@ import { Authentication } from './auth';
 import { Admin } from '@domain/accesstypes/Admin';
 import { UNAUTHORIZED, OK } from 'http-status-codes';
 import { SubscriptionCheck } from './subscription';
+import logger from '@shared/Logger';
+import { Error } from 'mongoose';
 
 function helper(func: (orgId: string, user: Admin) => Promise<any>, req: Request, res: Response) {
     try {
@@ -12,13 +14,14 @@ function helper(func: (orgId: string, user: Admin) => Promise<any>, req: Request
                     .send(data);
             })
             .catch(err => {
+                logger.error(err.message)
                 res.status(UNAUTHORIZED)
-                    .send(err);
+                    .end(err.message);
             })
 
     } catch (err) {
         res.status(UNAUTHORIZED)
-            .send('Unauthorized!')
+            .end('Unauthorized!')
     }
 
 }
@@ -45,11 +48,7 @@ const router = Router()
     // Check subscription
     .use('/create', SubscriptionCheck)
     .post('/create', (req, res) => {
-        if (res.locals.canAddUser)
-            helper((orgId: string, user: Admin) => user.createNewUser({ ...req.body, organizationId: orgId }), req, res)
-        else {
-            res.send('Your subscription does not allow to add user!')
-        }
+        helper((orgId: string, user: Admin) => user.createNewUser({ ...req.body, organizationId: orgId }), req, res)
     })
 
 

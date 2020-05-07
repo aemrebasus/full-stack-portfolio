@@ -10,9 +10,9 @@ _mongoose.connect(MONGO_CONNECTION_STRING,
     {
         useUnifiedTopology: true,
         useNewUrlParser: true,
-        connectTimeoutMS: 5,
-        serverSelectionTimeoutMS: 5,
-        socketTimeoutMS: 5,
+        connectTimeoutMS: 5000,
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 5000,
     })
     .then(res => {
         logger.info(res);

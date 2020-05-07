@@ -9,6 +9,8 @@ import { ICanUpdateMyIssueStatus } from './ican/ICanUpdate';
 import { ICanCreateCommentOnMyIssue } from './ican/ICanCreate';
 import { CommentModel, IComment } from '@domain/entities/IComment';
 import { ICanDeleteMyComment } from './ican/ICanDelete';
+import logger from '@shared/Logger';
+import { Error } from 'mongoose';
 
 
 export class Developer
@@ -103,7 +105,9 @@ export class Developer
                                 }
                             })
                             .catch(err => {
-                                rej('Password could not be read!');
+                                const msg = 'Password could not be read!';
+                                rej(msg);
+                                logger.error(new Error(msg))
                             })
 
                     }

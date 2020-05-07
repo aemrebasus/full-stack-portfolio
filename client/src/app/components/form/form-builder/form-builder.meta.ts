@@ -41,12 +41,6 @@ export class FormBuilder {
             .map(i => !i.isValid)
             .reduce((p, c) => p && c);
 
-        if (this.isFormValid) {
-            alert('Submitting Form');
-        } else {
-            alert('Not valid')
-        }
-
         return this;
     }
 
