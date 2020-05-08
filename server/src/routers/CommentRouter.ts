@@ -1,5 +1,5 @@
 import { Router, Response, Request } from 'express';
-import { Authentication } from './auth';
+import { Authentication } from './middlewares/auth';
 import { Admin } from '@domain/accesstypes/Admin';
 import { UNAUTHORIZED, OK } from 'http-status-codes';
 

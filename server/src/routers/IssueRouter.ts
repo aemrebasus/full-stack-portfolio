@@ -1,9 +1,9 @@
 import { Router, Response, Request } from 'express';
-import { Authentication } from './auth';
+import { Authentication } from './middlewares/auth';
 import { Admin } from '@domain/accesstypes/Admin';
 import { UNAUTHORIZED, OK } from 'http-status-codes';
 import { IIssueStatus } from '@domain/entities/IIssueStatus';
-import { SubscriptionCheck } from './subscription';
+import { SubscriptionCheck } from './middlewares/subscription';
 
 function helper(func: (orgId: string, user: Admin) => Promise<any>, req: Request, res: Response) {
     try {

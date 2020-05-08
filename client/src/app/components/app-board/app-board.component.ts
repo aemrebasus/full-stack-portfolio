@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@services/auth/auth.service';
 
 @Component({
   selector: 'app-app-board',
@@ -11,16 +10,12 @@ export class AppBoardComponent implements OnInit {
 
   public isSignedIn = true;
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
 
 
   ngOnInit(): void {
-    this.authService.isSignedIn()
-      .subscribe(
-        result => { this.isSignedIn = !!result; },
-        err => { this.isSignedIn = false; }
-      );
+  
   }
 
 }

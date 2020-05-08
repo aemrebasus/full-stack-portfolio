@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { UserFactory } from '@domain/UserFactory';
 import { IOrganization } from '@domain/entities/IOrganization';
 import logger from '@shared/Logger';
-import { Timeout } from './Timeout';
+import { Timeout } from './middlewares/Timeout';
 import { OK } from 'http-status-codes';
 
 /**

@@ -4,6 +4,7 @@ import { IIssue } from '@domain/entities/IIssue';
 import { IIssueStatus } from '@domain/entities/IIssueStatus';
 import { IUser } from '@domain/entities/IUser';
 import { IComment } from '@domain/entities/IComment';
+import { IProject } from '@domain/entities/IProject';
 
 export interface ICanViewComment<TID = IID, TReturn = IIssue> {
     viewCommentById(organizationId: string, id: TID, callback?: ICallback<TReturn>): Promise<TReturn>;
@@ -40,6 +41,12 @@ export interface ICanViewUser<TID = IID, TUser = IUser, TReturn = IUser | null> 
 
 export interface ICanViewMyself<TID = IID, TReturn = IUser> {
     viewMyself(email: string, callback?: (back: TReturn) => void): Promise<TReturn | null>;
+}
+
+
+
+export interface ICanViewProject<TID = IID, TProjetc = IProject, TReturn = IProject | null> {
+    viewAllProjects(organizationId: TID, callback?: ICallback<TReturn[]>): Promise<TReturn[]>;
 }
 
 

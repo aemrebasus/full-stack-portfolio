@@ -1,8 +1,8 @@
 import { Router, Response, Request } from 'express';
-import { Authentication } from './auth';
+import { Authentication } from './middlewares/auth';
 import { Admin } from '@domain/accesstypes/Admin';
 import { UNAUTHORIZED, OK } from 'http-status-codes';
-import { SubscriptionCheck } from './subscription';
+import { SubscriptionCheck } from './middlewares/subscription';
 import logger from '@shared/Logger';
 import { Error } from 'mongoose';
 

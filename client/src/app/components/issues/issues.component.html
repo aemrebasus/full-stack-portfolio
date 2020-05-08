@@ -1,6 +1,6 @@
 <div class="list-group">
 
-    <div class="card bg-info">
+    <div class="card bg-info" *ngFor="let issue of issues">
         <div class="card-footer btn-group p-0 m-0 col-2  col-sm-1">
             <a class=" btn btn-success" title="Close the issue"><i class="fa fa-check text-white"
                     aria-hidden="true"></i></a>
@@ -11,12 +11,8 @@
         </div>
 
         <div class="user-name col-8 col-sm-10 pt-2 pb-2">
-            <h4>Description</h4>
-            <ul class="list-unstyled">
-                <li>Item 1</li>
-                <li>Item 1</li>
-                <li>Item 1</li>
-                <li>Item 1</li>
+            <ul>
+                <li>{{issue.title}}</li>
             </ul>
         </div>
         <div class="card-footer btn-group p-0 m-0 col-2 col-sm-1">
