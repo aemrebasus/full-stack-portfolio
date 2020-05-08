@@ -5,6 +5,7 @@ import { FormInput } from '../input/input.meta';
 import { FormBuilder } from '../form-builder/form-builder.meta';
 import { IProject } from '@app/shared/IProject';
 import { HttpService } from '@services/http/http.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { HttpService } from '@services/http/http.service';
 export class NewProjectComponent {
 
 
-  constructor(private validator: ValidatorService, private httpService: HttpService) { }
+  constructor(private validator: ValidatorService, private httpService: HttpService, private router: Router) { }
 
   @Input() formName = 'Create Project';
   @Input() color = 'success';
@@ -25,9 +26,11 @@ export class NewProjectComponent {
       new FormInput('projectName', 'Project Name', 'text', (value: string) => this.validator.isNickNameValid(value))
     );
 
+
   public getFieldValue(id: string) {
     return this.form.getFieldById(id).value;
   }
+
 
   public submit() {
     const org: IProject = {
@@ -36,8 +39,17 @@ export class NewProjectComponent {
 
     this.httpService.post('/api/v1/projects/create', org, { responseType: 'text' })
       .subscribe(
-        response => alert(response),
-        err => alert(err.message)
+        response => {
+
+          this.router.navigateByUrl('/app');
+          this.form.reset();
+
+        },
+
+        err => {
+          alert('Could not create the project!')
+          // alert(err.message)
+        }
       );
 
 

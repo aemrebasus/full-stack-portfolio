@@ -1,31 +1,16 @@
 import { Router, Response, Request } from 'express';
 import { Authentication } from './middlewares/auth';
 import { Admin } from '@domain/accesstypes/Admin';
-import { UNAUTHORIZED, OK } from 'http-status-codes';
 import { SubscriptionCheck } from './middlewares/subscription';
 import logger from '@shared/Logger';
-import { Error } from 'mongoose';
-
-function helper(func: (orgId: string, user: Admin) => Promise<any>, req: Request, res: Response) {
-
-    func(res.locals.orgId, (res.locals.user as Admin))
-        .then(data => {
-            res.status(OK)
-                .send(data);
-        })
-        .catch(err => {
-            logger.error(err.message)
-            res.send(err.message);
-        })
+import { GetHelper, CreateHelper } from './helpers/RequestHelpers';
 
 
-
-}
 
 const router = Router()
 
     .get('/all', (req, res) => {
-        helper((orgId: string, user: Admin) => user.viewAllProjects(orgId), req, res);
+        GetHelper((orgId: string, user: Admin) => user.viewAllProjects(orgId), res);
     })
 
     // .get('/id/:id', (req, res) => {
@@ -35,7 +20,7 @@ const router = Router()
     // Check subscription
     .use('/create', SubscriptionCheck)
     .post('/create', (req, res) => {
-        helper((orgId: string, user: Admin) => user.createProject({ ...req.body, organizationId: orgId }), req, res);
+        CreateHelper((orgId: string, user: Admin) => user.createProject({ ...req.body, organizationId: orgId }), res);
     })
 
 

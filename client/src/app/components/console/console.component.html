@@ -1,12 +1,14 @@
 <div class="card">
-    <div class="form-group">
+
+
+    <div class="form-group" *ngIf="projects">
         <select class="form-control" name="projects" id="projects" title="Select Project">
             <option>Select Project</option>
-            <option>Project 1</option>
-            <option>Project 2</option>
-            <option>Project 3</option>
+            <option *ngFor="let project of projects">{{project.name}}</option>
+
         </select>
     </div>
 
     <app-list-button [buttons]="buttons"></app-list-button>
+
 </div>

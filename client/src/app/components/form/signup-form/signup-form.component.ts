@@ -4,6 +4,7 @@ import { FormBuilder } from '../form-builder/form-builder.meta';
 import { FormInput } from '../input/input.meta';
 import { HttpService } from '@services/http/http.service';
 import { IOrganization } from '@app/shared/IOrganization';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -11,7 +12,7 @@ import { IOrganization } from '@app/shared/IOrganization';
 })
 export class SignupFormComponent {
 
-  constructor(private validator: ValidatorService, private httpService: HttpService) { }
+  constructor(private validator: ValidatorService, private httpService: HttpService, private router: Router) { }
   @Input() formName = 'Sign Up';
   @Input() color = 'danger';
 
@@ -44,8 +45,15 @@ export class SignupFormComponent {
 
     this.httpService.post('/api/v1/signup', org, { responseType: 'text' })
       .subscribe(
-        response => { alert(response) },
-        err => { alert(err) }
+        response => {
+          alert(response);
+          this.router.navigateByUrl('/app');
+
+        },
+        err => {
+          alert(err);
+          this.form.isSubmitted = false;
+        }
       );
 
 
