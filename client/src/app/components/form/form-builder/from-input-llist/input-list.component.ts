@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormInput } from '../input/input.meta';
+import { FormInput } from '../form-input/input.meta';
 
 @Component({
   selector: 'app-input-list',

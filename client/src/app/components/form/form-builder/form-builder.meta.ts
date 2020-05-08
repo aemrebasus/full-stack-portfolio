@@ -1,4 +1,4 @@
-import { FormInput } from '../input/input.meta';
+import { FormInput } from './form-input/input.meta';
 
 
 export class FormBuilder {

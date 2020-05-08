@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ConsoleButton } from '../console-button/console-button.meta';
+import { ConsoleButton } from '../../console-button/console-button.meta';
 
 @Component({
   selector: 'app-list-button',

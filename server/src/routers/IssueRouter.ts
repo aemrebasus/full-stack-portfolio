@@ -4,6 +4,7 @@ import { Admin } from '@domain/accesstypes/Admin';
 import { UNAUTHORIZED, OK } from 'http-status-codes';
 import { IIssueStatus } from '@domain/entities/IIssueStatus';
 import { SubscriptionCheck } from './middlewares/subscription';
+import { GetHelper, CreateHelper, DeleteHelper } from './helpers/RequestHelpers';
 
 function helper(func: (orgId: string, user: Admin) => Promise<any>, req: Request, res: Response) {
     try {
@@ -28,47 +29,44 @@ const router = Router()
 
 
     .get('/all', (req, res) => {
-        helper((orgId: string, user: Admin) => user.viewAllComments(orgId), req, res);
+        GetHelper((orgId: string, user: Admin) => user.viewAllComments(orgId), res);
     })
 
     .get('/id/:id', (req, res) => {
-        helper((orgId: string, user: Admin) => user.viewIssueById(orgId, req.params.id), req, res)
+        GetHelper((orgId: string, user: Admin) => user.viewIssueById(orgId, req.params.id), res)
     })
 
     .get('/status/:status', (req, res) => {
-        helper((orgId: string, user: Admin) => user.viewIssueByStatus(orgId, req.params.status as IIssueStatus), req, res)
+        GetHelper((orgId: string, user: Admin) => user.viewIssueByStatus(orgId, req.params.status as IIssueStatus), res)
     })
 
 
     .get('/myissues', (req, res) => {
-        helper((orgId: string, user: Admin) => user.viewMyAllIssues(orgId, res.locals.userId), req, res);
+        GetHelper((orgId: string, user: Admin) => user.viewMyAllIssues(orgId, res.locals.userId),  res);
     })
     .get('/myissues/id/:id', (req, res) => {
-        helper((orgId: string, user: Admin) => user.viewMyIssueById(orgId, res.locals.userId, req.params.id), req, res)
+        GetHelper((orgId: string, user: Admin) => user.viewMyIssueById(orgId, res.locals.userId, req.params.id),  res)
     })
 
     .get('/myissues/status/:status', (req, res) => {
-        helper((orgId: string, user: Admin) => user.viewMyIssueByStatus(orgId, res.locals.userId, req.params.status as IIssueStatus), req, res)
+        GetHelper((orgId: string, user: Admin) => user.viewMyIssueByStatus(orgId, res.locals.userId, req.params.status as IIssueStatus),  res)
     })
+
 
     // check subscription
     .use('/create', SubscriptionCheck)
     .post('/create', (req, res) => {
-        if (res.locals.canAddIssue)
-            helper((orgId: string, user: Admin) => user.createNewIssue({ ...req.body, organizationId: orgId }), req, res)
-        else {
-            res.send('Your subscription does not allow to add issue!')
-        }
+            CreateHelper((orgId: string, user: Admin) => user.createNewIssue({ ...req.body, organizationId: orgId }),  res)
     })
 
 
 
 
     .post('/assign', (req, res) => {
-        helper((orgId: string, user: Admin) => user.assignIssueToUser(orgId, req.body), req, res)
+        CreateHelper((orgId: string, user: Admin) => user.assignIssueToUser(orgId, req.body),  res)
     })
     .post('/dessign', (req, res) => {
-        helper((orgId: string, user: Admin) => user.dessignIssueFromUser(orgId, req.body), req, res)
+        CreateHelper((orgId: string, user: Admin) => user.dessignIssueFromUser(orgId, req.body),  res)
     })
 
 
@@ -76,15 +74,15 @@ const router = Router()
 
 
     .delete('/id/:id', (req, res) => {
-        helper((orgId: string, user: Admin) => user.deleteIssueById(orgId, req.params.id), req, res);
+        DeleteHelper((orgId: string, user: Admin) => user.deleteIssueById(orgId, req.params.id),  res);
     })
 
     .delete('/status/:status', (req, res) => {
-        helper((orgId: string, user: Admin) => user.deleteIssueByStatus(orgId, req.params.status as IIssueStatus), req, res);
+        DeleteHelper((orgId: string, user: Admin) => user.deleteIssueByStatus(orgId, req.params.status as IIssueStatus),  res);
     })
 
     .delete('/issue', (req, res) => {
-        helper((orgId: string, user: Admin) => user.deleteIssue({ ...req.body, organizationId: orgId }), req, res);
+        DeleteHelper((orgId: string, user: Admin) => user.deleteIssue({ ...req.body, organizationId: orgId }), res);
     })
 
 
