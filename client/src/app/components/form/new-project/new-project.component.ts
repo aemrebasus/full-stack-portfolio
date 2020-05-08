@@ -3,6 +3,8 @@ import { ValidatorService } from '@services/form/validator.service';
 import { FormInputList } from '../input-list/input-list.component';
 import { FormInput } from '../input/input.meta';
 import { FormBuilder } from '../form-builder/form-builder.meta';
+import { IProject } from '@app/shared/IProject';
+import { HttpService } from '@services/http/http.service';
 
 
 @Component({
@@ -13,17 +15,32 @@ import { FormBuilder } from '../form-builder/form-builder.meta';
 export class NewProjectComponent {
 
 
-  constructor(private validator: ValidatorService) { }
+  constructor(private validator: ValidatorService, private httpService: HttpService) { }
 
   @Input() formName = 'Create Project';
   @Input() color = 'success';
 
-  public inputList = new FormInputList('description', 'Description', 'text');
-
   public form = new FormBuilder(this.formName, this.color)
     .addFields(
-      new FormInput('projectName', 'Project Name', 'text', (value: string) => this.validator.isNameValid(value)),
-      new FormInput('title', 'Title', 'text', (value: string) => this.validator.isNameValid(value)),
-      new FormInput('assignee', 'Assignee', 'text', (value: string) => this.validator.isNameValid(value))
+      new FormInput('projectName', 'Project Name', 'text', (value: string) => this.validator.isNickNameValid(value))
     );
+
+  public getFieldValue(id: string) {
+    return this.form.getFieldById(id).value;
+  }
+
+  public submit() {
+    const org: IProject = {
+      name: this.getFieldValue('projectName'),
+    }
+
+    this.httpService.post('/api/v1/projects/create', org, { responseType: 'text' })
+      .subscribe(
+        response => alert(response),
+        err => alert(err.message)
+      );
+
+
+  }
+
 }

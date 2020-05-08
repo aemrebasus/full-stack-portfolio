@@ -1,5 +1,3 @@
 <app-form-card [color]="form.color" [title]="form.title">
-    <app-form-builder [form]="form">
-        <app-input-list [input]="inputList"></app-input-list>
-    </app-form-builder>
+    <app-form-builder [form]="form" (submitted)="submit()"></app-form-builder>
 </app-form-card>

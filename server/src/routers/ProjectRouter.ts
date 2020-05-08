@@ -7,22 +7,18 @@ import logger from '@shared/Logger';
 import { Error } from 'mongoose';
 
 function helper(func: (orgId: string, user: Admin) => Promise<any>, req: Request, res: Response) {
-    try {
-        func(res.locals.orgId, (res.locals.user as Admin))
-            .then(data => {
-                res.status(OK)
-                    .send(data);
-            })
-            .catch(err => {
-                logger.error(err.message)
-                res.status(UNAUTHORIZED)
-                    .end(err.message);
-            })
 
-    } catch (err) {
-        res.status(UNAUTHORIZED)
-            .end('Unauthorized!')
-    }
+    func(res.locals.orgId, (res.locals.user as Admin))
+        .then(data => {
+            res.status(OK)
+                .send(data);
+        })
+        .catch(err => {
+            logger.error(err.message)
+            res.send(err.message);
+        })
+
+
 
 }
 
@@ -44,21 +40,21 @@ const router = Router()
 
 
 
-    // .put('/update/id/:id', (req, res) => {
-    //     helper((orgId: string, user: Admin) => user.updateUserById(orgId, req.params.id, { ...req.body, organizationId: orgId }), req, res);
-    // })
-    // .put('/update/email/:email', (req, res) => {
-    //     helper((orgId: string, user: Admin) => user.updateUserByEmail(orgId, req.params.email, { ...req.body, organizationId: orgId }), req, res);
-    // })
+// .put('/update/id/:id', (req, res) => {
+//     helper((orgId: string, user: Admin) => user.updateUserById(orgId, req.params.id, { ...req.body, organizationId: orgId }), req, res);
+// })
+// .put('/update/email/:email', (req, res) => {
+//     helper((orgId: string, user: Admin) => user.updateUserByEmail(orgId, req.params.email, { ...req.body, organizationId: orgId }), req, res);
+// })
 
 
-    // .delete('/delete/id/:id', (req, res) => {
-    //     helper((orgId: string, user: Admin) => user.deleteUserById(orgId, req.params.id), req, res);
-    // })
+// .delete('/delete/id/:id', (req, res) => {
+//     helper((orgId: string, user: Admin) => user.deleteUserById(orgId, req.params.id), req, res);
+// })
 
-    // .delete('/delete/user', (req, res) => {
-    //     helper((orgId: string, user: Admin) => user.deleteUser({ ...req.body, organizationId: orgId }), req, res);
-    // });
+// .delete('/delete/user', (req, res) => {
+//     helper((orgId: string, user: Admin) => user.deleteUser({ ...req.body, organizationId: orgId }), req, res);
+// });
 
 
 
