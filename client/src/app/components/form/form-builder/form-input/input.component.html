@@ -21,11 +21,24 @@
             autocomplete={{input.meta.autocomplete}} [(ngModel)]="input.meta.value"
             [class.is-invalid]='!input.meta.isValid && input.meta.isSubmitted'
             [class.is-valid]="input.meta.isValid && input.meta.isSubmitted" required={{input.meta.required}}
-            list="dataList" />
+            list="dataList" (keydown)="input.keyDown($event)" (input)="input.meta.onInput($event)"
+            (mouseover)="input.meta.onHover($event)" (click)="input.meta.onClick($event)" />
 
         <datalist id="dataList" *ngIf="input.meta.options">
             <option *ngFor="let option of input.meta.options">{{option}}</option>
         </datalist>
+
+
+        <!-- Editable list buttons -->
+        <div class=" input-group-prepend" (click)="input.add()" *ngIf="input.meta.type =='editable-list'">
+            <a class=" btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+        </div>
+        <div class="input-group-prepend" (click)="input.delete()" *ngIf="input.meta.type =='editable-list'">
+            <a class="btn btn-danger"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
+        </div>
+
+
+
 
     </div>
     <small id="{{input.meta.name}}Helper" *ngIf="input.meta.helperText">{{input.meta.helperText}}</small>
@@ -35,15 +48,13 @@
         {{input.meta.errors}}
     </div>
 
-    <!-- <input type="text" autocomplete="" /> -->
+
+    <!-- Editable list element -->
+    <ul class="list-group" *ngIf="input.meta.type =='editable-list'">
+        <li class="list-group-item text-dark" *ngFor="let i of input.meta.values">{{i}}</li>
+    </ul>
+
 </div>
-
-
-
-
-
-
-
 
 
 <!-- Select -->
@@ -64,7 +75,8 @@
         </div>
 
         <select id={{input.meta.id}} class="form-control" name={{input.meta.name}} required={{input.meta.required}}
-            [(ngModel)]="input.meta.value" multiple={{input.meta.multiple}}>
+            [(ngModel)]="input.meta.value" multiple={{input.meta.multiple}} (mouseover)="input.meta.onHover()"
+            (click)="input.meta.onClick($event)">
             <option *ngFor="let option of input.meta.options">{{option}}</option>
         </select>
 
@@ -103,7 +115,8 @@
             autocomplete={{input.meta.autocomplete}} [(ngModel)]="input.meta.value"
             [class.is-invalid]='!input.meta.isValid && input.meta.isSubmitted'
             [class.is-valid]="input.meta.isValid && input.meta.isSubmitted" required={{input.meta.required}}
-            accept={{input.meta.fileType}} />
+            accept={{input.meta.fileType}} (input)="input.meta.onInput($event)" (mouseover)="input.meta.onHover()"
+            (click)="input.meta.onClick($event)" />
     </div>
     <small id="{{input.meta.name}}Helper" *ngIf="input.meta.helperText">{{input.meta.helperText}}</small>
 
@@ -112,8 +125,23 @@
         {{input.meta.errors}}
     </div>
 
-    <!-- <input type="text" autocomplete="" /> -->
 </div>
 
 
 
+<!-- Buttons  -->
+
+<li class="list-group-item" [routerLink]="input.meta.route"
+    style="background-color: transparent; outline: none; box-shadow: none;"
+    *ngIf="buttonControl.includes(input.meta.type)">
+    <div class="input-group">
+        <div class="input-group-prepend" *ngIf="input.meta.icon">
+            <span class="input-group-text w-100" id={{input.meta.value}}>
+                <i class={{input.meta.icon}}></i>
+            </span>
+        </div>
+        <input type={{input.meta.type}} class="btn btn-{{input.meta.color}} rounded-0" title={{input.meta.title}}
+            value={{input.meta.buttonLabel}} (click)="input.meta.onClick()" (input)="input.meta.onInput($event)"
+            (mouseover)="input.meta.onHover()" />
+    </div>
+</li>

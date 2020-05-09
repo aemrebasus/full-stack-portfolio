@@ -9,22 +9,5 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FormBuilderComponent {
 
-  // @Input() public form: FormBuilder = new FormBuilder();
-  @Input() path: string;
-
-
-  @Output() submitted = new EventEmitter();
-
-
-  // submit() {
-  //   this.form.submit();
-  //   if (this.form.isFormValid) {
-  //     this.submitted.emit();
-  //   }
-  // }
-
-  // reset() {
-  //   this.form.reset();
-  // }
 
 }

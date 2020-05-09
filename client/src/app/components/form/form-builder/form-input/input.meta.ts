@@ -17,11 +17,40 @@ export enum ICON {
 }
 
 
-abstract class ABaseInput<T> implements IBaseInput<T>{
-    meta: T;
-    setMeta(meta: T) {
+type IEventHandler = (event?) => any;
+
+abstract class ABaseInput<T extends IInputMeta> implements IBaseInput<T> {
+    public meta: T;
+
+    public setMeta(meta: T) {
         this.meta = meta;
+        if (meta.type === 'editable-list') {
+            this.meta.values = [];
+        }
         return this;
+    }
+
+
+    public add() {
+        if (this.meta.value !== '') {
+            this.meta.values.push(this.meta.value);
+            this.meta.value = '';
+        }
+    }
+
+    public delete() {
+        this.meta.values.pop();
+        this.meta.value = '';
+    }
+
+    public keyDown(event) {
+        if (this.meta.type === 'editable-list') {
+            if (event.key === 'Enter') {
+                this.add();
+            } else if (event.key === 'Delete') {
+                this.delete();
+            }
+        }
     }
 }
 
@@ -36,11 +65,14 @@ export class CheckOption extends InputText { }
 
 export class Range extends InputText { }
 
+export class EditableList extends InputText { }
+
 export class SelectOption extends ABaseInput<ISelectMeta> { }
 
 export class SelectDate extends ABaseInput<IDateMeta> { }
 
 export class SearchItem extends ABaseInput<ISearchMeta> { }
+
 
 
 export interface IBaseInput<T = IInputMeta> {
@@ -104,6 +136,12 @@ export interface IInputMeta {
      * Stores the input value that is typed by user
      */
     value?: string;
+
+    /**
+     * store values as an array
+     */
+    values?: string[];
+
     /**
      * Icon that shown to the left of the input element.
      */
@@ -181,6 +219,29 @@ export interface IInputMeta {
      * 
      */
     isSubmitted?: boolean;
+
+    /**
+     * For buttons
+     */
+    color?: IColors;
+
+    /**
+     * For angular routes
+     */
+    route?: string;
+
+
+    /**
+     * Events
+     */
+    onClick?: IEventHandler;
+
+    onInput?: IEventHandler;
+
+    onHover?: IEventHandler;
+
+    onLeave?: IEventHandler;
+
 }
 
 
@@ -210,7 +271,9 @@ export type InputTypes = 'text' | 'password' | 'email' | 'textarea'
     | 'image'
     | 'number'
     | 'url'
-    | 'tel';
+    | 'tel'
+    | 'editable-list'
+    | 'button' | 'submit' | 'cancel' | 'reset';
 
 
 export type FileType = 'image/*' | 'audio/*' | 'video/*';
@@ -218,4 +281,5 @@ export type FileType = 'image/*' | 'audio/*' | 'video/*';
 export type AutoComplete = 'name' | 'tel' | 'username' | 'email' | 'address';
 
 
+export type IColors = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dark' | 'light';
 

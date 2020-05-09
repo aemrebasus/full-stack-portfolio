@@ -12,19 +12,28 @@
     background-color: rgba(138, 138, 138, 0.5);
 }
 
-.input-text:active,
-.input-text:focus {
+.clear-default-style {
     box-shadow: none;
     border: none;
     outline: none;
+}
+
+.input-text:active,
+.input-text:focus {
+    @extend .clear-default-style;
     border-bottom: 3px solid royalblue;
+}
+
+.btn,
+[class^="btn-"] {
+    @extend .clear-default-style;
 }
 
 * {
     transition: all ease-in-out 300ms;
 }
 
-textarea{ 
+textarea {
     transition: none;
 }
 

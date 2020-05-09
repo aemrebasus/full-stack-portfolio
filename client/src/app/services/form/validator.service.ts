@@ -13,7 +13,8 @@ export class ValidatorService {
     try {
       return (this.validator.isEmpty(name) && 'Name is required.')
         || (!this.validator.isLength(name, { min: 2 }) && 'Name must be at least 2 character long.')
-        || (!name.split(' ').map(e => this.validator.isAlpha(e.replace(/ /g, ''))).reduce((p, c) => p && c) && 'Name must contain only alphabetic characters.');
+        || (!name.split(' ').map(e => this.validator.isAlpha(e.replace(/ /g, '')))
+          .reduce((p, c) => p && c) && 'Name must contain only alphabetic characters.');
 
     } catch (err) {
       return 'Name is required.';
@@ -23,7 +24,8 @@ export class ValidatorService {
     try {
       return (this.validator.isEmpty(name) && 'Name is required.')
         || (!this.validator.isLength(name, { min: 2 }) && 'Name must be at least 2 character long.')
-        || (!name.split(' ').map(e => this.validator.isAlpha(e.replace(/ /g, ''))).reduce((p, c) => p && c) && 'Name must contain only alphabetic characters.');
+        || (!name.split(' ').map(e => this.validator.isAlpha(e.replace(/ /g, '')))
+          .reduce((p, c) => p && c) && 'Name must contain only alphabetic characters.');
 
     } catch (err) {
       return 'Name is required.';

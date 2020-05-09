@@ -10,16 +10,11 @@ import { InputComponent } from './components/form/form-builder/form-input/input.
 import { FormCardComponent } from './components/form/form-builder/form-card/form-card.component';
 import { FormBuilderComponent } from './components/form/form-builder/form-builder.component';
 import { LandingComponent } from '@components/landing/landing.component';
-import { ConsoleComponent } from './components/console/console.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { IssuesComponent } from './components/issues/issues.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { InputListComponent } from './components/form/form-builder/from-input-llist/input-list.component';
-import { ConsoleButtonComponent } from './components/form/console-button/console-button.component';
-import { ListButtonComponent } from './components/form/form-builder/form-list-button/list-button.component';
 import { AppBoardComponent } from './components/app-board/app-board.component';
-import { SelectComponent } from './components/form/form-builder/form-select/select.component';
 
 
 @NgModule({
@@ -30,17 +25,13 @@ import { SelectComponent } from './components/form/form-builder/form-select/sele
     InputComponent,
     FormCardComponent,
     FormBuilderComponent,
+
     LandingComponent,
-    ConsoleComponent,
     UsersListComponent,
     ProjectsComponent,
     IssuesComponent,
     DashboardComponent,
-    InputListComponent,
-    ConsoleButtonComponent,
-    ListButtonComponent,
     AppBoardComponent,
-    SelectComponent
   ],
   imports: [
     BrowserModule,

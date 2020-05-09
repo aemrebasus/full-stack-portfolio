@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IBaseInput, InputText, ICON } from './input.meta';
+import { IBaseInput, InputText, ICON, InputTypes } from './input.meta';
+
 
 @Component({
   selector: 'app-input',
@@ -8,30 +9,27 @@ import { IBaseInput, InputText, ICON } from './input.meta';
 })
 export class InputComponent implements OnInit {
 
-  public textInput: string[] = ['text', 'password', 'email', 'date', 'datetime', 'datetime-local', 'url', 'tel'];
+  public textInput: InputTypes[] = ['text', 'password', 'email', 'date', 'datetime', 'datetime-local', 'url', 'tel', 'editable-list'];
 
-  public fileDialog = ['file'];
+  public fileDialog: InputTypes[] = ['file'];
 
-  public dataList = ['datalist'];
+  public selectInput: InputTypes[] = ['select'];
 
-  public selectInput = ['select'];
+  public buttonControl: InputTypes[] = ['button', 'reset'];
 
-
-
-
-  @Input() input: IBaseInput = new InputText().setMeta({
-    type: 'select',
-    label: 'Label',
-    // icon: ICON.user,
-    buttonLabel: 'Select file',
-    fileType: 'image/*',
-    options: ['option 1', 'option 2'],
-    multiple: true
+  @Input() input = new InputText().setMeta({
+    type: 'text',
+    label: 'Click',
+    buttonLabel: 'click',
+    color: 'danger',
+    icon: ICON.user,
+    onClick: () => alert(this.input.meta.value)
   });
 
-  ngOnInit() {
+  ngOnInit() { }
 
-
-  }
 
 }
+
+
+
