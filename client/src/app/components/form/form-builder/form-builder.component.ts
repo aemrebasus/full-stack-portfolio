@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder } from './form-builder.meta';
+// import { FormBuilder } from './form-builder.meta';
 
 
 @Component({
@@ -9,22 +9,22 @@ import { FormBuilder } from './form-builder.meta';
 })
 export class FormBuilderComponent {
 
-  @Input() public form: FormBuilder = new FormBuilder();
+  // @Input() public form: FormBuilder = new FormBuilder();
   @Input() path: string;
 
 
   @Output() submitted = new EventEmitter();
 
 
-  submit() {
-    this.form.submit();
-    if (this.form.isFormValid) {
-      this.submitted.emit();
-    }
-  }
+  // submit() {
+  //   this.form.submit();
+  //   if (this.form.isFormValid) {
+  //     this.submitted.emit();
+  //   }
+  // }
 
-  reset() {
-    this.form.reset();
-  }
+  // reset() {
+  //   this.form.reset();
+  // }
 
 }

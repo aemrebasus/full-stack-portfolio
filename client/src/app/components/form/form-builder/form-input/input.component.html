@@ -1,20 +1,119 @@
-<div class="form-group col col-md-6 col-sm-12 float-left">
-    <label for={{input.id}}>{{input.label}}</label>
+<!-- Text Like inputs-->
+<div *ngIf="textInput.includes(input.meta.type)" class="form-group col col-md-6 col-sm-12 float-left">
+    <label for={{input.meta.id}}>{{input.meta.label}}</label>
     <div class="input-group">
-
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="passwordField">
-                <i class="{{input.icon}}"></i>
+        <!-- Icon -->
+        <div class="input-group-prepend" *ngIf="input.meta.icon">
+            <span class="input-group-text" id="{{input.meta.name}}_icon">
+                <i class="{{input.meta.icon}}"></i>
             </span>
         </div>
+
+        <div class="input-group-prepend" *ngIf="input.meta.preValue">
+            <span class="input-group-text" id="{{input.meta.name}}_preValue">
+                {{input.meta.preValue}}
+            </span>
+        </div>
+
         <!-- Input -->
-        <input type={{input.type}} name={{input.name}} id={{input.id}} class="form-control"
-            placeholder={{input.placeHolder}} aria-describedby="inputComponent" autocomplete="{{input.autocomplete}}"
-            [(ngModel)]="input.value" [class.is-invalid]='input.isValid && input.isSubmitted'
-            [class.is-valid]="!input.isValid && input.isSubmitted" required={{input.required}} />
+        <input id={{input.meta.id}} type={{input.meta.type}} name={{input.meta.name}} class="input-text form-control"
+            placeholder={{input.meta.placeHolder}} aria-describedby="inputComponent"
+            autocomplete={{input.meta.autocomplete}} [(ngModel)]="input.meta.value"
+            [class.is-invalid]='!input.meta.isValid && input.meta.isSubmitted'
+            [class.is-valid]="input.meta.isValid && input.meta.isSubmitted" required={{input.meta.required}}
+            list="dataList" />
+
+        <datalist id="dataList" *ngIf="input.meta.options">
+            <option *ngFor="let option of input.meta.options">{{option}}</option>
+        </datalist>
+
     </div>
-    <small id="{{input.name}}Helper">{{input.helperText}}</small>
+    <small id="{{input.meta.name}}Helper" *ngIf="input.meta.helperText">{{input.meta.helperText}}</small>
 
     <!-- Validaton -->
-    <div class="alert alert-danger p-1" *ngIf="input.isValid && input.isSubmitted"> {{input.isValid}}</div>
+    <div class="alert alert-danger p-1" *ngIf="!input.meta.isValid && input.meta.isSubmitted">
+        {{input.meta.errors}}
+    </div>
+
+    <!-- <input type="text" autocomplete="" /> -->
 </div>
+
+
+
+
+
+
+
+
+
+<!-- Select -->
+<div *ngIf="selectInput.includes(input.meta.type)" class="form-group col col-md-6 col-sm-12 float-left">
+    <label for={{input.meta.id}}>{{input.meta.label}}</label>
+    <div class="input-group">
+        <!-- Icon -->
+        <div class="input-group-prepend" *ngIf="input.meta.icon">
+            <span class="input-group-text" id="{{input.meta.name}}_icon">
+                <i class="{{input.meta.icon}}"></i>
+            </span>
+        </div>
+
+        <div class="input-group-prepend" *ngIf="input.meta.preValue">
+            <span class="input-group-text" id="{{input.meta.name}}_preValue">
+                {{input.meta.preValue}}
+            </span>
+        </div>
+
+        <select id={{input.meta.id}} class="form-control" name={{input.meta.name}} required={{input.meta.required}}
+            [(ngModel)]="input.meta.value" multiple={{input.meta.multiple}}>
+            <option *ngFor="let option of input.meta.options">{{option}}</option>
+        </select>
+
+    </div>
+    <small id="{{input.meta.name}}Helper" *ngIf="input.meta.helperText">{{input.meta.helperText}}</small>
+
+    <!-- Validaton -->
+    <div class="alert alert-danger p-1" *ngIf="!input.meta.isValid && input.meta.isSubmitted">
+        {{input.meta.errors}}
+    </div>
+
+    <!-- <input type="text" autocomplete="" /> -->
+</div>
+
+
+
+
+
+<!-- File Select  -->
+<div *ngIf="fileDialog.includes(input.meta.type)" class="form-group col col-md-6 col-sm-12 float-left">
+
+    <label for={{input.meta.id}}>{{input.meta.label}}</label>
+    <div class="input-group">
+        <!-- Icon -->
+        <div class="input-group" style=" position: absolute; width: 100%;">
+            <div class="input-group-prepend" *ngIf="input.meta.icon">
+                <span class="input-group-text" id="{{input.meta.name}}_icon">
+                    <i class="{{input.meta.icon}}"></i>
+                </span>
+            </div>
+            <input id="someid" type="button" class="btn btn-primary form-control" value={{input.meta.buttonLabel}} />
+        </div>
+
+        <input id={{input.meta.id}} type={{input.meta.type}} name={{input.meta.name}} class="input-file form-control"
+            placeholder={{input.meta.placeHolder}} aria-describedby="inputComponent"
+            autocomplete={{input.meta.autocomplete}} [(ngModel)]="input.meta.value"
+            [class.is-invalid]='!input.meta.isValid && input.meta.isSubmitted'
+            [class.is-valid]="input.meta.isValid && input.meta.isSubmitted" required={{input.meta.required}}
+            accept={{input.meta.fileType}} />
+    </div>
+    <small id="{{input.meta.name}}Helper" *ngIf="input.meta.helperText">{{input.meta.helperText}}</small>
+
+    <!-- Validaton -->
+    <div class="alert alert-danger p-1" *ngIf="!input.meta.isValid && input.meta.isSubmitted">
+        {{input.meta.errors}}
+    </div>
+
+    <!-- <input type="text" autocomplete="" /> -->
+</div>
+
+
+

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormInput } from '../form-input/input.meta';
 
 @Component({
   selector: 'app-input-list',
@@ -7,32 +6,32 @@ import { FormInput } from '../form-input/input.meta';
 })
 export class InputListComponent {
 
-  @Input() input: FormInputList = new FormInputList('description', 'Description', 'text');
+  // @Input() input: FormInputList = new FormInputList('description', 'Description', 'text');
 
-  add() {
-    if (this.input.value !== '') {
-      this.input.list.push(this.input.value);
-      this.input.value = '';
-    }
-  }
+  // add() {
+  //   if (this.input.value !== '') {
+  //     this.input.list.push(this.input.value);
+  //     this.input.value = '';
+  //   }
+  // }
 
-  delete() {
-    this.input.list.pop();
-    this.input.value = '';
-  }
+  // delete() {
+  //   this.input.list.pop();
+  //   this.input.value = '';
+  // }
 
 
-  keyDown(event) {
-    if (event.key === 'Enter') {
-      this.add();
-    } else if (event.key === 'Delete') {
-      this.delete();
-    }
-  }
+  // keyDown(event) {
+  //   if (event.key === 'Enter') {
+  //     this.add();
+  //   } else if (event.key === 'Delete') {
+  //     this.delete();
+  //   }
+  // }
 
 }
 
-export class FormInputList extends FormInput {
-  public list: string[] = [];
-}
+// export class FormInputList extends FormInput {
+//   public list: string[] = [];
+// }
 

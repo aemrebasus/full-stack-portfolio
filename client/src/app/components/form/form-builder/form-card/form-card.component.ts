@@ -2,8 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-form-card',
-  templateUrl: './form-card.component.html',
-  styleUrls: ['../style.scss']
+  templateUrl: './form-card.component.html'
 })
 export class FormCardComponent {
 
