@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ConfirmationComponent } from '@components/confirmation/confirmation.component';
-import { LandingComponent } from '@components/landing/landing.component';
 import { ProjectsComponent } from '@components/projects/projects.component';
 import { IssuesComponent } from '@components/issues/issues.component';
 import { DashboardComponent } from '@components/dashboard/dashboard.component';
 import { AppBoardComponent } from '@components/app-board/app-board.component';
 import { UsersListComponent } from '@components/users-list/users-list.component';
-import { FormBuilderComponent } from '@components/form/form-builder/form-builder.component';
+import { FormBuilderComponent } from '@components/form-builder/form-builder.component';
 
 
 

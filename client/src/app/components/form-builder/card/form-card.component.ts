@@ -6,7 +6,10 @@ import { IFormCardMeta } from './form-card.meta';
   templateUrl: './form-card.component.html'
 })
 export class FormCardComponent {
-  @Input() meta: IFormCardMeta;
+  @Input() meta: IFormCardMeta = {
+    color: 'danger',
+    title: 'angular title'
+  };
 
 }
 

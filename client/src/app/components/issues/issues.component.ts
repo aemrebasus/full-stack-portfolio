@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IIssue } from '@app/shared/IIssue';
+import { IIssue } from '@app/shared/datamodel/IIssue';
 import { HttpService } from '@services/http/http.service';
 
 @Component({
