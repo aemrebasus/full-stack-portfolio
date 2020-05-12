@@ -18,16 +18,26 @@ export class FormBuilderComponent {
   submit() {
     const route = this.form.meta.route;
     this.form.submit();
-    
+
     if (this.form.isFormValid) {
+
       this.httpService.post(route, this.form.toObject())
         .subscribe(
-          response => this.submitted.emit(response),
-          err => this.submitted.emit(err)
+          response => {
+            this.submitted.emit(response);
+          },
+          err => {
+            this.form.isFormValid = false;
+            this.form.error = err.message;
+            this.form.inputs.forEach(i => {
+              i.meta.isValid = false;
+            });
+          }
         );
-    } else {
+
 
     }
+
   }
 
 

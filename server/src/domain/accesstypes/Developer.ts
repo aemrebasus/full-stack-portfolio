@@ -88,12 +88,11 @@ export class Developer
 
     signIn(credentials: ICredential, callback?: ((response: IUser) => void) | undefined): Promise<any> {
         return new Promise((res, rej) => {
-            UserModel.findOne({ email: credentials.email })
+            return UserModel.findOne({ email: credentials.email })
                 .then(user => {
                     if (!user) {
                         rej('User not found');
                     } else {
-
                         verifyPassword(credentials.password, user.password)
                             .then(isPasswordValid => {
                                 if (isPasswordValid) {

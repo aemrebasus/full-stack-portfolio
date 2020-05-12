@@ -38,4 +38,9 @@ export class HttpService {
   delete<T>(path: string, options?: object) {
     return this.http.delete<T>(path, options);
   }
+
+
+  signIn(form: any) {
+    return this.post('/api/v1/signup', form);
+  }
 }

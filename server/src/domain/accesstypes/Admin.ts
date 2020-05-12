@@ -33,7 +33,7 @@ export class Admin extends ScrumMaster implements
             .then(hashed => {
                 user.password = hashed;
                 return new UserModel(user).save();
-            })
+            });
     }
 
 }

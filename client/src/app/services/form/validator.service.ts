@@ -17,15 +17,15 @@ export class ValidatorService {
     try {
 
       if (this.validator.isEmpty(name)) {
-        messages.push('Name is required');
+        messages.push(`Field is required`);
       }
 
       if (!this.validator.isLength(name, { min: 2 })) {
-        messages.push('Name must be at least 2 character long');
+        messages.push(`Field must be at least 2 character long`);
       }
 
     } catch (err) {
-      messages.push('Some error happened!');
+      messages.push(`Some error happened!`);
 
       return {
         status: false,
@@ -46,17 +46,17 @@ export class ValidatorService {
     const messages: string[] = [];
     try {
       if (this.validator.isEmpty(name)) {
-        messages.push('Name is required.');
+        messages.push('Field is required.');
       }
 
       if (!this.validator.isLength(name, { min: 2 })) {
 
-        messages.push('Name must be at least 2 character long.');
+        messages.push('Field must be at least 2 character long.');
       }
 
       if (!name.split(' ').map(e => this.validator.isAlpha(e.replace(/ /g, '')))
         .reduce((p, c) => p && c)) {
-        messages.push('Name must contain only alphabetic characters.');
+        messages.push('Field must contain only alphabetic characters.');
       }
 
     } catch (err) {

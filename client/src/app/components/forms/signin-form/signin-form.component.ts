@@ -10,29 +10,12 @@ import { ValidatorService } from '@services/form/validator.service';
 })
 export class SigninFormComponent {
 
-  constructor(private validationService: ValidatorService) {
+  route = '/api/v1/signin';
 
-  }
-  form = new FormBuilder({ name: 'Sign In', color: 'success' })
-    .addField(
-      new BaseInput({
-        type: 'text',
-        label: 'Email',
-        helperText: 'Type your email',
-        validates: [
-          (value: string) => this.validationService.isEmailValid(value)
-        ]
-      })
-    )
-    .addField(
-      new BaseInput({
-        type: 'password',
-        label: 'Password',
-        helperText: 'Type your password',
-        validates: [
-          (value: string) => this.validationService.isPasswordValid(value)
-        ]
-      })
-    )
+  constructor(private validationService: ValidatorService) { }
+
+  form = new FormBuilder({ name: 'Sign In', color: 'success', route: this.route })
+    .addEmailField()
+    .addPasswordField();
 
 }

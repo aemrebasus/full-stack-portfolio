@@ -2,7 +2,8 @@
 
     <p>You did not pass a input to the app-input component!</p>
 </div>
-<div *ngIf="input" class="form-group col">
+
+<div *ngIf="input" class="form-group col-12">
     <!-- Text Like inputs-->
     <div *ngIf="textInput.includes(input.meta.type)">
 
@@ -165,11 +166,10 @@
 
 
     <!-- Validaton -->
-    <div class="alert alert-danger p-1" *ngIf="!input.meta.isValid && input.meta.isSubmitted">
+    <div class="alert alert-danger p-1"
+        *ngIf="!input.meta.isValid && input.meta.isSubmitted && (input.meta.errors.length>0)">
         <ul>
             <li *ngFor="let error of input.meta.errors">{{error}}</li>
         </ul>
     </div>
-
-
 </div>

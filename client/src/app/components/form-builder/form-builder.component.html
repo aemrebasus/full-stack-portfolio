@@ -1,8 +1,11 @@
 <app-form-card [title]="form.meta.name" [color]="form.meta.color">
-    <app-input  *ngFor="let input of form.inputs" [input]="input"></app-input>
+    <app-input *ngFor="let input of form.inputs" [input]="input"></app-input>
 
     <div class="col col-12 text-center">
         <input type="reset" (click)="reset()" value="Reset" class="btn btn-warning  form-control col col-3" />
         <input type="button" (click)="submit()" value="Submit" class="btn btn-primary form-control col col-3" />
+    </div>
+    <div class="alert alert-danger mt-2" role="alert" *ngIf="!form.isFormValid && form.isSubmitted && form.error">
+        <h4 class="alert-heading">{{form.error}}</h4>
     </div>
 </app-form-card>

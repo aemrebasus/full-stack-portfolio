@@ -16,9 +16,9 @@ export type InputTypes = 'text' | 'password' | 'email' | 'textarea'
 
 export type FileType = 'image/*' | 'audio/*' | 'video/*';
 
-export type AutoComplete = 'name' | 'tel' | 'username' | 'email' | 'address';
+export type AutoComplete = 'name' | 'tel' | 'username' | 'email' | 'address' | 'password' | 'firstName' | 'lastName' | 'organization';
 
 
-export type IColors = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dark' | 'light';
+export type IColors = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dark' | 'light' | 'info';
 
 export type IHttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';

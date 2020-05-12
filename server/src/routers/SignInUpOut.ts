@@ -3,7 +3,7 @@ import { UserFactory } from '@domain/UserFactory';
 import { IOrganization } from '@domain/entities/IOrganization';
 import logger from '@shared/Logger';
 import { Timeout } from './middlewares/Timeout';
-import { OK } from 'http-status-codes';
+import { OK, UNAUTHORIZED } from 'http-status-codes';
 
 /**
  * Information about the software.
@@ -17,7 +17,8 @@ export const SignInUpOut = Router()
                     .send('Congrats! Successfully signed in.');
             })
             .catch(err => {
-                res.send(err);
+                res.status(UNAUTHORIZED)
+                    .end('Could not sign in');
             })
     })
 

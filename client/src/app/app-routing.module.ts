@@ -9,6 +9,7 @@ import { UsersListComponent } from '@components/data-view/users-list/users-list.
 import { LandingComponent } from '@components/landing/landing.component';
 import { SigninFormComponent } from '@components/forms/signin-form/signin-form.component';
 import { SignupFormComponent } from '@components/forms/signup-form/signup-form.component';
+import { UserFormComponent } from '@components/forms/user-form/user-form.component';
 
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'con', component: ConfirmationComponent },
   { path: 'signin', component: SigninFormComponent },
   { path: 'signup', component: SignupFormComponent },
+  { path: 'userform', component: UserFormComponent },
   {
     path: 'app', component: AppBoardComponent,
     children: [

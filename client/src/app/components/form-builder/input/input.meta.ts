@@ -1,7 +1,7 @@
 import { AutoComplete, FileType, IColors, InputTypes } from './meta/types';
 import { ICON } from './meta/icons';
 import {
-    EventHandler, ValidationHandler, ISearchResult, CustomSettingHandler, IValidationResult
+    EventHandler, ValidationHandler, ISearchResult, CustomSettingHandler
 } from './meta/handlers';
 
 
@@ -103,7 +103,7 @@ abstract class ABaseInput<M extends IInputMeta> implements IBaseInput<M> {
      * Convert the input to the object that can be posted to the server.
      */
     public toObject() {
-        return JSON.parse(`"{${this.meta.key}":"${this.meta.value}" }`);
+        return JSON.parse(`{"${this.meta.key}":"${this.meta.value}" }`);
     }
 }
 

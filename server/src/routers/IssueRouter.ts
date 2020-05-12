@@ -16,7 +16,7 @@ function helper(func: (orgId: string, user: Admin) => Promise<any>, req: Request
             .catch(err => {
                 res.status(UNAUTHORIZED)
                     .send(err);
-            })
+            });
 
     } catch (err) {
         res.status(UNAUTHORIZED)
