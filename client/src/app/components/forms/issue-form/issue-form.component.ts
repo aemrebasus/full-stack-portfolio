@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { ValidatorService } from '@services/form/validator.service';
+import { FormBuilder } from '@components/form-builder/form-builder.meta';
 
 @Component({
   selector: 'app-issue-form',
   templateUrl: './issue-form.component.html',
   styleUrls: ['./issue-form.component.scss']
 })
-export class IssueFormComponent implements OnInit {
+export class IssueFormComponent {
 
-  constructor() { }
+  route = '/api/v1/signup';
 
-  ngOnInit(): void {
-  }
+  constructor(private validationService: ValidatorService) { }
 
+  form = new FormBuilder({ name: 'User Form', color: 'info', route: this.route })
+    .addSimpleField('Title')
+    .addSimpleField('Description');
 }

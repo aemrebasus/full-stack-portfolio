@@ -10,7 +10,6 @@ import { LandingComponent } from '@components/landing/landing.component';
 import { UsersListComponent } from './components/data-view/users-list/users-list.component';
 import { ProjectsComponent } from './components/data-view/projects/projects.component';
 import { IssuesComponent } from './components/data-view/issues/issues.component';
-import { DashboardComponent } from './components/landing/dashboard/dashboard.component';
 import { AppBoardComponent } from './components/landing/app-board/app-board.component';
 import { InputComponent } from '@components/form-builder/input/input.component';
 import { FormCardComponent } from '@components/form-builder/card/form-card.component';
@@ -19,6 +18,7 @@ import { SignupFormComponent } from './components/forms/signup-form/signup-form.
 import { SigninFormComponent } from './components/forms/signin-form/signin-form.component';
 import { IssueFormComponent } from './components/forms/issue-form/issue-form.component';
 import { UserFormComponent } from './components/forms/user-form/user-form.component';
+import { ProjectFormComponent } from './components/forms/project-form/project-form.component';
 
 
 @NgModule({
@@ -34,12 +34,12 @@ import { UserFormComponent } from './components/forms/user-form/user-form.compon
     UsersListComponent,
     ProjectsComponent,
     IssuesComponent,
-    DashboardComponent,
     AppBoardComponent,
     SignupFormComponent,
     SigninFormComponent,
     IssueFormComponent,
     UserFormComponent,
+    ProjectFormComponent,
   ],
   imports: [
     BrowserModule,

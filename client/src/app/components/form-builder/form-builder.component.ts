@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from './form-builder.meta';
 import { HttpService } from '@services/http/http.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { HttpService } from '@services/http/http.service';
 })
 export class FormBuilderComponent {
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private router: Router) { }
 
   @Input() form: FormBuilder;
   @Output() submitted = new EventEmitter();
@@ -25,6 +26,11 @@ export class FormBuilderComponent {
         .subscribe(
           response => {
             this.submitted.emit(response);
+
+            if (this.form.meta.redirection) {
+              this.router.navigateByUrl(this.form.meta.redirection);
+            }
+
           },
           err => {
             this.form.isFormValid = false;

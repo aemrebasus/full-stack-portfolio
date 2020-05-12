@@ -11,10 +11,10 @@ export class NavigationComponent {
   constructor(private router: Router, private httpService: HttpService) { }
 
   signOut() {
-    this.httpService.get('/api/v1/signout', { responseType: 'text' })
+    this.httpService.signOut()
       .subscribe(
         (response) => alert(response),
-        (err) => alert(err)
+        (err) => alert(err.message)
       );
   }
 }

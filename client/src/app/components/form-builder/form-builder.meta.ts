@@ -1,4 +1,4 @@
-import { IColors, IHttpMethod } from './input/meta/types';
+import { IColors, IHttpMethod, InputTypes } from './input/meta/types';
 import { BaseInput } from './input/input.meta';
 import { EventHandler } from './input/meta/handlers';
 import { ValidatorService } from '@services/form/validator.service';
@@ -34,49 +34,34 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
         return this;
     }
 
-    public addFirstNameField() {
+
+    public addSimpleField(label: string, type?: InputTypes) {
         const emailField: BaseInput = new BaseInput({
-            type: 'text',
-            label: 'First Name',
+            type: type || 'text',
+            label,
             autocomplete: 'name',
             validates: [
                 (value: string) => this.validationService.isNameValid(value)
             ]
         });
-
         this.inputs.push(emailField);
         return this;
+    }
+
+    public addFirstNameField() {
+        return this.addSimpleField('First Name');
     }
 
 
 
     public addLastNameField() {
-        const lastName: BaseInput = new BaseInput({
-            type: 'text',
-            label: 'Last Name',
-            autocomplete: 'lastName',
-            validates: [
-                (value: string) => this.validationService.isNameValid(value)
-            ]
-        });
-
-        this.inputs.push(lastName);
-        return this;
+        return this.addSimpleField('Last Name');
     }
 
     public addOrganizationNameField() {
-        const lastName: BaseInput = new BaseInput({
-            type: 'text',
-            label: 'Organization Name',
-            autocomplete: 'organization',
-            validates: [
-                (value: string) => this.validationService.isNameValid(value)
-            ]
-        });
-
-        this.inputs.push(lastName);
-        return this;
+        return this.addSimpleField('Organization Name')
     }
+
 
     public addPasswordField() {
         const lastName: BaseInput = new BaseInput({
@@ -232,6 +217,7 @@ abstract class BaseForm<M = IFormMeta> {
 export interface IFormMeta {
     name?: string;
     route?: string;
+    redirection?: string;
     method?: IHttpMethod;
     color?: IColors;
     submit?: EventHandler;

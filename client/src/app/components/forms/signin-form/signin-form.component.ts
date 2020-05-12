@@ -14,7 +14,7 @@ export class SigninFormComponent {
 
   constructor(private validationService: ValidatorService) { }
 
-  form = new FormBuilder({ name: 'Sign In', color: 'success', route: this.route })
+  form = new FormBuilder({ name: 'Sign In', color: 'success', route: this.route, redirection: '/app' })
     .addEmailField()
     .addPasswordField();
 

@@ -28,6 +28,10 @@ abstract class ABaseInput<M extends IInputMeta> implements IBaseInput<M> {
             callback(meta, this);
         }
 
+        if (!this.meta.id) {
+            this.meta.id = `id_${Math.random()}`;
+        }
+
         return this;
     }
 

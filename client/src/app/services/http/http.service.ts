@@ -43,4 +43,8 @@ export class HttpService {
   signIn(form: any) {
     return this.post('/api/v1/signup', form);
   }
+
+  signOut() {
+    return this.get('/api/v1/signout'); 
+  }
 }
