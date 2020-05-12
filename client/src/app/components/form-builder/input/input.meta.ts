@@ -1,18 +1,25 @@
 import { AutoComplete, FileType, IColors, InputTypes } from './meta/types';
 import { ICON } from './meta/icons';
-import { EventHandler, ValidationHandler, ISearchResult, SetEventHandlerCallback, CustomSettingHandler } from './meta/handlers';
+import {
+    EventHandler, ValidationHandler, ISearchResult, CustomSettingHandler, IValidationResult
+} from './meta/handlers';
 
 
 abstract class ABaseInput<M extends IInputMeta> implements IBaseInput<M> {
 
     public meta: M;
-    
+
+    constructor() { }
     /**
      *
      * @param meta Meta data of the Input, contains all data related to input as well as event handlers and validation.
      */
     public setMeta(meta: M, callback?: (meta: M, thisClass: this) => void) {
         this.meta = meta;
+
+        this.meta.errors = [];
+        this.meta.founds = [];
+
         if (this.meta.type === 'editable-list') {
             this.meta.values = [];
         }
@@ -65,13 +72,53 @@ abstract class ABaseInput<M extends IInputMeta> implements IBaseInput<M> {
             }
         }
     }
+
+    /**
+     * Validate the input
+     */
+    public validate(): boolean {
+        this.meta.isValid = true;
+        this.meta.errors = [];
+        this.meta.isSubmitted = true;
+        this.meta.validates.forEach(func => {
+            const result = func(this.meta.value);
+            if (!result.status) {
+                this.meta.isValid = false;
+                this.meta.errors.push(...result.messages);
+            }
+        });
+
+        return this.meta.isValid;
+    }
+
+    public reset() {
+        this.meta.isValid = true;
+        this.meta.errors = [];
+        this.meta.isSubmitted = false;
+        this.meta.value = '';
+        this.meta.values = [];
+    }
+
+    /**
+     * Convert the input to the object that can be posted to the server.
+     */
+    public toObject() {
+        return JSON.parse(`"{${this.meta.key}":"${this.meta.value}" }`);
+    }
 }
 
 /**
  * Base input type will be used most of the cases.
  * This class can be used with any interface but make sure extened interface extends the IInputMeta interface.
  */
-export class BaseInput<T = IInputMeta> extends ABaseInput<T> { }
+export class BaseInput<T = IInputMeta> extends ABaseInput<T> {
+    constructor(meta?: T) {
+        super();
+
+        this.setMeta(meta);
+    }
+
+}
 
 
 
@@ -80,6 +127,7 @@ export interface IBaseInput<M = IInputMeta> {
      * Interface defining meta data of the input element.
      */
     meta?: M;
+
 }
 
 
@@ -94,6 +142,11 @@ export abstract class IInputMetaDefault implements IInputMeta {
  * Interfaces
  */
 export interface IInputMeta {
+
+    /**
+     * Respective key in the data entity.
+     */
+    key?: string;
 
     /**
      * Unique identifier of each element
@@ -132,6 +185,16 @@ export interface IInputMeta {
      * Icon that shown to the left of the input element.
      */
     icon?: ICON;
+
+    /**
+     * Stores the color of the icon
+     */
+    iconColor?: IColors;
+
+    /**
+     * Stores the background color of the icon
+     */
+    iconBgColor?: IColors;
 
     /**
      * Descriptive name of the element
@@ -180,7 +243,7 @@ export interface IInputMeta {
     /**
      * Stores the state of validation of this input
      */
-    isValid?: string;
+    isValid?: boolean;
 
     /**
      * Stores the error messages upon validation
@@ -213,6 +276,7 @@ export interface IInputMeta {
     color?: IColors;
 
 
+
     /**
      * List of items that user will search for.
      */
@@ -228,6 +292,10 @@ export interface IInputMeta {
      */
     route?: string;
 
+    /**
+     * Http method
+     */
+    method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
 
     events?: { [key: string]: EventHandler }
     /**

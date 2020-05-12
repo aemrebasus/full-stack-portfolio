@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { BaseInput } from './input/input.meta';
-// import { FormBuilder } from './form-builder.meta';
+import { FormBuilder } from './form-builder.meta';
+import { HttpService } from '@services/http/http.service';
 
 
 @Component({
@@ -10,24 +10,30 @@ import { BaseInput } from './input/input.meta';
 })
 export class FormBuilderComponent {
 
-  @Input() inputs = [
-    new BaseInput().setMeta({
-      type: "text"
-    }),
-    new BaseInput()
-      .setMeta({
-        type: 'radio',
-        name: 'gender',
-        label: 'gender',
-        options: ['option1', 'option2', 'option 3'],
-      })
-      .setEvents(t => {
-        t.meta.onClicks = [() => alert([t.meta.value])];
-        t.meta.onClick = () => {
-          t.meta.onClicks.map(f => f());
-        }
-      })
+  constructor(private httpService: HttpService) { }
 
-  ];
+  @Input() form: FormBuilder;
+  @Output() submitted = new EventEmitter();
+
+  submit() {
+    const route = this.form.meta.route;
+    this.form.submit();
+    
+    if (this.form.isFormValid) {
+      this.httpService.post(route, this.form.toObject())
+        .subscribe(
+          response => this.submitted.emit(response),
+          err => this.submitted.emit(err)
+        );
+    } else {
+
+    }
+  }
+
+
+  reset() {
+    this.form.reset();
+  }
+
 
 }

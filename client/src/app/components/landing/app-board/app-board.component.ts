@@ -12,8 +12,6 @@ export class AppBoardComponent implements OnInit {
 
   constructor() { }
 
-
-
   ngOnInit(): void {
   
   }

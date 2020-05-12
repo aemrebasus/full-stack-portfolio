@@ -8,23 +8,13 @@ export type SetEventHandlerCallback<T = any, E = any, R = void> = (event: T, thi
 
 export type CustomSettingHandler<T = any, E = any, R = void> = (className: T) => R;
 
-export interface IValidationResult<T = IValidationResultMeta | IValidationResultsMeta> {
-    meta: T;
+export interface IValidationResult {
+    status: boolean;
+    messages: string[];
 }
 
-export interface IValidationResultMeta<S = boolean, M = string> {
-    status: S;
-    message: M;
+
+export interface ISearchResult {
+    values: string[];
 }
 
-export interface IValidationResultsMeta<M = string> extends IValidationResult {
-    messages: M[];
-}
-
-export interface ISearchResult<M = ISearchResultMeta> {
-    meta: M;
-}
-
-export interface ISearchResultMeta {
-    value: string;
-}

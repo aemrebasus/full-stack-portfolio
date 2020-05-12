@@ -1,15 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IFormCardMeta } from './form-card.meta';
+import { Component, Input } from '@angular/core';
+import { IColors } from '../input/meta/types';
 
 @Component({
   selector: 'app-form-card',
   templateUrl: './form-card.component.html'
 })
 export class FormCardComponent {
-  @Input() meta: IFormCardMeta = {
-    color: 'danger',
-    title: 'angular title'
-  };
+
+  @Input() title: string = 'Form Name';
+  @Input() color: IColors = 'primary';
+
 
 }
 

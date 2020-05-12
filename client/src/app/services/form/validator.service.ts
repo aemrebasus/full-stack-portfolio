@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import _validator from 'validator';
+import { IValidationResult } from '@components/form-builder/input/meta/handlers';
 
 @Injectable({
   providedIn: 'root'
@@ -9,56 +10,139 @@ export class ValidatorService {
 
 
   // Validation Methods
-  isNameValid(name: string = ''): string {
+  isNameValid(name: string = ''): IValidationResult {
+    let status = false;
+    const messages = [];
+
     try {
-      return (this.validator.isEmpty(name) && 'Name is required.')
-        || (!this.validator.isLength(name, { min: 2 }) && 'Name must be at least 2 character long.')
-        || (!name.split(' ').map(e => this.validator.isAlpha(e.replace(/ /g, '')))
-          .reduce((p, c) => p && c) && 'Name must contain only alphabetic characters.');
+
+      if (this.validator.isEmpty(name)) {
+        messages.push('Name is required');
+      }
+
+      if (!this.validator.isLength(name, { min: 2 })) {
+        messages.push('Name must be at least 2 character long');
+      }
 
     } catch (err) {
-      return 'Name is required.';
+      messages.push('Some error happened!');
+
+      return {
+        status: false,
+        messages
+      };
     }
+
+    status = !(messages.length > 0);
+
+    return {
+      status,
+      messages
+    };
   }
-  isNickNameValid(name: string = ''): string {
+
+  isNickNameValid(name: string = ''): IValidationResult {
+    let status = false;
+    const messages: string[] = [];
     try {
-      return (this.validator.isEmpty(name) && 'Name is required.')
-        || (!this.validator.isLength(name, { min: 2 }) && 'Name must be at least 2 character long.')
-        || (!name.split(' ').map(e => this.validator.isAlpha(e.replace(/ /g, '')))
-          .reduce((p, c) => p && c) && 'Name must contain only alphabetic characters.');
+      if (this.validator.isEmpty(name)) {
+        messages.push('Name is required.');
+      }
+
+      if (!this.validator.isLength(name, { min: 2 })) {
+
+        messages.push('Name must be at least 2 character long.');
+      }
+
+      if (!name.split(' ').map(e => this.validator.isAlpha(e.replace(/ /g, '')))
+        .reduce((p, c) => p && c)) {
+        messages.push('Name must contain only alphabetic characters.');
+      }
 
     } catch (err) {
-      return 'Name is required.';
+      messages.push('Some Error happended');
+      return {
+        status,
+        messages
+      };
     }
+
+
+    status = !(messages.length > 0);
+
+
+    return {
+      status,
+      messages
+    };
+
   }
 
-  isEmailValid(email: string = ''): string {
+  isEmailValid(email: string = ''): IValidationResult {
+    let status = false;
+    const messages: string[] = [];
+
     try {
-      return (this.validator.isEmpty(email) && 'Email is required.')
-        || (!this.validator.isLength(email, { min: 9 }) && 'Email must be at least 9 character long.')
-        || (!this.validator.isEmail(email) && 'Email is not valid email.');
+
+      if (this.validator.isEmpty(email)) {
+        messages.push('Email is required.');
+      }
+
+      if (!this.validator.isLength(email, { min: 9 })) {
+        messages.push('Email must be at least 9 character long.');
+      }
+
+      if (!this.validator.isEmail(email)) {
+        messages.push('Email is not valid email.');
+      }
 
     } catch (err) {
-      return 'Email is required.';
+      status = false;
+      messages.push('Email is Required');
+      return {
+        status,
+        messages
+      };
     }
+
+    status = !(messages.length > 0);
+    return {
+      status,
+      messages
+    };
   }
 
-  isPasswordValid(password: string = '') {
+  isPasswordValid(password: string): IValidationResult {
+    let status = true;
+    const messages: string[] = [];
+
     try {
-      return (this.validator.isEmpty(password) && 'Password is required')
-        || (!this.validator.isLength(password, { min: 8 }) && 'Password must be at least 8 character long.');
+      if (this.validator.isEmpty(password)) {
+        messages.push('Password is required');
+      }
+
+      if (!this.validator.isLength(password, { min: 8 })) {
+        messages.push('Password must be at least 8 character long.');
+      }
+
     } catch (err) {
-      return 'Password is required';
+      status = false;
+      messages.push('Password is required!');
+      return {
+        status,
+        messages
+      };
+
+
     }
+
+    status = !(messages.length > 0);
+
+    return {
+      status,
+      messages
+    };
   }
 
-  isPasswordAgainValid(password: string = '', passwordAgain: string = '') {
-    try {
-      return (this.validator.isEmpty(password) && 'Password is required')
-        || (!(password === passwordAgain) && 'Password does NOT match.');
-    } catch (err) {
-      return 'Password is required';
-    }
-  }
 }
 

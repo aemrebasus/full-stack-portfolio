@@ -20,15 +20,3 @@ export class IssuesComponent implements OnInit {
     )
   }
 }
-
-
-// export interface IIssue {
-//   _id?: IID;
-//   userId?: IID;
-//   organizationId?: string;
-//   projectId?: string;
-//   title?: string;
-//   description?: string;
-//   status?: IIssueStatus;
-//   createdOn?: Date;
-// }

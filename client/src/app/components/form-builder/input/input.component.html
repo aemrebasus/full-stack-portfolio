@@ -2,15 +2,18 @@
 
     <p>You did not pass a input to the app-input component!</p>
 </div>
-<div *ngIf="input">
+<div *ngIf="input" class="form-group col">
     <!-- Text Like inputs-->
-    <div *ngIf="textInput.includes(input.meta.type)" class="form-group col col-md-6 col-sm-12 float-left">
+    <div *ngIf="textInput.includes(input.meta.type)">
+
         <label for={{input.meta.id}}>{{input.meta.label}}</label>
+
         <div class="input-group">
             <!-- Icon -->
             <div class="input-group-prepend" *ngIf="input.meta.icon">
                 <span class="input-group-text" id="{{input.meta.name}}_icon">
-                    <i class="{{input.meta.icon}}"></i>
+
+                    <i class="{{input.meta.icon}} text-{{input.meta.iconColor}}"></i>
                 </span>
             </div>
 
@@ -50,28 +53,22 @@
         </div>
         <small id="{{input.meta.name}}Helper" *ngIf="input.meta.helperText">{{input.meta.helperText}}</small>
 
-        <!-- Validaton -->
-        <div class="alert alert-danger p-1" *ngIf="!input.meta.isValid && input.meta.isSubmitted">
-            {{input.meta.errors}}
-        </div>
-
-
         <!-- Editable list element -->
         <ul class="list-group" *ngIf="input.meta.type =='editable-list'">
             <li class="list-group-item text-dark" *ngFor="let i of input.meta.values">{{i}}</li>
         </ul>
-
     </div>
 
 
     <!-- Select -->
-    <div *ngIf="selectInput.includes(input.meta.type)" class="form-group col col-md-6 col-sm-12 float-left">
+    <div *ngIf="selectInput.includes(input.meta.type)">
         <label for={{input.meta.id}}>{{input.meta.label}}</label>
         <div class="input-group">
             <!-- Icon -->
             <div class="input-group-prepend" *ngIf="input.meta.icon">
                 <span class="input-group-text" id="{{input.meta.name}}_icon">
-                    <i class="{{input.meta.icon}}"></i>
+
+                    <i class="{{input.meta.icon}} text-{{input.meta.iconColor}}"></i>
                 </span>
             </div>
 
@@ -91,16 +88,11 @@
         </div>
         <small id="{{input.meta.name}}Helper" *ngIf="input.meta.helperText">{{input.meta.helperText}}</small>
 
-        <!-- Validaton -->
-        <div class="alert alert-danger p-1" *ngIf="!input.meta.isValid && input.meta.isSubmitted">
-            {{input.meta.errors}}
-        </div>
-
         <!-- <input type="text" autocomplete="" /> -->
     </div>
 
     <!-- File Select  -->
-    <div *ngIf="fileDialog.includes(input.meta.type)" class="form-group col col-md-6 col-sm-12 float-left">
+    <div *ngIf="fileDialog.includes(input.meta.type)">
 
         <label for={{input.meta.id}}>{{input.meta.label}}</label>
         <div class="input-group">
@@ -108,7 +100,8 @@
             <div class="input-group" style=" position: absolute; width: 100%;">
                 <div class="input-group-prepend" *ngIf="input.meta.icon">
                     <span class="input-group-text" id="{{input.meta.name}}_icon">
-                        <i class="{{input.meta.icon}}"></i>
+
+                        <i class="{{input.meta.icon}} text-{{input.meta.iconColor}}"></i>
                     </span>
                 </div>
                 <input id="someid" type="button" class="btn btn-primary form-control"
@@ -126,11 +119,6 @@
         </div>
         <small id="{{input.meta.name}}Helper" *ngIf="input.meta.helperText">{{input.meta.helperText}}</small>
 
-        <!-- Validaton -->
-        <div class="alert alert-danger p-1" *ngIf="!input.meta.isValid && input.meta.isSubmitted">
-            {{input.meta.errors}}
-        </div>
-
     </div>
 
 
@@ -143,7 +131,8 @@
         <div class="input-group">
             <div class="input-group-prepend" *ngIf="input.meta.icon">
                 <span class="input-group-text w-100" id={{input.meta.value}}>
-                    <i class={{input.meta.icon}}></i>
+
+                    <i class="{{input.meta.icon}} text-{{input.meta.iconColor}}"></i>
                 </span>
             </div>
             <input type={{input.meta.type}} class="btn btn-{{input.meta.color}} rounded-0" title={{input.meta.title}}
@@ -160,7 +149,7 @@
 
 
     <!-- Radio and checkbox -->
-    <div *ngIf="radioCheckBox.includes(input.meta.type)" class="form-group col col-md-6 col-sm-12 float-left">
+    <div *ngIf="radioCheckBox.includes(input.meta.type)">
         <label>{{input.meta.label}}</label>
         <form>
             <div class="form-check" *ngFor="let option of input.meta.options">
@@ -174,6 +163,13 @@
         </form>
     </div>
 
+
+    <!-- Validaton -->
+    <div class="alert alert-danger p-1" *ngIf="!input.meta.isValid && input.meta.isSubmitted">
+        <ul>
+            <li *ngFor="let error of input.meta.errors">{{error}}</li>
+        </ul>
+    </div>
 
 
 </div>

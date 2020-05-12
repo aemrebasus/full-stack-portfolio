@@ -1,12 +1,11 @@
-
 import { IColors, IHttpMethod } from './input/meta/types';
 import { BaseInput } from './input/input.meta';
 import { EventHandler } from './input/meta/handlers';
 
+export class FormBuilder<DataType = any, T = IFormMeta> {
+    public data: DataType;
 
-
-export class FormBuilder<T = IFormMeta> {
-    meta: T;
+    public meta: T | IFormMeta = {};
 
     public isSubmitted = false;
 
@@ -14,10 +13,13 @@ export class FormBuilder<T = IFormMeta> {
 
     public inputs: BaseInput[] = [];
 
-    constructor(public title: string = 'Form Title', public color: string = 'danger') { }
+    constructor(meta?: IFormMeta) {
+        this.meta = meta;
+    }
 
     public addField(field: BaseInput) {
         this.inputs.push(field);
+        return this;
     }
 
     public addFields(...fields: BaseInput[]) {
@@ -28,37 +30,28 @@ export class FormBuilder<T = IFormMeta> {
     public reset() {
         this.isSubmitted = false;
         this.inputs.forEach(i => {
-            i.meta.isSubmitted = false;
-            i.meta.isValid = '';
-            i.meta.value = '';
+            i.reset();
         });
         return this;
     }
+
+    public validate() {
+        let isValidForm = true;
+        this.inputs.forEach(i => {
+            if (!i.validate()) {
+                isValidForm = false;
+            }
+        });
+        return isValidForm;
+    }
+
 
     public submit() {
         this.isSubmitted = true;
-        this.inputs.forEach(i => {
-            i.meta.isSubmitted = true;
-            i.meta.validates.forEach(v => v(i.meta.value));
-        });
-
-        this.isFormValid = this.inputs
-            .map(i => !i.meta.isValid)
-            .reduce((p, c) => p && c);
-
-        return this;
+        const result = this.validate();
+        return result;
     }
 
-
-    public setColor(color: 'primary' | 'info' | 'danger' | 'success') {
-        this.color = color;
-        return this;
-    }
-
-    public setTitle(title: string) {
-        this.title = title;
-        return this;
-    }
 
     public getFieldById(id: string) {
         return this.inputs.find(e => e.meta.id === id);
@@ -66,6 +59,16 @@ export class FormBuilder<T = IFormMeta> {
 
     public getValueById(id: string) {
         return this.getFieldById(id).meta.value;
+    }
+
+
+    public toObject() {
+        let obj = {};
+
+        this.inputs.forEach(i => {
+            obj = { obj, ...i.toObject() }
+        });
+        return obj;
     }
 
 }
@@ -77,9 +80,9 @@ abstract class BaseForm<M = IFormMeta> {
 export interface IFormMeta {
     name?: string;
     route?: string;
-    method: IHttpMethod;
+    method?: IHttpMethod;
     color?: IColors;
-    submit: EventHandler;
+    submit?: EventHandler;
 }
 
 

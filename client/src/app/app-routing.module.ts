@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ConfirmationComponent } from '@components/confirmation/confirmation.component';
-import { ProjectsComponent } from '@components/projects/projects.component';
-import { IssuesComponent } from '@components/issues/issues.component';
-import { DashboardComponent } from '@components/dashboard/dashboard.component';
-import { AppBoardComponent } from '@components/app-board/app-board.component';
-import { UsersListComponent } from '@components/users-list/users-list.component';
-import { FormBuilderComponent } from '@components/form-builder/form-builder.component';
+import { ConfirmationComponent } from '@components/form-builder/confirmation/confirmation.component';
+import { ProjectsComponent } from '@components/data-view/projects/projects.component';
+import { IssuesComponent } from '@components/data-view/issues/issues.component';
+import { DashboardComponent } from '@components/landing/dashboard/dashboard.component';
+import { AppBoardComponent } from '@components/landing/app-board/app-board.component';
+import { UsersListComponent } from '@components/data-view/users-list/users-list.component';
+import { LandingComponent } from '@components/landing/landing.component';
+import { SigninFormComponent } from '@components/forms/signin-form/signin-form.component';
+import { SignupFormComponent } from '@components/forms/signup-form/signup-form.component';
 
 
 
 const routes: Routes = [
-  { path: '', component: FormBuilderComponent },
+  { path: '', component: LandingComponent },
   { path: 'con', component: ConfirmationComponent },
+  { path: 'signin', component: SigninFormComponent },
+  { path: 'signup', component: SignupFormComponent },
   {
     path: 'app', component: AppBoardComponent,
     children: [
