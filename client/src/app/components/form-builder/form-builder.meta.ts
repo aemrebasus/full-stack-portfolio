@@ -35,11 +35,12 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
     }
 
 
-    public addSimpleField(label: string, type?: InputTypes) {
+    public addSimpleField(label: string, type: InputTypes, key: string) {
         const emailField: BaseInput = new BaseInput({
             type: type || 'text',
             label,
             autocomplete: 'name',
+            key,
             validates: [
                 (value: string) => this.validationService.isNameValid(value)
             ]
@@ -49,17 +50,17 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
     }
 
     public addFirstNameField() {
-        return this.addSimpleField('First Name');
+        return this.addSimpleField('First Name', 'text', 'firstName');
     }
 
 
 
     public addLastNameField() {
-        return this.addSimpleField('Last Name');
+        return this.addSimpleField('Last Name', 'text', 'lastName');
     }
 
     public addOrganizationNameField() {
-        return this.addSimpleField('Organization Name')
+        return this.addSimpleField('Organization Name', 'text', 'name');
     }
 
 
@@ -69,6 +70,7 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
             type: 'password',
             label: 'Password',
             autocomplete: 'password',
+            key: 'password',
             validates: [
                 (value: string) => {
                     const result = this.validationService.isPasswordValid(value);
@@ -88,6 +90,7 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
             type: 'password',
             label: 'Password',
             autocomplete: 'password',
+            key: 'passwordAgain',
             validates: [
                 (value: string) => this.validationService.isPasswordValid(value),
                 (value: string) => {
@@ -125,6 +128,7 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
             type: 'email',
             label: 'Email',
             autocomplete: 'email',
+            key: 'email',
             validates: [
                 (value: string) => this.validationService.isEmailValid(value)
             ]
@@ -140,6 +144,7 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
             type: 'select',
             label: 'User Role',
             options: ['Select User Role', 'admin', 'developer', 'scrummaster'],
+            key: 'role',
             validates: [
                 (value: string) => {
                     let status = false;
@@ -201,9 +206,8 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
 
     public toObject() {
         let obj = {};
-
         this.inputs.forEach(i => {
-            obj = { obj, ...i.toObject() }
+            obj = { ...obj, ...(i.toObject()) };
         });
         return obj;
     }

@@ -41,10 +41,13 @@ export class HttpService {
 
 
   signIn(form: any) {
-    return this.post('/api/v1/signup', form);
+    return this.post('/api/v1/signup', form, { responseType: 'text' });
+  }
+  signUp(form: any) {
+    return this.post('/api/v1/signup', form, { responseType: 'text' });
   }
 
   signOut() {
-    return this.get('/api/v1/signout'); 
+    return this.get('/api/v1/signout', { responseType: 'text' });
   }
 }

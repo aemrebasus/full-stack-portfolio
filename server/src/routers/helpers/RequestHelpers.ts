@@ -12,7 +12,7 @@ export function CreateHelper(func: (orgId: string, user: Admin) => Promise<any>,
         .catch(err => {
             logger.error(err.message)
             res.status(NOT_MODIFIED)
-                .send(err.message);
+                .end(err.message);
         })
 }
 
@@ -26,7 +26,7 @@ export function DeleteHelper(func: (orgId: string, user: Admin) => Promise<any>,
         .catch(err => {
             logger.error(err.message)
             res.status(NOT_MODIFIED)
-                .send(err.message);
+                .end(err.message);
         })
 
 
@@ -40,7 +40,7 @@ export function GetHelper(func: (orgId: string, user: Admin) => Promise<any>, re
         .catch(err => {
             logger.error(err.message)
             res.status(NOT_FOUND)
-                .send(err.message);
+                .end(err.message);
         })
 }
 
@@ -54,7 +54,7 @@ export function UpdateHelper(func: (orgId: string, user: Admin) => Promise<any>,
         .catch(err => {
             logger.error(err.message)
             res.status(NOT_MODIFIED)
-                .send(err.message);
+                .end(err.message);
         })
 }
 

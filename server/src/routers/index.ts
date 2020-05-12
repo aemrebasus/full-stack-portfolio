@@ -9,8 +9,6 @@ export const routers = [
     CommentRouter,
     IssueRouter,
     SignInUpOut,
-
-
     ProjectRouter
 ]
 

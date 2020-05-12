@@ -86,7 +86,7 @@ export class Guest implements ICanSignUp {
 
             })
             .catch(err => {
-                throw err;
+                return err.message;
             });
 
 

@@ -14,6 +14,6 @@ export class IssueFormComponent {
   constructor(private validationService: ValidatorService) { }
 
   form = new FormBuilder({ name: 'User Form', color: 'info', route: this.route })
-    .addSimpleField('Title')
-    .addSimpleField('Description');
+    .addSimpleField('Title', 'text', 'title')
+    .addSimpleField('Description', 'text', 'description');
 }

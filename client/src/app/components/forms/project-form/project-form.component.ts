@@ -15,6 +15,6 @@ export class ProjectFormComponent {
   constructor(private validationService: ValidatorService) { }
 
   form = new FormBuilder({ name: 'User Form', color: 'info', route: this.route })
-    .addSimpleField('Project Name');
+    .addSimpleField('Project Name', 'text', 'name');
 
 }

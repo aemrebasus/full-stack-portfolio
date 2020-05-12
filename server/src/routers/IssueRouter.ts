@@ -1,29 +1,10 @@
-import { Router, Response, Request } from 'express';
+import { Router } from 'express';
 import { Authentication } from './middlewares/auth';
 import { Admin } from '@domain/accesstypes/Admin';
-import { UNAUTHORIZED, OK } from 'http-status-codes';
-import { IIssueStatus } from '@domain/entities/IIssueStatus';
 import { SubscriptionCheck } from './middlewares/subscription';
 import { GetHelper, CreateHelper, DeleteHelper } from './helpers/RequestHelpers';
+import { IIssueStatus } from '@domain/entities/IIssueStatus';
 
-function helper(func: (orgId: string, user: Admin) => Promise<any>, req: Request, res: Response) {
-    try {
-        func(res.locals.orgId, (res.locals.user as Admin))
-            .then(data => {
-                res.status(OK)
-                    .send(data);
-            })
-            .catch(err => {
-                res.status(UNAUTHORIZED)
-                    .send(err);
-            });
-
-    } catch (err) {
-        res.status(UNAUTHORIZED)
-            .send('Unauthorized!')
-    }
-
-}
 
 const router = Router()
 
@@ -42,31 +23,31 @@ const router = Router()
 
 
     .get('/myissues', (req, res) => {
-        GetHelper((orgId: string, user: Admin) => user.viewMyAllIssues(orgId, res.locals.userId),  res);
+        GetHelper((orgId: string, user: Admin) => user.viewMyAllIssues(orgId, res.locals.userId), res);
     })
     .get('/myissues/id/:id', (req, res) => {
-        GetHelper((orgId: string, user: Admin) => user.viewMyIssueById(orgId, res.locals.userId, req.params.id),  res)
+        GetHelper((orgId: string, user: Admin) => user.viewMyIssueById(orgId, res.locals.userId, req.params.id), res)
     })
 
     .get('/myissues/status/:status', (req, res) => {
-        GetHelper((orgId: string, user: Admin) => user.viewMyIssueByStatus(orgId, res.locals.userId, req.params.status as IIssueStatus),  res)
+        GetHelper((orgId: string, user: Admin) => user.viewMyIssueByStatus(orgId, res.locals.userId, req.params.status as IIssueStatus), res)
     })
 
 
     // check subscription
     .use('/create', SubscriptionCheck)
     .post('/create', (req, res) => {
-            CreateHelper((orgId: string, user: Admin) => user.createNewIssue({ ...req.body, organizationId: orgId }),  res)
+        CreateHelper((orgId: string, user: Admin) => user.createNewIssue({ ...req.body, organizationId: orgId }), res)
     })
 
 
 
 
     .post('/assign', (req, res) => {
-        CreateHelper((orgId: string, user: Admin) => user.assignIssueToUser(orgId, req.body),  res)
+        CreateHelper((orgId: string, user: Admin) => user.assignIssueToUser(orgId, req.body), res)
     })
     .post('/dessign', (req, res) => {
-        CreateHelper((orgId: string, user: Admin) => user.dessignIssueFromUser(orgId, req.body),  res)
+        CreateHelper((orgId: string, user: Admin) => user.dessignIssueFromUser(orgId, req.body), res)
     })
 
 
@@ -74,11 +55,11 @@ const router = Router()
 
 
     .delete('/id/:id', (req, res) => {
-        DeleteHelper((orgId: string, user: Admin) => user.deleteIssueById(orgId, req.params.id),  res);
+        DeleteHelper((orgId: string, user: Admin) => user.deleteIssueById(orgId, req.params.id), res);
     })
 
     .delete('/status/:status', (req, res) => {
-        DeleteHelper((orgId: string, user: Admin) => user.deleteIssueByStatus(orgId, req.params.status as IIssueStatus),  res);
+        DeleteHelper((orgId: string, user: Admin) => user.deleteIssueByStatus(orgId, req.params.status as IIssueStatus), res);
     })
 
     .delete('/issue', (req, res) => {

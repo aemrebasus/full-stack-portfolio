@@ -22,11 +22,11 @@ export class FormBuilderComponent {
 
     if (this.form.isFormValid) {
 
-      this.httpService.post(route, this.form.toObject())
+      this.httpService.post(route, this.form.toObject(), { responseType: 'text' })
         .subscribe(
           response => {
             this.submitted.emit(response);
-
+            alert(response);
             if (this.form.meta.redirection) {
               this.router.navigateByUrl(this.form.meta.redirection);
             }

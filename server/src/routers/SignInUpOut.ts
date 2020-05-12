@@ -3,7 +3,7 @@ import { UserFactory } from '@domain/UserFactory';
 import { IOrganization } from '@domain/entities/IOrganization';
 import logger from '@shared/Logger';
 import { Timeout } from './middlewares/Timeout';
-import { OK, UNAUTHORIZED } from 'http-status-codes';
+import { OK, UNAUTHORIZED, NOT_ACCEPTABLE, NOT_FOUND, NOT_MODIFIED } from 'http-status-codes';
 
 /**
  * Information about the software.
@@ -17,7 +17,7 @@ export const SignInUpOut = Router()
                     .send('Congrats! Successfully signed in.');
             })
             .catch(err => {
-                res.status(UNAUTHORIZED)
+                res.status(NOT_ACCEPTABLE)
                     .end('Could not sign in');
             })
     })
@@ -30,9 +30,11 @@ export const SignInUpOut = Router()
 
     .use('/signup', Timeout(1000))
     .post('/signup', async (req, res) => {
+        console.log(req.body);
         const validation = validateSignUpForm(req.body);
         if (validation.status) {
-            UserFactory.guest.signUp(req.body)
+            UserFactory.guest
+                .signUp(req.body)
                 .then(token => {
                     res.cookie('token', token)
                         .status(OK)
@@ -40,11 +42,13 @@ export const SignInUpOut = Router()
                 })
                 .catch(err => {
                     logger.error(err);
-                    res.send(err.message);
+                    res.status(NOT_MODIFIED)
+                        .end(err);
                 })
         } else {
-            res.send(validation.errors);
-
+            console.log(req.body);
+            res.status(NOT_ACCEPTABLE)
+                .end(validation.errors);
         }
     })
 
