@@ -48,11 +48,11 @@ export class ScrumMaster extends Developer implements
         return IssueModel.findOne({ organizationId, _id: id }).then();
     }
     viewIssueByStatus(organizationId: string, status: IIssueStatus, callback?: ((data: IIssue | null) => void) | undefined): Promise<(IIssue | null)[]> {
-        return IssueModel.findOne({ organizationId, status }).then();
+        return IssueModel.find({ organizationId, status }).then();
 
     }
-    viewAllIssues(organizationId: string, callback: (issues: IIssue | null) => void): Promise<(IIssue | null)[]> {
-        return IssueModel.findOne({ organizationId }).then();
+    viewAllIssues(organizationId: string, callback?: (issues: IIssue | null) => void): Promise<(IIssue | null)[]> {
+        return IssueModel.find({ organizationId }).then();
     }
 
 

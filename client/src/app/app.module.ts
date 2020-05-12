@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
-import { NavigationComponent } from '@components/landing/navigation/navigation.component';
 import { ConfirmationComponent } from './components/form-builder/confirmation/confirmation.component';
 import { LandingComponent } from '@components/landing/landing.component';
 import { UsersListComponent } from './components/data-view/users-list/users-list.component';
@@ -19,12 +18,12 @@ import { SigninFormComponent } from './components/forms/signin-form/signin-form.
 import { IssueFormComponent } from './components/forms/issue-form/issue-form.component';
 import { UserFormComponent } from './components/forms/user-form/user-form.component';
 import { ProjectFormComponent } from './components/forms/project-form/project-form.component';
+import { SignoutConfirmComponent } from './components/forms/signout-confirm/signout-confirm.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent,
     ConfirmationComponent,
     InputComponent,
     FormCardComponent,
@@ -40,6 +39,7 @@ import { ProjectFormComponent } from './components/forms/project-form/project-fo
     IssueFormComponent,
     UserFormComponent,
     ProjectFormComponent,
+    SignoutConfirmComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,9 +12,7 @@ export class ProjectFormComponent {
 
   route = '/api/v1/projects/create';
 
-  constructor(private validationService: ValidatorService) { }
-
-  form = new FormBuilder({ name: 'User Form', color: 'info', route: this.route })
+  form = new FormBuilder({ name: 'Project Form', color: 'info', route: this.route })
     .addSimpleField('Project Name', 'text', 'name');
 
 }

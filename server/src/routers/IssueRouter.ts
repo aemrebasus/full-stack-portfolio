@@ -10,7 +10,7 @@ const router = Router()
 
 
     .get('/all', (req, res) => {
-        GetHelper((orgId: string, user: Admin) => user.viewAllComments(orgId), res);
+        GetHelper((orgId: string, user: Admin) => user.viewAllIssues(orgId), res);
     })
 
     .get('/id/:id', (req, res) => {

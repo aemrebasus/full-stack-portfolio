@@ -1,22 +1,8 @@
 <div class="list-group">
-    <div class="card">
-
-        <div class="card-body col-2 col-sm-1">
-            <img class="avatar"
-                src="https://media3.s-nbcnews.com/j/newscms/2019_41/3047866/191010-japan-stalker-mc-1121_06b4c20bbf96a51dc8663f334404a899.fit-760w.JPG"
-                alt="">
-        </div>
-        <div class="user-name col-8 col-sm-10  pt-2 pb-2">
-            <h5>Ahmet Emrebas</h5>
-            <p>Software Developer</p>
-            <p>Angular | C# | CSS | SQL | MongoDB | NodeJS</p>
-            <div class="rate">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
+    <div class="card" *ngFor="let user of users">
+        <div class="user-name col-10 col-sm-11  pt-2 pb-2">
+            <h5>{{user.firstName + ' ' + user.lastName}}</h5>
+            <p>{{user.email}}</p>
         </div>
         <div class="card-footer btn-group p-0 m-0 col-2 col-sm-1">
             <a class=" btn btn-primary" title="Asign a task"><i class="fa fa-plus-circle text-white"
@@ -24,7 +10,5 @@
             <a class="btn btn-info" title="View profile"><i class="fa fa-eye text-white" aria-hidden="true"></i></a>
             <a class="btn btn-warning" title="Send message"><i class="fas fa-comment-dots text-white"></i></a>
         </div>
-
     </div>
-
 </div>

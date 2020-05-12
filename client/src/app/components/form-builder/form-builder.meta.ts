@@ -2,6 +2,7 @@ import { IColors, IHttpMethod, InputTypes } from './input/meta/types';
 import { BaseInput } from './input/input.meta';
 import { EventHandler } from './input/meta/handlers';
 import { ValidatorService } from '@services/form/validator.service';
+import { ICON } from './input/meta/icons';
 
 export class FormBuilder<DataType = any, T = IFormMeta> {
 
@@ -16,6 +17,7 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
     public isFormValid = false;
 
     public inputs: BaseInput[] = [];
+
 
     public validationService: ValidatorService = new ValidatorService();
 
@@ -39,7 +41,6 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
         const emailField: BaseInput = new BaseInput({
             type: type || 'text',
             label,
-            autocomplete: 'name',
             key,
             validates: [
                 (value: string) => this.validationService.isNameValid(value)
@@ -138,6 +139,33 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
         return this;
     }
 
+    public addSelectElement(name: string, icon: ICON, options: string[]) {
+        const field: BaseInput = new BaseInput({
+            type: 'select',
+            label: name,
+            options,
+            icon,
+            validates: [
+                (value: string) => {
+                    let status = false;
+                    const messages = [];
+                    if (value[0] === name || !value) {
+                        messages.push('Project is required');
+                        status = false;
+                    } else {
+
+                    }
+                    return {
+                        status,
+                        messages
+                    }
+                }
+            ]
+        });
+
+        this.inputs.push(field);
+        return this;
+    }
 
     public addSelectRoleField() {
         const field: BaseInput = new BaseInput({
@@ -154,6 +182,7 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
                         status = false;
                     } else {
 
+                        status = true;
                     }
                     return {
                         status,
@@ -166,6 +195,23 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
         this.inputs.push(field);
         return this;
     }
+
+    public addConsoleButton(buttonLabel: string, icon: ICON, route: string, color?: IColors) {
+        const button: BaseInput = new BaseInput({
+            id: buttonLabel,
+            type: 'button',
+            name: 'someting',
+            color: color || 'primary',
+            icon,
+            route,
+            buttonLabel
+        });
+
+        this.inputs.push(button);
+        return this;
+    }
+
+
 
     public reset() {
         this.isSubmitted = false;
@@ -207,6 +253,7 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
     public toObject() {
         let obj = {};
         this.inputs.forEach(i => {
+
             obj = { ...obj, ...(i.toObject()) };
         });
         return obj;
@@ -224,6 +271,8 @@ export interface IFormMeta {
     redirection?: string;
     method?: IHttpMethod;
     color?: IColors;
+    isForm?: boolean;
+    isButtons?: boolean;
     submit?: EventHandler;
 }
 

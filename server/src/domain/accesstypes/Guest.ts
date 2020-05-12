@@ -83,7 +83,6 @@ export class Guest implements ICanSignUp {
                     }).then(_ => {
                         return sign(newUser)
                     })
-
             })
             .catch(err => {
                 return err.message;

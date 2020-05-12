@@ -20,7 +20,7 @@ export interface ICanViewCommentsOfMyIssue<TID = IID, TReturn = IComment> {
 export interface ICanViewIssue<TID = IID, TIssue = IIssue | null, TIssueStatus = IIssueStatus> {
     viewIssueById(organizationId: TID, id: TID, callback?: (data: TIssue) => void): Promise<TIssue>;
     viewIssueByStatus(organizationId: TID, status: TIssueStatus, callback?: (data: TIssue) => void): Promise<TIssue[]>;
-    viewAllIssues(organizationId: TID, callback: (issues: TIssue) => void): Promise<TIssue[]>;
+    viewAllIssues(organizationId: TID, callback?: (issues: TIssue) => void): Promise<TIssue[]>;
 }
 
 export interface ICanViewMyIssue<TID = IID, TIssue = IIssue | null, TIssueStatus = IIssueStatus> {

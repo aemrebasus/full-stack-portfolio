@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { ProjectsComponent } from '@components/data-view/projects/projects.component';
 import { IssuesComponent } from '@components/data-view/issues/issues.component';
 import { AppBoardComponent } from '@components/landing/app-board/app-board.component';
@@ -10,6 +10,7 @@ import { SignupFormComponent } from '@components/forms/signup-form/signup-form.c
 import { UserFormComponent } from '@components/forms/user-form/user-form.component';
 import { IssueFormComponent } from '@components/forms/issue-form/issue-form.component';
 import { ProjectFormComponent } from '@components/forms/project-form/project-form.component';
+import { SignoutConfirmComponent } from '@components/forms/signout-confirm/signout-confirm.component';
 
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'signin', component: SigninFormComponent },
   { path: 'signup', component: SignupFormComponent },
+  { path: 'signout', component: SignoutConfirmComponent },
   {
     path: 'app', component: AppBoardComponent,
     children: [

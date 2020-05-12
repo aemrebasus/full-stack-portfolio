@@ -11,8 +11,6 @@ export class UserFormComponent {
 
   route = '/api/v1/users/create';
 
-  constructor(private validationService: ValidatorService) { }
-
   form = new FormBuilder({ name: 'User Form', color: 'info', route: this.route })
     .addFirstNameField()
     .addLastNameField()

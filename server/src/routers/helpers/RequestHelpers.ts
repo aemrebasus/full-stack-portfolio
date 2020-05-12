@@ -12,7 +12,7 @@ export function CreateHelper(func: (orgId: string, user: Admin) => Promise<any>,
         .catch(err => {
             logger.error(err.message)
             res.status(NOT_MODIFIED)
-                .end(err.message);
+                .end(err.message)
         })
 }
 
@@ -34,10 +34,12 @@ export function DeleteHelper(func: (orgId: string, user: Admin) => Promise<any>,
 export function GetHelper(func: (orgId: string, user: Admin) => Promise<any>, res: Response) {
     func(res.locals.orgId, (res.locals.user as Admin))
         .then(data => {
+            console.log(data);
             res.status(OK)
                 .send(data);
         })
         .catch(err => {
+            console.log(err);
             logger.error(err.message)
             res.status(NOT_FOUND)
                 .end(err.message);

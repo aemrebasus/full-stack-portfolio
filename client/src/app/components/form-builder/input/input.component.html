@@ -82,7 +82,8 @@
             <select id={{input.meta.id}} class="form-control" name={{input.meta.name}} required={{input.meta.required}}
                 [(ngModel)]="input.meta.value" multiple={{input.meta.multiple}}
                 (mouseover)="input.meta.onHover && input.meta.onHover()"
-                (click)="input.meta.onClick && input.meta.onClick($event)">
+                (click)="input.meta.onClick && input.meta.onClick($event)"
+                (input)="input.meta.onInput && input.meta.onInput($event)">
                 <option *ngFor="let option of input.meta.options">{{option}}</option>
             </select>
 
@@ -126,27 +127,17 @@
 
     <!-- Buttons  -->
 
-    <li class="list-group-item" [routerLink]="input.meta.route"
-        style="background-color: transparent; outline: none; box-shadow: none;"
-        *ngIf="buttonControl.includes(input.meta.type)">
-        <div class="input-group">
-            <div class="input-group-prepend" *ngIf="input.meta.icon">
-                <span class="input-group-text w-100" id={{input.meta.value}}>
-
-                    <i class="{{input.meta.icon}} text-{{input.meta.iconColor}}"></i>
-                </span>
-            </div>
-            <input type={{input.meta.type}} class="btn btn-{{input.meta.color}} rounded-0" title={{input.meta.title}}
-                value={{input.meta.buttonLabel}} (click)="input.meta.onClick && input.meta.onClick()"
-                (input)="input.meta.onInput && input.meta.onInput($event)"
-                (mouseover)="input.meta.onHover && input.meta.onHover()" />
+    <div class="input-group" [routerLink]="input.meta.route" *ngIf="buttonControl.includes(input.meta.type)">
+        <div class="input-group-prepend" *ngIf="input.meta.icon">
+            <span class="input-group-text w-100" id={{input.meta.value}}>
+                <i class="{{input.meta.icon}} text-{{input.meta.iconColor}}"></i>
+            </span>
         </div>
-    </li>
-
-
-
-
-
+        <input type={{input.meta.type}} class="btn btn-{{input.meta.color}} form-control" title={{input.meta.title}}
+            value={{input.meta.buttonLabel}} (click)=" input.meta.onClick && input.meta.onClick()"
+            (input)="input.meta.onInput && input.meta.onInput($event)"
+            (mouseover)="input.meta.onHover && input.meta.onHover()" />
+    </div>
 
 
     <!-- Radio and checkbox -->

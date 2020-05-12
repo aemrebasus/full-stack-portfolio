@@ -9,11 +9,11 @@ import { FormBuilder } from '@components/form-builder/form-builder.meta';
 })
 export class IssueFormComponent {
 
-  route = '/api/v1/signup';
+  route = '/api/v1/issues/create';
 
   constructor(private validationService: ValidatorService) { }
 
-  form = new FormBuilder({ name: 'User Form', color: 'info', route: this.route })
+  form = new FormBuilder({ name: 'Issue Form', color: 'info', route: this.route })
     .addSimpleField('Title', 'text', 'title')
     .addSimpleField('Description', 'text', 'description');
 }

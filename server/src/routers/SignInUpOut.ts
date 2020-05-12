@@ -8,7 +8,12 @@ import { OK, UNAUTHORIZED, NOT_ACCEPTABLE, NOT_FOUND, NOT_MODIFIED } from 'http-
 /**
  * Information about the software.
  */
-export const SignInUpOut = Router()
+const router = Router()
+    .get('/signout', (req, res) => {
+        res.cookie('token', '')
+            .status(OK)
+            .send('See you later!');
+    })
 
     .post('/signin', (req, res) => {
         UserFactory.developer.signIn(req.body)
@@ -22,15 +27,9 @@ export const SignInUpOut = Router()
             })
     })
 
-    .get('/signout', (req, res) => {
-        res.cookie('token', '')
-            .status(OK)
-            .send('See you later!');
-    })
 
     .use('/signup', Timeout(1000))
     .post('/signup', async (req, res) => {
-        console.log(req.body);
         const validation = validateSignUpForm(req.body);
         if (validation.status) {
             UserFactory.guest
@@ -46,11 +45,13 @@ export const SignInUpOut = Router()
                         .end(err);
                 })
         } else {
-            console.log(req.body);
             res.status(NOT_ACCEPTABLE)
                 .end(validation.errors);
         }
     })
+
+export const SignInUpOut = Router()
+    .use('/auth', router);
 
 
 

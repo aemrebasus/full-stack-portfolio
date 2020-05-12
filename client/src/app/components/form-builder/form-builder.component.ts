@@ -27,9 +27,18 @@ export class FormBuilderComponent {
           response => {
             this.submitted.emit(response);
             alert(response);
-            if (this.form.meta.redirection) {
-              this.router.navigateByUrl(this.form.meta.redirection);
-            }
+
+            setTimeout(() => {
+
+              this.router.navigateByUrl('/')
+                .then(_ => {
+                  if (this.form.meta.redirection) {
+                    this.router.navigateByUrl(this.form.meta.redirection);
+                  } else {
+                    this.router.navigateByUrl('/app');
+                  }
+                });
+            }, 1000);
 
           },
           err => {
@@ -40,8 +49,8 @@ export class FormBuilderComponent {
             });
           }
         );
-
-
+    } else {
+      alert('Form is not valid')
     }
 
   }

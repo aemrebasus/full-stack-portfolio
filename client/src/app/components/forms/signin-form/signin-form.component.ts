@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@components/form-builder/form-builder.meta';
-import { BaseInput } from '@components/form-builder/input/input.meta';
-import { ValidatorService } from '@services/form/validator.service';
 
 @Component({
   selector: 'app-signin-form',
@@ -10,9 +8,7 @@ import { ValidatorService } from '@services/form/validator.service';
 })
 export class SigninFormComponent {
 
-  route = '/api/v1/signin';
-
-  constructor(private validationService: ValidatorService) { }
+  route = '/api/v1/auth/signin';
 
   form = new FormBuilder({ name: 'Sign In', color: 'success', route: this.route, redirection: '/app' })
     .addEmailField()

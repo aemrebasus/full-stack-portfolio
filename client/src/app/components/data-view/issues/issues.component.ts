@@ -17,6 +17,6 @@ export class IssuesComponent implements OnInit {
     this.httpService.get<IIssue[]>('/api/v1/issues/all')
       .subscribe(
         response => this.issues = response
-    )
+      )
   }
 }

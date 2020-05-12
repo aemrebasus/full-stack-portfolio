@@ -1,12 +1,11 @@
-<div class="row pb-5">
+<div class="row pb-5" >
+    <div class="col col-md-4" style="margin-top: 100px;" [class.notSignUp]="!isSignedIn">
+        <app-form-builder [form]=form></app-form-builder>
+    </div>
+    <div class="col col-md-4" style="margin-top: 100px;" >
+        <router-outlet *ngIf="isSignedIn"></router-outlet>
+    </div>
     <div class="col col-md-4" style="margin-top: 100px;">
 
     </div>
-    <div class="pt-5 col col-md-4" style="margin-top: 100px;">
-        <router-outlet></router-outlet>
-    </div>
-    <div class="col col-md-4" style="margin-top: 100px;">
-    
-    </div>
-
 </div>

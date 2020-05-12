@@ -1,7 +1,7 @@
 <app-form-card [title]="form.meta.name" [color]="form.meta.color">
     <app-input *ngFor="let input of form.inputs" [input]="input"></app-input>
 
-    <div class="col col-12 text-center">
+    <div class="col col-12 text-center" *ngIf="!form.meta.isButtons">
         <input type="reset" (click)="reset()" value="Reset" class="btn btn-warning  form-control col col-3" />
         <input type="button" (click)="submit()" value="Submit" class="btn btn-primary form-control col col-3" />
     </div>

@@ -10,8 +10,6 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-
-
   errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -41,13 +39,14 @@ export class HttpService {
 
 
   signIn(form: any) {
-    return this.post('/api/v1/signup', form, { responseType: 'text' });
+    return this.post('/api/v1/auth/signup', form, { responseType: 'text' });
   }
+
   signUp(form: any) {
-    return this.post('/api/v1/signup', form, { responseType: 'text' });
+    return this.post('/api/v1/auth/signup', form, { responseType: 'text' });
   }
 
   signOut() {
-    return this.get('/api/v1/signout', { responseType: 'text' });
+    return this.get('/api/v1/auth/signout', { responseType: 'text' });
   }
 }

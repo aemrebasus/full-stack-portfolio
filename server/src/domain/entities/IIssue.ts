@@ -31,7 +31,7 @@ export class IssueDoc extends Document implements IIssue {
 const IssueSchema = new Schema({
     userid: { type: String },
     organizationId: { type: String, required: true },
-    projectId: { type: String, required: true },
+    projectId: { type: String },
     title: { type: String, required: true },
     description: { type: String },
     status: { type: String, default: 'todo' },
