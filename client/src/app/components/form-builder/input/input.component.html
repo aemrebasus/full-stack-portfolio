@@ -33,7 +33,10 @@
                 list="dataList" (keydown)="input.keyDown($event)"
                 (input)="input.meta.onInput && input.meta.onInput($event)"
                 (mouseover)="input.meta.onHover && input.meta.onHover($event)"
-                (click)="input.meta.onClick && input.meta.onClick($event)" />
+                (click)="input.meta.onClick && input.meta.onClick($event)" 
+                (change)="input.meta.onChange && input.meta.onChange($event)" 
+                
+                />
 
             <datalist id="dataList" *ngIf="input.meta.options">
                 <option *ngFor="let option of input.meta.options">{{option}}</option>
@@ -80,9 +83,10 @@
             </div>
 
             <select id={{input.meta.id}} class="form-control" name={{input.meta.name}} required={{input.meta.required}}
-                [(ngModel)]="input.meta.value" multiple={{input.meta.multiple}}
+                [(ngModel)]="input.meta.value"
                 (mouseover)="input.meta.onHover && input.meta.onHover()"
                 (click)="input.meta.onClick && input.meta.onClick($event)"
+                (change)="input.meta.onChange && input.meta.onChange($event)" 
                 (input)="input.meta.onInput && input.meta.onInput($event)">
                 <option *ngFor="let option of input.meta.options">{{option}}</option>
             </select>
@@ -117,6 +121,7 @@
                 [class.is-valid]="input.meta.isValid && input.meta.isSubmitted" required={{input.meta.required}}
                 accept={{input.meta.fileType}} (input)="input.meta.onInput && input.meta.onInput($event)"
                 (mouseover)="input.meta.onHover && input.meta.onHover()"
+                (change)="input.meta.onChange && input.meta.onChange($event)" 
                 (click)="input.meta.onClick && input.meta.onClick($event)" />
         </div>
         <small id="{{input.meta.name}}Helper" *ngIf="input.meta.helperText">{{input.meta.helperText}}</small>
@@ -136,6 +141,7 @@
         <input type={{input.meta.type}} class="btn btn-{{input.meta.color}} form-control" title={{input.meta.title}}
             value={{input.meta.buttonLabel}} (click)=" input.meta.onClick && input.meta.onClick()"
             (input)="input.meta.onInput && input.meta.onInput($event)"
+            (change)="input.meta.onChange && input.meta.onChange($event)" 
             (mouseover)="input.meta.onHover && input.meta.onHover()" />
     </div>
 
@@ -148,7 +154,9 @@
                 <label>
                     <input id={{option}} type={{input.meta.type}} name="WhenAddingNameDynamiclyItDoesnotWOrk"
                         class="form-check-input" [(ngModel)]="input.meta.value" required={{input.meta.required}}
-                        value={{option}} (click)="input.meta.onClick && input.meta.onClick($event)" />
+                        value={{option}} (click)="input.meta.onClick && input.meta.onClick($event)" 
+                        (change)="input.meta.onChange && input.meta.onChange($event)" 
+                        />
                     {{option}}
                 </label>
             </div>

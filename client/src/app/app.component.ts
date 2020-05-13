@@ -14,9 +14,10 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.httpService.get('/api/v1/projects/all')
-      .subscribe(response => {
-        this.router.navigateByUrl('/app');
-      });
+      .subscribe(
+        response => { this.router.navigateByUrl('/app'); },
+        err => { this.router.navigateByUrl('signin'); }
+      );
   }
 
 

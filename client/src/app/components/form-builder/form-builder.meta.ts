@@ -139,7 +139,7 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
         return this;
     }
 
-    public addSelectElement(name: string, icon: ICON, options: string[]) {
+    public addSelectElement(name: string, icon: ICON, options: string[], onChange: (element: BaseInput) => void) {
         const field: BaseInput = new BaseInput({
             type: 'select',
             label: name,
@@ -153,14 +153,19 @@ export class FormBuilder<DataType = any, T = IFormMeta> {
                         messages.push('Project is required');
                         status = false;
                     } else {
-
+                        
                     }
+
                     return {
                         status,
                         messages
-                    }
+                    };
                 }
             ]
+        });
+
+        field.setEvents((e) => {
+            e.meta.onChange = () => onChange(e);
         });
 
         this.inputs.push(field);

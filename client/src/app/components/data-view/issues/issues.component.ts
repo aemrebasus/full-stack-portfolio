@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IIssue } from '@app/shared/datamodel/IIssue';
-import { HttpService } from '@services/http/http.service';
+import { StorageService } from '@services/storage/storage.service';
 
 @Component({
   selector: 'app-issues',
@@ -9,14 +9,11 @@ import { HttpService } from '@services/http/http.service';
 })
 export class IssuesComponent implements OnInit {
 
-  public issues: IIssue[] = []
+  public issues: IIssue[] = [];
 
-  constructor(private httpService: HttpService) { }
+  constructor(private storage: StorageService) { }
 
   ngOnInit(): void {
-    this.httpService.get<IIssue[]>('/api/v1/issues/all')
-      .subscribe(
-        response => this.issues = response
-      )
+    this.issues = this.storage.getIssues();
   }
 }

@@ -1,11 +1,65 @@
-<div class="row pb-5" >
-    <div class="col col-md-4" style="margin-top: 100px;" [class.notSignUp]="!isSignedIn">
+<div class="row">
+
+    <div class="col col-md-2 mb-1" [class.isSignedIn]="!isSignedIn">
         <app-form-builder [form]=form></app-form-builder>
     </div>
-    <div class="col col-md-4" style="margin-top: 100px;" >
+
+
+    <div class="col col-sm-12 col-md-8 mb-1">
         <router-outlet *ngIf="isSignedIn"></router-outlet>
     </div>
-    <div class="col col-md-4" style="margin-top: 100px;">
+
+    <div class="col col-md-2 mb-1">
+
+        <div class="card text-left mb-1">
+            <div class="card-body">
+                <h4 class="card-title">Title</h4>
+                <p class="card-text">Body</p>
+            </div>
+        </div>
+        <div class="card text-left">
+            <div class="card-body">
+                <h4 class="card-title">Title</h4>
+                <p class="card-text">Body</p>
+            </div>
+        </div>
+        <div class="card text-left">
+            <div class="card-body">
+                <h4 class="card-title">Title</h4>
+                <p class="card-text">Body</p>
+            </div>
+        </div>
+        <div class="card text-left">
+            <div class="card-body">
+                <h4 class="card-title">Title</h4>
+                <p class="card-text">Body</p>
+            </div>
+        </div>
+        <div class="card text-left">
+            <div class="card-body">
+                <h4 class="card-title">Title</h4>
+                <p class="card-text">Body</p>
+            </div>
+        </div>
+        <div class="card text-left">
+            <div class="card-body">
+                <h4 class="card-title">Title</h4>
+                <p class="card-text">Body</p>
+            </div>
+        </div>
 
     </div>
+
+    <div class="col col-md-2 col-sm 12 mb-1">
+        <div class="card text-left">
+            <div class="card-body">
+                <h4 class="card-title">Progress of Current Project</h4>
+                <p><strong>To do:</strong><span>20</span></p>
+                <p><strong>In Progress:</strong><span>20</span></p>
+                <p><strong>Done</strong><span>20</span></p>
+            </div>
+        </div>
+    </div>
+
+
 </div>

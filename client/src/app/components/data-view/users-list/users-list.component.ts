@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '@services/http/http.service';
 import { IUser } from '@app/shared/datamodel/IUser';
+import { StorageService } from '@services/storage/storage.service';
 
 @Component({
   selector: 'app-users-list',
@@ -10,13 +10,10 @@ import { IUser } from '@app/shared/datamodel/IUser';
 export class UsersListComponent implements OnInit {
 
   users: IUser[] = [];
-  constructor(private httpService: HttpService) { }
+  constructor(private storage: StorageService) { }
 
   ngOnInit(): void {
-    this.httpService.get<IUser[]>('/api/v1/users/all')
-      .subscribe(
-        response => this.users = response
-      )
+    this.users = this.storage.getUsers();
   }
 
 }

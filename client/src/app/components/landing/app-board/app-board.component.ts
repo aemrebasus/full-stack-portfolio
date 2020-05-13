@@ -4,6 +4,7 @@ import { ICON } from '@components/form-builder/input/meta/icons';
 import { Router } from '@angular/router';
 import { HttpService } from '@services/http/http.service';
 import { IProject } from '@app/shared/datamodel/IProject';
+import { StorageService } from '@services/storage/storage.service';
 
 @Component({
   selector: 'app-app-board',
@@ -15,45 +16,56 @@ export class AppBoardComponent implements OnInit {
 
   isSignedIn = false;
 
-  constructor(private router: Router, private httpService: HttpService) {
+  constructor(private router: Router, private storage: StorageService) {
 
   }
-  form = new FormBuilder({ name: 'Dashboard', color: 'dark', isButtons: true });
+
+  form = new FormBuilder({ isButtons: true });
+
   ngOnInit(): void {
+    this.storage.updateStorage();
 
-    this.httpService.get<IProject[]>('/api/v1/projects/all')
-      .subscribe(
-        res => {
-          this.isSignedIn = true;
-          if (res) {
-            this.form
-              .addSelectElement('Projects', ICON.gear, res.map(p => p.name))
-              .addConsoleButton('Projects', ICON.gear, '/app/projects')
-              .addConsoleButton('New Project', ICON.gear, '/app/projectform')
+    setTimeout(() => {
 
 
-              .addConsoleButton('Issues', ICON.user, '/app/issues', 'success')
-              .addConsoleButton('New Issue', ICON.gear, '/app/issueform', 'success')
+      const projects = this.storage.getProjects();
+      console.log(projects);
+      if (projects.length > 0) {
+        this.isSignedIn = true;
+
+        this.form
+          .addSelectElement('Projects', ICON.gear, projects.map(p => p.name), (e) => { this.storage.setCurrentProject(e.meta.value[0]) })
+
+          .addConsoleButton('Projects', ICON.gear, '/app/projects')
+          .addConsoleButton('New Project', ICON.gear, '/app/projectform')
 
 
-              .addConsoleButton('Users', ICON.user, '/app/users')
-              .addConsoleButton('New User', ICON.user, '/app/userform')
+          .addConsoleButton('Issues', ICON.user, '/app/issues', 'success')
+          .addConsoleButton('New Issue', ICON.gear, '/app/issueform', 'success')
 
-              .addConsoleButton('Sign Out', ICON.user, '/signout', 'danger');
 
-          } else {
-            this.form.addConsoleButton('New Project', ICON.gear, '/app/projectform')
-              .addConsoleButton('New User', ICON.user, '/app/userform', 'success')
-              .addConsoleButton('Sign Out', ICON.user, '/signout', 'danger');
-          }
+          .addConsoleButton('Users', ICON.user, '/app/users')
+          .addConsoleButton('New User', ICON.user, '/app/userform')
 
-        },
-        err => {
-          this.form
-            .addConsoleButton('Sign In', ICON.user, '/signin', 'success')
-            .addConsoleButton('Sign Up', ICON.building, '/signup', 'warning');
-        }
-      )
+          .addConsoleButton('Sign Out', ICON.user, '/signout', 'danger');
+
+      }
+
+      if (projects.length === 0) {
+        this.isSignedIn = true;
+
+        this.form.addConsoleButton('New Project', ICON.gear, '/app/projectform')
+          .addConsoleButton('New User', ICON.user, '/app/userform', 'success')
+          .addConsoleButton('Sign Out', ICON.user, '/signout', 'danger');
+      } else {
+
+        this.form
+          .addConsoleButton('Sign In', ICON.user, '/signin', 'success')
+          .addConsoleButton('Sign Up', ICON.building, '/signup', 'warning');
+
+      }
+
+    }, 2000);
 
 
   }

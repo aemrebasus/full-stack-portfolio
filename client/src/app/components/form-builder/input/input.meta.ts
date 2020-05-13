@@ -308,6 +308,9 @@ export interface IInputMeta {
     searchs?: EventHandler[];
     search?: EventHandler;
 
+    onChanges?: EventHandler[];
+    onChange?: EventHandler;
+
     onClicks?: EventHandler[];
     onClick?: EventHandler;
 
