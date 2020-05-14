@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="card">
+
+        <div class="card-header">
+            <div class="card-title">Form Name</div>
+        </div>
+
+        <div class="card-body">
+            <form class="" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group" *ngFor="let input of inputs">
+                    <label for={{input.name}}> {{input.label}} </label>
+                    <input type="text" name="firstName" formControlName={{input.name}} class="form-control"
+                        autocomplete={{input.autocomplete}} [class.is-invalid]="invalid(input.name)"
+                        [class.is-valid]="valid(input.name)" />
+                    <small class="form-text text-muted">{{input.helperText}}</small>
+
+                    <div *ngIf="input.invalid && (input.dirty || input.touched)" class="alert alert-danger">
+
+                        <div *ngIf="input.errors.required">
+                            {{input.name | uppercase}} is required.
+                        </div>
+                        <div *ngIf="input.errors.minlength">
+                            {{input.name | uppercase}} must be at least 4 characters long.
+                        </div>
+                        <div *ngIf="input.errors.forbiddenName">
+                            {{input.name | uppercase}} cannot be Bob.
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Submitting  -->
+                <input class="btn btn-dark mr-2" type="button" value="Back" (click)="goBack()" />
+                <input class="btn btn-outline-dark mr-2" type="reset" value="Reset form" />
+                <input class="btn btn-warning mr-2" type="submit" [value]="submitLabel" [disabled]="!form.valid" />
+            </form>
+        </div>
+
+        <div class="card-footer">
+            <div class="card">
+                <div class="card-header">
+                    <h6>Form Status</h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-title">Form Data: {{form.value | json}}</p>
+                    <p class="card-text">Form Validation : {{form.status}}</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<hr>
