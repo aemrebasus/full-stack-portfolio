@@ -1,0 +1,18 @@
+input {
+    box-shadow: none;
+    border: none;
+    border-bottom: 3px solid black;
+}
+
+.input-group-prepend > * {
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid black;
+}
+
+input:focus,
+input:active {
+    box-shadow: none;
+    border-color: black;
+    
+}

@@ -6,6 +6,9 @@
     "paths": {
       "@sharedModule/*": [
         "src/app/shared/*"
+      ],
+      "@services/*": [
+        "src/app/services/*"
       ]
     },
     "outDir": "./dist/out-tsc",

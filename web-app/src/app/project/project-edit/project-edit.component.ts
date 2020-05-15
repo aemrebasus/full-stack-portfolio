@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormClass, IInput } from '@sharedModule/form/FormClass';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectService } from 'src/app/services/project/project.service';
+import { ProjectService } from '../services/project.service';
+import { RoutingService } from '../services/routing/routing.service';
+
 
 
 
 @Component({
   selector: 'app-project-edit',
-  templateUrl: '../../../shared/form/form.template.html'
+  templateUrl: '../../shared/form/form.template.html'
 })
 export class ProjectEditComponent extends FormClass implements OnInit {
 
@@ -16,7 +18,8 @@ export class ProjectEditComponent extends FormClass implements OnInit {
     public formbuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private routingService: RoutingService
   ) {
 
     super(formbuilder);
@@ -35,38 +38,32 @@ export class ProjectEditComponent extends FormClass implements OnInit {
       summary: ['', Validators.required],
     });
 
-    this.form.controls._id.disable();
-
     this.submitLabel = 'Edit';
+
 
   }
 
+
   ngOnInit(): void {
-
-    this.route.paramMap.subscribe(params => {
-      this.setControlValue('_id', params.get('id'));
-      this.setControlValue('name', params.get('name'));
-      this.setControlValue('summary', params.get('summary'));
-    });
-
+    this.initEdit(this.route);
   }
 
 
   goBack(): void {
-    this.router.navigate(['/projects', { id: this.getControlValue('_id') }], { queryParamsHandling: 'preserve' });
+    this.routingService.projects(this.router, { _id: this.currentItemId });
   }
 
 
   onSubmit() {
-    this.projectService.updateProject(this.form.value).then(data => {
 
-      setTimeout(() => {
-        this.goBack();
-
-      }, 1000);
-    })
   }
 
+
+  onReset() {
+    setTimeout(() => {
+      this.setControlValue('_id', this.currentItemId);
+    }, 1);
+  }
 
 }
 

@@ -14,7 +14,7 @@ import { ProjectModule } from './project/project.module';
 import { HomeModule } from './home/home.module';
 import { RouterModule } from '@angular/router';
 
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
     ProjectModule,
     HomeModule,
     RouterModule,
+    HttpClientModule,
     AppRoutingModule   // AppRoutingModule must be the last of this list because it has the default route setting like PageNotFound!
   ],
   providers: [],

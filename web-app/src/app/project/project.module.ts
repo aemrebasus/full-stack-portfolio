@@ -9,17 +9,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 /* Components */
-import { ProjectsComponent } from './projects/projects.component';
-import { ProjectComponent } from './projects/projects-view/project.component';
-import { ProjectCreateComponent } from './projects/project-create/project-create.component';
-import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
+import { ProjectComponent } from './projects-view/project.component';
+import { ProjectCreateComponent } from './project-create/project-create.component';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 /* Routing Module */
 import { ProjectRoutingModule } from './project-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    ProjectsComponent,
     ProjectComponent,
     ProjectCreateComponent,
     ProjectEditComponent
@@ -28,6 +27,7 @@ import { ProjectRoutingModule } from './project-routing.module';
     CommonModule,
     SharedModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     ProjectRoutingModule
   ]
