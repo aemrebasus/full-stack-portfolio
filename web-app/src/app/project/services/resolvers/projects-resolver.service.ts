@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
-import { IProjectsResolved } from '../interfaces';
+import { IProjectsResolved } from '../../../shared/interfaces/interfaces';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ProjectService } from '../project.service';

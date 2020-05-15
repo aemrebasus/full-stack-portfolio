@@ -16,12 +16,14 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
 /* Routing Module */
 import { ProjectRoutingModule } from './project-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MultipleViewComponent } from '@sharedModule/views/multiple-view/multiple-view.component';
 
 @NgModule({
   declarations: [
     ProjectComponent,
     ProjectCreateComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    MultipleViewComponent
   ],
   imports: [
     CommonModule,

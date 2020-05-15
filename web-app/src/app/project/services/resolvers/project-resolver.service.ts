@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ProjectService } from '../project.service';
 import { LoggerService } from '../../../services/logger/logger.service';
-import { IProjectResolved } from '../interfaces';
+import { IProjectResolved } from '../../../shared/interfaces/interfaces';
 
 
 @Injectable({
@@ -17,11 +17,12 @@ export class ProjectResolverService implements Resolve<IProjectResolved> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     IProjectResolved | Observable<IProjectResolved> | Promise<IProjectResolved> {
 
+
     const id = +route.paramMap.get('_id');
 
     if (isNaN(id)) {
       return {
-        project: null,
+        project: {},
         error: 'Id is invalid!'
       };
 
@@ -29,10 +30,10 @@ export class ProjectResolverService implements Resolve<IProjectResolved> {
 
       this.projectService.getById(id)
         .pipe(
-          map(p => ({ project: p, error: null })),
+          map(p => ({ project: p, error: {} })),
           catchError(err => {
             this.logger.errProjectRetrival(id, new Error(err));
-            return of({ project: null, error: err });
+            return of({ project: {}, error: err });
           })
         );
 

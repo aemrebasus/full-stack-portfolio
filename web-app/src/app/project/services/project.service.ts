@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IProject } from 'src/app/project/services/interfaces';
+import { IProject } from '@sharedModule/interfaces/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -37,31 +37,31 @@ export class ProjectService {
           _id: 1,
           name: 'Awesome One',
           summary: 'Hello there',
-          meta: [
-            ['Number of issues', '100'],
-            ['Todo', '30'],
-            ['Inprogress', '70']
-          ]
+          meta: {
+            'Number of issues': '100',
+            Todo: '30',
+            Inprogress: '70'
+          }
         },
         {
           _id: 2,
           name: 'Interesting Two',
           summary: 'Good morning cici',
-          meta: [
-            ['Number of issues', '1000'],
-            ['Todo', '900'],
-            ['Inprogress', '69']
-          ]
+          meta: {
+            'Number of issues': '100',
+            Todo: '30',
+            Inprogress: '70'
+          }
         },
         {
           _id: 3,
           name: 'Super three',
           summary: 'Go there you little cat.',
-          meta: [
-            ['Number of issues', '654'],
-            ['Todo', '45'],
-            ['Inprogress', '63']
-          ]
+          meta: {
+            'Number of issues': '100',
+            Todo: '30',
+            Inprogress: '70'
+          }
         },
       ];
       return projects;
