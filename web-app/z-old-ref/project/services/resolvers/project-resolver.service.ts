@@ -3,8 +3,8 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ProjectService } from '../project.service';
-import { LoggerService } from '../../../services/logger/logger.service';
-import { IProjectResolved } from '../../../shared/interfaces/interfaces';
+import { LoggerService } from '../../../../src/app/services/logger/logger.service';
+import { IProjectResolved } from '../../../../src/app/shared/interfaces/interfaces';
 
 
 @Injectable({

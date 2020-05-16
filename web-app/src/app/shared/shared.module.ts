@@ -6,13 +6,15 @@ import { MultipleViewComponent } from './multiple-view/multiple-view.component';
 import { SingleViewComponent } from './single-view/single-view.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
     ConfirmComponent,
     MultipleViewComponent,
     SingleViewComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -26,10 +28,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    
     // Components
     ConfirmComponent,
     MultipleViewComponent,
-    SingleViewComponent
+    SingleViewComponent,
+    AlertComponent
   ]
 })
 export class SharedModule { }

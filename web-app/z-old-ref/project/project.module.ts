@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 /* Shared module (nothing yet) */
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../src/app/shared/shared.module';
 
 /* Components */
 import { ProjectComponent } from './projects-view/project.component';
@@ -22,8 +22,8 @@ import { ProjectHomeComponent } from './project-home/project-home.component';
     ProjectHomeComponent
   ],
   imports: [
-    SharedModule,
-    ProjectRoutingModule
+    // SharedModule,
+    // ProjectRoutingModule
   ]
 })
 export class ProjectModule { }

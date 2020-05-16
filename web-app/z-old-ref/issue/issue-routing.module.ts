@@ -4,9 +4,10 @@ import { IssuesViewComponent } from './issues-view/issues-view.component';
 
 
 const routes = [
-    {
-        path: 'projects/:id/issues', component: IssuesViewComponent
-    }
+    // {
+    //     path: '', component: IssuesViewComponent,
+    //     path: ':id',
+    // }
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 export interface IOperationEvent {
@@ -15,47 +15,43 @@ export interface IInput {
     label?: string;
     name?: string;
     autocomplete?: string;
+    validators?: { name: string, value: any }[]
 }
 
-
+export interface IFormData {
+    meta: IFormMeta;
+    data: any;
+}
 
 
 export interface IFormMeta {
     /**
      * Programatic name
      */
-    formName?: 'formName';
+    formName?: string;
 
     /**
      * text that appears on top of the form.
      */
-    formTitle?: 'Change the title of the form';
+    formTitle?: string;
 
 
     /**
      * This is the value of submit button
      */
-    submitLabel?: 'Set the submitLabel varible!';
+    submitLabel?: string;
 
 
     /**
      * What kind of form it is?
      */
-    formType: 'edit' | 'create';
-
-    /**
-     * Allows us to access all control elements inside the form.
-     * Initialize this inside the constructors
-     */
-    form: FormGroup;
-
+    formType?: string;
 
     /**
      * Allows us to build connections between form controls and html elements
      * Make sure the name value matches the name of the controller in form!
      */
-    inputs: IInput[];
-
+    inputs?: IInput[];
 
 
 
@@ -63,22 +59,21 @@ export interface IFormMeta {
     /**
      * This stores the current id of the viewed item
      */
-    currentItemId: string | number;
-
-
+    currentItemId?: string | number;
 
 
     /**
      * want to send a nice message to user then write your message here and delete it using setTimeout in 3 secs.
      */
-    informationAlert: IAlertMessage;
+    informationAlert?: IAlertMessage;
 
 
     /**
      * Create Form will NOT have delete button --> set false
      * Edit Form will HAVE delete button --> set true
      */
-    editForm: boolean;
+    editForm?: boolean;
+
 
 
 }
@@ -89,7 +84,7 @@ export interface IAlertMessage {
      * Type of the alert like primary | secondary | danger | info | success | warning | light | dark
      */
     type?: 'primary' | 'secondary' | 'danger' | 'info' | 'success' | 'warning' | 'light' | 'dark';
-    msg?: string;
+    message?: string;
 }
 
 
@@ -161,43 +156,25 @@ export interface IFormController {
 
     /**
      *
-     * @param params this is the parametters of ActivatedRouter' paramMap return type  in Angular
-     * @alternative setControlValuesViaRoute recommended
-     */
-    setControlValuesViaParamMap(params: ParamMap): void;
-
-
-
-    /**
-     *
-     * @param route Angular routing ActivatedRoute
-     */
-    setControlValuesViaRoute(route: ActivatedRoute): void;
-
-
-
-
-
-
-    /**
-     *
      * @param controlname name of the control in form and inputs
      */
     getControlValue(controlname: string): string | string[];
 
 
 
-
-
     /**
      * @returns true if value of the elemlent valid based on passed Validators.
-     * @param name of control in form and input
+     * @param name of the control in the FormGroup
      */
     valid(name: string): boolean;
 
 
 
-
+    /**
+     * @returns the value of the named control.
+     * @param name of the control in the FormGroup
+     */
+    value(name: string): string;
 
 
     /**
@@ -211,6 +188,10 @@ export interface IFormController {
 
 }
 
+
+export interface IFormBuilderParam {
+    [key: string]: any;
+}
 
 
 

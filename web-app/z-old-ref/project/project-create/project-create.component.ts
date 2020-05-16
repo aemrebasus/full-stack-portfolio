@@ -8,7 +8,7 @@ import { IConfirmationResult } from '@sharedModule/confirm/confirm.interfaces';
 
 @Component({
   selector: 'app-project-create',
-  templateUrl: '../../shared/form/form.template.html'
+  template: '../../shared/form/form.template.html'
 })
 export class ProjectCreateComponent extends FormClass implements OnInit {
 

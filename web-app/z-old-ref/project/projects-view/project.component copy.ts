@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ProjectService } from 'src/app/project/services/project.service';
+import { ProjectService } from 'z-old-ref/project/services/project.service';
 import { IProject, IProjectsResolved, IPageMeta } from '@sharedModule/interfaces/interfaces';
 import { RoutingService } from '../services/routing/routing.service';
 import { MultipleViewComponent } from '@sharedModule/multiple-view/multiple-view.component';

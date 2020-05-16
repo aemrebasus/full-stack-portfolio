@@ -11,7 +11,7 @@ import { IConfirmationResult } from '@sharedModule/confirm/confirm.interfaces';
 
 @Component({
   selector: 'app-project-edit',
-  templateUrl: '../../shared/form/form.template.html'
+  template: '<h1>Edit</h1>'
 })
 export class ProjectEditComponent extends FormClass implements OnInit {
 

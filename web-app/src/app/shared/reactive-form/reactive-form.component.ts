@@ -1,14 +1,17 @@
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { ParamMap, ActivatedRoute } from '@angular/router';
 import {
   IFormMeta,
   IAlertUtility,
   IEventHandlers,
-  IFormController
+  IFormController,
+  IInput
 } from './reactive-form.interfaces';
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PreDefinedConfirmationMetas, IConfirmationResult } from '@sharedModule/confirm/confirm.interfaces';
+import { FormValidationService, customValidators } from './services/validation/form-validation.service';
+
 
 @Component({
   selector: 'app-reactive-form',
@@ -25,23 +28,69 @@ export class ReactiveFormComponent
 
 
 
-    
-  @Input() meta: IFormMeta;
+  /**
+   * Forms' title, controls, controls'validators etc.
+   */
+  meta: IFormMeta;
+
+  /**
+   * Form that comminicates with the template.
+   */
+  form: FormGroup;
 
 
 
-  constructor(public formbuilder: FormBuilder) {
+  constructor(private activatedRoute: ActivatedRoute, private validationService: FormValidationService) {
     super();
   }
+
 
 
 
   ngOnInit(): void {
 
 
+    /**
+     * Get dat from router and store the meta
+     */
+    this.activatedRoute.data.subscribe(resolved => {
+      this.meta = resolved.data.meta;
+
+      /**
+       * init FormGroup
+       */
+      this.form = new FormGroup({});
+
+
+      /**
+       * init controllers
+       */
+      this.meta.inputs.forEach(input => {
+
+        const control = new FormControl('');
+
+        // TODO: Init Validators!!!!!
+
+        this.form.addControl(input.name, control);
+      });
+
+
+      /**
+       * Inpu the query-params into the form if any .
+       */
+      this.activatedRoute.queryParamMap.subscribe(queryParams => {
+        for (const i of this.meta.inputs) {
+          this.setControlValue(i.name, queryParams.get(i.name));
+        }
+      });
+
+
+
+    });
+
+
 
   }
-
 
 
   // Alerts
@@ -51,18 +100,18 @@ export class ReactiveFormComponent
     }, 3000);
   }
 
-  alertInfo(msg: string) {
-    this.meta.informationAlert = { msg, type: 'info' };
+  alertInfo(message: string) {
+    this.meta.informationAlert = { message, type: 'info' };
     this.closeAlert();
   }
 
-  alertDanger(msg: string) {
-    this.meta.informationAlert = { msg, type: 'danger' };
+  alertDanger(message: string) {
+    this.meta.informationAlert = { message, type: 'danger' };
     this.closeAlert();
   }
 
-  alertWarning(msg: string) {
-    this.meta.informationAlert = { msg, type: 'warning' };
+  alertWarning(message: string) {
+    this.meta.informationAlert = { message, type: 'warning' };
     this.closeAlert();
   }
   // Alerts
@@ -71,35 +120,20 @@ export class ReactiveFormComponent
 
   setIdFieldDisable() {
     try {
-      this.meta.form.controls?._id.disable();
+      this.form.controls?._id.disable();
     } catch (err) {
       this.alertDanger(err);
     }
   }
 
 
-
-  // Initializer
-  initEdit(route: ActivatedRoute) {
-    this.setIdFieldDisable();
-    this.setControlValuesViaRoute(route);
-    this.editConfirmation.message = `Would you like to save changes?`;
-  }
-
-  initCreate() {
-    this.setIdFieldDisable();
-    this.meta.currentItemId = 'Auto-Generated-Id';
-    this.editConfirmation.message = `Would you like to save the item?`;
-    this.editConfirmation.type = 'save';
-    this.setControlValue('_id', this.meta.currentItemId);
-  }
-  // Initializers
-
-
-
   // Form controller Access
   getControl(controlName: string): FormControl {
-    return this.meta.form.controls[controlName] as FormControl;
+    return this.form.controls[controlName] as FormControl;
+  }
+
+  value(controlName: string) {
+    return this.getControl(controlName).value;
   }
 
   setControlValue(controlName: string, value: string | number) {
@@ -110,26 +144,13 @@ export class ReactiveFormComponent
     }
   }
 
-  setControlValuesViaParamMap(params: ParamMap) {
-    this.meta.inputs.forEach(e => {
-      this.setControlValue(e.name, params.get(e.name));
-    });
-  }
-
-  setControlValuesViaRoute(route: ActivatedRoute) {
-    route.paramMap.subscribe(params => {
-      this.setControlValue('_id', params.get('_id'));
-      this.setControlValue('name', params.get('name'));
-      this.setControlValue('summary', params.get('summary'));
-      this.meta.currentItemId = params.get('_id');
-    });
-  }
 
   getControlValue(controlname: string) {
     return this.getControl(controlname).value;
   }
 
   valid(name: string): boolean {
+
     const c = this.getControl(name);
     return c.valid && (c.touched && c.dirty);
   }
@@ -137,6 +158,15 @@ export class ReactiveFormComponent
   invalid(name: string): boolean {
     const c = this.getControl(name);
     return c.invalid && (c.touched && c.dirty);
+  }
+
+
+  /**
+   * return the validation result of the control
+   * @param controlName contol name
+   */
+  errors(controlName: string): ValidationErrors {
+    return this.getControl(controlName).errors;
   }
   // Form Controller Acess
 
