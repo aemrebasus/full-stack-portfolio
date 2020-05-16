@@ -2,7 +2,7 @@
     <div class="card">
 
         <div class="card-header">
-            <div class="card-title">Form Name</div>
+            <div class="card-title">{{formName}}</div>
         </div>
 
         <div class="card-body">
@@ -31,9 +31,21 @@
                 </div>
 
                 <!-- Submitting  -->
-                <input class="btn btn-dark mr-2" type="button" value="Back" (click)="goBack()" />
-                <input class="btn btn-outline-dark mr-2" type="reset" value="Reset form" (click)="onReset()" />
-                <input class="btn btn-warning mr-2" type="submit" [value]="submitLabel" [disabled]="!form.valid" />
+                <button class="btn btn-light mr-2" (click)="goBack()">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    Back
+                </button>
+
+                <a class="btn btn-danger text-white mr-2" type="button" data-toggle="modal"
+                    href="#{{deleteConfirmation.id}}" *ngIf="editForm">Delete</a>
+
+                <input class="btn btn-info mr-2" type="reset" value="Reset form" (click)="onReset()" />
+
+
+                <a class="btn btn-warning mr-2" type="button" data-toggle="modal" href="#{{editConfirmation.id}}"
+                    *ngIf="form.valid && form.dirty">
+                    {{submitLabel}}
+                </a>
             </form>
         </div>
 
@@ -52,4 +64,16 @@
 
     </div>
 </div>
+
+
 <hr>
+
+
+
+<div style="width: 100%; position: absolute; bottom: 0; left: 0;  margin:0px">
+    <div class="alert alert-{{informationAlert.type}}" *ngIf="informationAlert.msg">
+        <strong>Log: </strong>{{informationAlert.msg}}
+    </div>
+    <app-confirm [meta]="deleteConfirmation" (response)="confirmationHandler($event)"></app-confirm>
+    <app-confirm [meta]="editConfirmation" (response)="confirmationHandler($event)"></app-confirm>
+</div>

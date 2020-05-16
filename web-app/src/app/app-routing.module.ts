@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule} from '@angular/router';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, { useHash: true, enableTracing: true })
   ],
   exports: [RouterModule]
 })

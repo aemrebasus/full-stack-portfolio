@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="card">
+
+        <div class="card-header">
+            <div class="card-title">{{meta.formName}}</div>
+        </div>
+
+        <div class="card-body">
+            <form class="" [formGroup]="meta.form" (ngSubmit)="onSubmit()">
+                <div class="form-group" *ngFor="let input of meta.inputs">
+                    <label for={{input.name}}> {{input.label}} </label>
+                    <input type="text" name="firstName" formControlName={{input.name}} class="form-control"
+                        autocomplete={{input.autocomplete}} [class.is-invalid]="invalid(input.name)"
+                        [class.is-valid]="valid(input.name)" />
+                    <small class="form-text text-muted">{{input.helperText}}</small>
+
+                    <div *ngIf="input.invalid && (input.dirty || input.touched)" class="alert alert-danger">
+
+                        <div *ngIf="input.errors.required">
+                            {{input.name | uppercase}} is required.
+                        </div>
+                        <div *ngIf="input.errors.minlength">
+                            {{input.name | uppercase}} must be at least 4 characters long.
+                        </div>
+                        <div *ngIf="input.errors.forbiddenName">
+                            {{input.name | uppercase}} cannot be Bob.
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Submitting  -->
+                <button class="btn btn-light mr-2" (click)="goBack()">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    Back
+                </button>
+
+                <a class="btn btn-danger text-white mr-2" type="button" data-toggle="modal"
+                    href="#{{deleteConfirmation.id}}" *ngIf="meta.editForm">Delete</a>
+
+                <input class="btn btn-info mr-2" type="reset" value="Reset form" (click)="onReset()" />
+
+
+                <a class="btn btn-warning mr-2" type="button" data-toggle="modal" href="#{{editConfirmation.id}}"
+                    *ngIf="meta.form.valid && meta.form.dirty">
+                    {{meta.submitLabel}}
+                </a>
+            </form>
+        </div>
+
+        <div class="card-footer">
+            <div class="card">
+                <div class="card-header">
+                    <h6>Form Status</h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-title">Form Data: {{meta.form.value | json}}</p>
+                    <p class="card-text">Form Validation : {{meta.form.status}}</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<hr>
+
+
+
+<div style="width: 100%; position: absolute; bottom: 0; left: 0;  margin:0px">
+    <div class="alert alert-{{meta.informationAlert.type}}" *ngIf="meta.informationAlert.msg">
+        <strong>Log: </strong>{{meta.informationAlert.msg}}
+    </div>
+    <app-confirm [meta]="deleteConfirmation" (response)="confirmationHandler($event)"></app-confirm>
+    <app-confirm [meta]="editConfirmation" (response)="confirmationHandler($event)"></app-confirm>
+    <app-confirm [meta]="saveConfirmation" (response)="confirmationHandler($event)"></app-confirm>
+</div>

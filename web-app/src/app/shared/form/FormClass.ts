@@ -1,9 +1,35 @@
 
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ParamMap, ActivatedRoute } from '@angular/router';
-import { OnInit } from '@angular/core';
+import { IConfirmMeta, IConfirmationResult } from '@sharedModule/confirm/confirm.interfaces';
 
 export class FormClass {
+
+  deleteConfirmation: IConfirmMeta = {
+    id: 'delete',
+    type: 'delete',
+    title: 'Confirmation of Deleting',
+    cancelLabel: 'Cancel',
+    confirmLabel: 'Confirm',
+    message: 'Would you like to delete the item?',
+  };
+
+  editConfirmation: IConfirmMeta = {
+    id: 'edit',
+    type: 'edit',
+    title: 'Confirmation of Updating',
+    cancelLabel: 'Cancel',
+    confirmLabel: 'Confirm',
+    message: 'Would you like to edit the item?',
+  };
+
+
+
+
+
+
+  formName = 'Change the formName variable';
+
 
   /**
    * Allows us to access all control elements inside the form.
@@ -28,8 +54,40 @@ export class FormClass {
    */
   currentItemId: string | number = 'Auto-Generated-ID';
 
+  editForm = false;
 
-  constructor(public formbuilder: FormBuilder) {
+
+  /**
+   * want to send a nice message to user then write your message here and delete it using setTimeout in 3 secs. 
+   */
+  informationAlert: { type?: string, msg?: string } = {
+    type: '',
+    msg: ''
+  };
+
+
+
+  constructor(public formbuilder: FormBuilder) { }
+
+  private closeAlert() {
+    setTimeout(() => {
+      this.informationAlert = {};
+    }, 3000)
+  }
+
+  alertInfo(msg: string) {
+    this.informationAlert = { msg, type: 'info' };
+    this.closeAlert();
+  }
+
+  alertDanger(msg: string) {
+    this.informationAlert = { msg, type: 'danger' };
+    this.closeAlert();
+  }
+
+  alertWarning(msg: string) {
+    this.informationAlert = { msg, type: 'warning' };
+    this.closeAlert();
   }
 
 
@@ -38,7 +96,7 @@ export class FormClass {
     try {
       this.form.controls?._id.disable();
     } catch (err) {
-      console.log('There is no id field')
+      this.alertDanger(err);
     }
   }
   /**
@@ -48,6 +106,7 @@ export class FormClass {
   public initEdit(route: ActivatedRoute) {
     this.setIdFieldDisable();
     this.setControlValuesViaRoute(route);
+    this.editConfirmation.message = `Would you like to save changes?`;
   }
   /**
    * Initialize the Create component!
@@ -55,7 +114,10 @@ export class FormClass {
   public initCreate() {
     this.setIdFieldDisable();
     this.currentItemId = 'Auto-Generated-Id';
+    this.editConfirmation.message = `Would you like to save the item?`;
+    this.editConfirmation.type = 'save';
     this.setControlValue('_id', this.currentItemId);
+
   }
 
 
@@ -139,6 +201,12 @@ export class FormClass {
   public onSubmit() {
     throw new Error('onSubmit method not implemented yet.');
   }
+  /**
+   * runs when the form delete button clicked.
+   */
+  public onDelete() {
+    throw new Error('onSubmit method not implemented yet.');
+  }
 
 
   /**
@@ -158,6 +226,9 @@ export class FormClass {
     }, 1);
   }
 
+  confirmationHandler(event: IConfirmationResult) {
+    throw new Error('implement confirmationHandler now');
+  }
 
 }
 

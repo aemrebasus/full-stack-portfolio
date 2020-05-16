@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IPageMeta } from '@sharedModule/interfaces/interfaces';
+import { IOperationEvent } from '@sharedModule/reactive-form/reactive-form.interfaces';
+
 
 @Component({
   selector: 'app-multiple-view',
@@ -8,43 +10,27 @@ import { IPageMeta } from '@sharedModule/interfaces/interfaces';
 })
 export class MultipleViewComponent implements OnInit {
 
-  @Input() meta: IPageMeta;
+  @Input() meta: IPageMeta = {};
 
-  @Output() events = new EventEmitter();
+  filteredData: any = [];
+
+  @Output() events = new EventEmitter<IOperationEvent>();
+
 
   thead: string[] = [];
 
 
-  constructor() { }
-
 
   ngOnInit(): void {
 
-    function serialize(object: object) {
-      console.log(`Object to be serialized : ${object}`)
-      const serialized = [];
-      try {
-        for (const o of Object.entries(object)) {
-          serialized.push(o);
-        }
-      } catch (err) {
-        console.log(err.message);
-      }
-      return serialized;
-    }
-
-
     this.meta.data = this.meta.data.map(r => serialize(r));
     this.meta.data = this.meta.data.map(r => {
-      const element = r.find(e => e[0] === 'meta')
-      element.push(serialize(element[1]))
+      const element = r.find(e => e[0] === 'meta');
+      element.push(serialize(element[1]));
       element.shift();
       element.shift();
       return r;
     });
-
-
-
 
     this.meta.data[0].forEach(e => {
       if (typeof e[0] === 'object') {
@@ -56,39 +42,45 @@ export class MultipleViewComponent implements OnInit {
       }
     });
 
-
-    setTimeout(() => {
-      console.log(this.meta.data)
-    }, 1000);
-
-
+    this.filteredData = this.meta.data;
   }
 
-  onViewClick() {
+  onViewClick(id: string) {
     this.events.emit({
-      type: 'view'
-    });
-  }
-  onEditClick() {
-    this.events.emit({
-      type: 'edit'
+      type: 'view',
+      value: id
     });
   }
 
 
-  onDeleteClick() {
+  onEditClick(id: string) {
     this.events.emit({
-      type: 'delete'
+      type: 'edit',
+      value: id
     });
   }
 
   onInput(filterValue: string) {
-    this.events.emit({
-      type: 'filter',
-      value: filterValue
+    this.filteredData = this.meta.data.filter(e => {
+      if (e.toString().toLowerCase().includes(filterValue.toLowerCase())) {
+        return true;
+      } else {
+        return false;
+      }
     });
   }
 
+}
 
+
+function serialize(object: object) {
+
+  const serialized = [];
+
+  for (const o of Object.entries(object)) {
+    serialized.push(o);
+  }
+
+  return serialized;
 }
 

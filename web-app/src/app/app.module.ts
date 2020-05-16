@@ -15,6 +15,7 @@ import { HomeModule } from './home/home.module';
 import { RouterModule } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
+import { IssueModule } from './issue/issue.module';
 
 
 
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     ProjectModule,
+    IssueModule,
     HomeModule,
     RouterModule,
     HttpClientModule,

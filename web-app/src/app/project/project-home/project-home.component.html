@@ -1,8 +1,11 @@
 <nav class="navbar navbar-expand navbar-light bg-light mb-2">
     <div class="nav navbar-nav">
-        <a class="nav-item nav-link active" [routerLink]="['/welcome']">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" [routerLink]="['/projects']">Projects</a>
-        <a class="nav-item nav-link" [routerLink]="['/projects/create/project']">New Project</a>
+        <a class="nav-item nav-link" [routerLink]="['/welcome']">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" [routerLink]="['/projects']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Projects</a>
+        <a class="nav-item nav-link" [routerLink]="['/projects/create/project']" routerLinkActive="active">New
+            Project</a>
     </div>
 </nav>
+
 <router-outlet></router-outlet>

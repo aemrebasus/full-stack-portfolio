@@ -8,33 +8,37 @@ import { ProjectResolverService } from './services/resolvers/project-resolver.se
 import { ProjectsResolverService } from './services/resolvers/projects-resolver.service';
 
 const routes = [{
-    path: 'projects', component: ProjectHomeComponent, children: [
+    path: 'projects', children: [
         {
             path: '',
-            component: ProjectComponent,
-            resolve: { projects: ProjectsResolverService }
+            component: ProjectHomeComponent,
+            resolve: { projects: ProjectsResolverService },
+            children: [
+                {
+                    path: '', component: ProjectComponent
+                },
+                {
+                    path: ':_id',
+                    component: ProjectComponent,
+                    resolve: { project: ProjectResolverService }
+                },
+                {
+                    path: ':_id/edit',
+                    component: ProjectEditComponent,
+                    resolve: { project: ProjectResolverService }
+                },
+                {
+                    path: 'create/project',
+                    component: ProjectCreateComponent
+                }
+            ]
         },
-        {
-            path: ':_id',
-            component: ProjectComponent,
-            resolve: { project: ProjectResolverService }
-        },
-        {
-            path: ':_id/edit',
-            component: ProjectEditComponent,
-            resolve: { project: ProjectResolverService }
-        },
-        {
-            path: 'create/project',
-            component: ProjectCreateComponent
-        }
-    ]
+    ],
 }];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
-    declarations: [ProjectHomeComponent]
+    exports: [RouterModule]
 })
 export class ProjectRoutingModule {
 

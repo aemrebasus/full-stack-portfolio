@@ -4,6 +4,7 @@ import { FormClass, IInput } from '@sharedModule/form/FormClass';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../services/project.service';
 import { RoutingService } from '../services/routing/routing.service';
+import { IConfirmationResult } from '@sharedModule/confirm/confirm.interfaces';
 
 
 
@@ -14,11 +15,15 @@ import { RoutingService } from '../services/routing/routing.service';
 })
 export class ProjectEditComponent extends FormClass implements OnInit {
 
+
+  editForm = true;
+
+  formName = 'Edit Project';
+
   constructor(
     public formbuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private projectService: ProjectService,
     private routingService: RoutingService
   ) {
 
@@ -38,7 +43,7 @@ export class ProjectEditComponent extends FormClass implements OnInit {
       summary: ['', Validators.required],
     });
 
-    this.submitLabel = 'Edit';
+    this.submitLabel = 'Save Changes';
 
 
   }
@@ -55,7 +60,11 @@ export class ProjectEditComponent extends FormClass implements OnInit {
 
 
   onSubmit() {
+    this.alertInfo('Updating the item!');
+  }
 
+  onDelete() {
+    this.alertDanger('Deleting the item!')
   }
 
 
@@ -63,8 +72,25 @@ export class ProjectEditComponent extends FormClass implements OnInit {
     setTimeout(() => {
       this.setControlValue('_id', this.currentItemId);
     }, 1);
+    this.alertInfo('Resetting form!');
   }
 
+
+
+  confirmationHandler(event: IConfirmationResult) {
+    if (event.status) {
+      switch (event.type) {
+        case 'delete':
+          this.onDelete();
+          break;
+        case 'edit':
+          this.onSubmit();
+          break;
+      }
+    } else {
+      this.alertInfo(`Canceled the operation of ${event.type}`);
+    }
+  }
 }
 
 

@@ -13,7 +13,7 @@
                     <thead>
                         <tr>
 
-                            <th *ngFor="let head of thead">{{head}}</th>
+                            <th *ngFor="let head of thead">{{head  | uppercase}}</th>
 
                             <th>
                                 <!-- Search bar -->
@@ -28,14 +28,14 @@
                                         (input)="onInput(filterBy.value)">
                                 </div>
                                 <!-- Search bar -->
-
                             </th>
 
                         </tr>
                     </thead>
 
+
                     <tbody>
-                        <tr *ngFor="let item of meta.data">
+                        <tr *ngFor="let item of filteredData">
 
                             <td *ngFor="let field of item.slice(0,item.length-1)">{{field[1]}}</td>
 
@@ -49,22 +49,26 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                        <a class="dropdown-item" (click)="onViewClick()">View</a>
-                                        <a class="dropdown-item" (click)="onEditClick()"> Edit</a>
-                                        <a class="dropdown-item" (click)="onDeleteClick()"> Delete</a>
+                                        <button class="dropdown-item btn"
+                                            (click)="onViewClick(item[0][1])">View</button>
+                                        <button class="dropdown-item btn"
+                                            (click)="onEditClick(item[0][1])">Edit</button>
+
+
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
+
+
+
                 </table>
 
 
-                <div class="card-footer p-1">
 
-                </div>
             </div>
-            <!-- View -->
+
 
         </div>
 
@@ -77,8 +81,5 @@
         </div>
 
 
-
     </div>
-
-
 </div>
