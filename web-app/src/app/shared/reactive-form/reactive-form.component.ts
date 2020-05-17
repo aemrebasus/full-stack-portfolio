@@ -5,7 +5,6 @@ import {
   IAlertUtility,
   IEventHandlers,
   IFormController,
-  IInput
 } from './reactive-form.interfaces';
 
 import { Component, OnInit } from '@angular/core';

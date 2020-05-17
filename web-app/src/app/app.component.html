@@ -1,6 +1,162 @@
-<div class="loading" *ngIf="loading">
-    <div class="spinner spinner-border text-danger" role="status">
-        <span class="sr-only">Loading...</span>
+<div class="secondary-container">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+        <a class="navbar-brand" routerLink="/">PMA</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+
+
+                <li class="nav-item dropdown">
+                    <!-- Open Main Menu -->
+                    <a class="nav-link dropdown-toggle" href="#mainMenu" id="menuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">File</a>
+
+                    <!-- Main menu -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownId" id="mainMenu">
+                        <!-- Home route -->
+                        <a class="dropdown-item" routerLink="/welcome" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">Home </a>
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Projects</a>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Projects</a>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Projects</a>
+
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Users</a>
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Logout</a>
+                    </div>
+                </li>
+
+
+
+                <li class="nav-item dropdown">
+                    <!-- Open Main Menu -->
+                    <a class="nav-link dropdown-toggle" href="#mainMenu" id="menuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Views</a>
+
+                    <!-- Main menu -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownId" id="mainMenu">
+                        <!-- Home route -->
+                        <a class="dropdown-item" routerLink="/welcome" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">Home </a>
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Projects</a>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Projects</a>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Projects</a>
+
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Users</a>
+                    </div>
+                </li>
+
+
+
+
+
+
+                <!-- Print -->
+                <li class="nav-item dropdown">
+                    <!-- Open Main Menu -->
+                    <a class="nav-link dropdown-toggle" href="#mainMenu1" id="menuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Print</a>
+
+                    <!-- Main menu -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownId" id="mainMenu1">
+                        <!-- Home route -->
+                        <a class="dropdown-item" routerLink="/welcome" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">Profile </a>
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Themes</a>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Notifications</a>
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Account</a>
+                    </div>
+
+                </li>
+
+
+
+                <li class="nav-item dropdown">
+                    <!-- Open Main Menu -->
+                    <a class="nav-link dropdown-toggle" href="#mainMenu1" id="menuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Report</a>
+
+                    <!-- Main menu -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownId" id="mainMenu1">
+                        <!-- Home route -->
+                        <a class="dropdown-item" routerLink="/welcome" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">Profile </a>
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Themes</a>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Notifications</a>
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Account</a>
+                    </div>
+
+                </li>
+                <li class="nav-item dropdown">
+                    <!-- Open Main Menu -->
+                    <a class="nav-link dropdown-toggle" href="#mainMenu1" id="menuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Settings</a>
+
+                    <!-- Main menu -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownId" id="mainMenu1">
+                        <!-- Home route -->
+                        <a class="dropdown-item" routerLink="/welcome" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">Profile </a>
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Themes</a>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Notifications</a>
+                        <hr>
+                        <a class="dropdown-item" routerLink="/projects" routerLinkActive="active">Account</a>
+                    </div>
+
+                </li>
+
+
+            </ul>
+
+            <!-- Notifications & messages -->
+            <div class="dropdown">
+
+                <a class="btn btn-warning text-dark mr-3 dropdown-toggle" data-toggle="dropdown" type="button">
+                    Notifications <span class="badge badge-danger">45</span>
+                </a>
+                <div class="dropdown-menu  bg-warning">
+                    <li><a class=" btn btn-warning text-dark mt-1" href="#">Some Notification</a></li>
+                    <li><a class=" btn btn-warning text-dark mt-1" href="#">Some Notification</a></li>
+                    <li><a class=" btn btn-warning text-dark mt-1" href="#">Some Notification</a></li>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+
+
+
+
+    <!-- Loading  -->
+    <div class="loading" *ngIf="loading">
+        <div class="spinner spinner-border text-danger" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
+
+
+
+
+
+
+    <div class="main">     
+        <router-outlet></router-outlet>
+    </div>
+
+
+
+
 </div>
-<router-outlet></router-outlet>

@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { of, Observable } from 'rxjs';
 import { IFormData } from '../../reactive-form.interfaces';
-import { FormControl, ValidationErrors, FormBuilder, Validators } from '@angular/forms';
-import { KeyValuePipe } from '@angular/common';
 
 
 @Injectable({

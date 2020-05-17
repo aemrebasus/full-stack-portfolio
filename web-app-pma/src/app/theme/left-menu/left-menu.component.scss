@@ -1,0 +1,25 @@
+@import "../style.scss";
+
+* {
+    transition: all ease-in-out 400ms;
+}
+.badge,
+.list-group {
+    user-select: none;
+}
+
+.list-item:hover {
+    background-color: rgb(253, 255, 162);
+}
+
+.list {
+    max-height: $max-height-second-layer;
+    overflow-y: scroll;
+    border-bottom: 10px solid gray;
+    border-top: 10px solid gray;
+}
+
+.badge > .badge {
+    box-shadow: 0px 0px 5px black;
+}
+

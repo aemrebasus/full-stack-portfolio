@@ -1,0 +1,20 @@
+<div class="card text-left border-0 shadow m-3" *ngIf="visible">
+  <div style="height: 10px; background-color:rgb(170, 169, 177); color:transparent; width:100%;">
+    <div style="height: 10px; background-color:#35199b; color:transparent; width:{{progress}}%;"></div>
+  </div>
+
+  <div class="card-header rounded-0 bg-light p-0 pt-1 pl-2 pr-2">
+    <div class="row">
+      <div class="col-9">
+        <h5> <strong style="text-transform: capitalize; letter-spacing: 3px;">{{title }}</strong>
+        </h5>
+      </div>
+      <div class="col-3">
+        <span class="badge badge-info shadow">{{timestamp}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-text" style="letter-spacing: 3px; text-transform: capitalize;">{{message}}</p>
+  </div>
+</div>

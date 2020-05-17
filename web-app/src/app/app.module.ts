@@ -10,8 +10,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { RouterModule } from '@angular/router';
+import { HomeModule } from './home/home.module';
+import { ProjectModule } from './project/project.module';
 import { HttpClientModule } from '@angular/common/http';
-import { SharedModule } from '@sharedModule/shared.module';
 
 
 
@@ -21,12 +22,12 @@ import { SharedModule } from '@sharedModule/shared.module';
   ],
   imports: [
     BrowserModule,
-    SharedModule,
-    // ProjectModule,
-    // IssueModule,
-    // HomeModule,
-    RouterModule,
+    HomeModule,
+    ProjectModule,
+
+    
     HttpClientModule,
+    RouterModule,
     AppRoutingModule   // AppRoutingModule must be the last of this list because it has the default route setting like PageNotFound!
   ],
   providers: [],

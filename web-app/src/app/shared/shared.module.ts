@@ -28,11 +28,12 @@ import { AlertComponent } from './alert/alert.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    
+
     // Components
     ConfirmComponent,
     MultipleViewComponent,
     SingleViewComponent,
+    ReactiveFormComponent,
     AlertComponent
   ]
 })

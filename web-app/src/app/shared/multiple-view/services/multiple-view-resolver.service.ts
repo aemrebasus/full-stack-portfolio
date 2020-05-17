@@ -1,29 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { ACCESSES, SERVICES, UserSettingService } from '@services/user/user-setting.service';
+
+import { DataService } from '@services/data/data.service';
+import { ViewSettingService } from '@services/view/view-setting.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MultipleViewResolverService implements Resolve<IViewData> {
 
-  constructor() { }
+  constructor(
+    private dataService: DataService,
+    private userSettingService: UserSettingService,
+    private viewSettingService: ViewSettingService
+  ) { }
+
+
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): IViewData | Observable<IViewData> | Promise<IViewData> {
-    return of({
-      meta: {
-        header: false,
-        title: 'User View',
-        type: 'user',
-        accesses: [ACCESSES.DELETE, ACCESSES.VIEW, ACCESSES.CREATE, ACCESSES.UPDATE],
-        services: [SERVICES.MESSAGE, SERVICES.SEARCH]
-      },
-      data: [
-        { id: '400', name: 'Cevdet Acikgoz', lastName: 'Wooow there.' },
-        { id: '1', name: 'Ahmet Emrebas' },
-        { id: '20', name: 'Muhittin Kara' },
-        { id: '3', name: 'Cevdet Acikgoz' },
-      ]
+
+
+    const data: IViewData | any = {};
+
+    /**
+     * Set the view data
+     */
+    this.dataService.getData(state.url).then(result => {
+      data.data = result;
     });
+
+    // /**
+    //  * set the view meta
+    //  */
+    this.viewSettingService.view(state.url).then(setting => {
+      data.meta = setting;
+    });
+
+    /**
+     * get user auth
+     */
+    this.userSettingService.getUserPermissions().then(permissions => {
+      data.auth = permissions;
+    });
+
+
+
+    return of(data);
   }
 }
 
@@ -38,6 +61,12 @@ export interface IViewData {
    * Data that will be rendered with the template.
    */
   data: any[];
+
+
+  /**
+   * Contains user accessability rules
+   */
+  auth: IAuthMetaData;
 }
 
 
@@ -72,7 +101,11 @@ export interface IViewMetaData {
   header?: boolean;
 
 
+}
 
+
+
+export interface IAuthMetaData {
   /**
    * Define the user's authority to manipulate the entity also hide the unauthorized view components like edit button, delete button
    *  'UPDATE' | 'DELETE' | 'VIEW' | 'CREATE' ETC.
@@ -84,36 +117,8 @@ export interface IViewMetaData {
   /**
    * List of services that avalilable for a specific user like searching service.
    */
-  services?: SERVICES[];
-
+  services?: (SERVICES | string)[];
 }
 
-export enum ACCESSES {
-  UPDATE = 'UPDATE',
-  DELETE = 'DELETE',
-  CREATE = 'CREATE',
-  VIEW = 'VIEW'
-}
 
-export enum SERVICES {
-  MESSAGE, SEARCH
-}
-
-// export interface IProjectResolved<T> {
-  //   resolved?: T | T[];
-  //   error?: any;
-  // }
-
-  // export interface IEntity {
-    //   meta?: {};
-    //   _id?: string | number;
-    // }
-
-    // export interface IPageMeta<T = any> {
-      //   meta?: {
-        //     errorMessage?: string;
-//     pageTitle?: string;
-//   };
-//   data?: T[];
-// }
 

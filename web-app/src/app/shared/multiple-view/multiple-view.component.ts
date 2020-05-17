@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IViewData, ACCESSES } from './services/multiple-view-resolver.service';
+import { IViewData } from './services/multiple-view-resolver.service';
+import { SERVICES, ACCESSES } from '@services/user/user-setting.service';
 
 
 @Component({
@@ -69,11 +70,11 @@ export class MultipleViewComponent implements OnInit {
 
 
   onEditClick(id: string) {
-    this.router.navigate(['edit', this.meta.meta.type], { queryParams: { ...this.data.find(e => e.id === id) } });
+    this.router.navigate([this.meta.meta.type, 'edit'], { queryParams: { ...this.data.find(e => e.id === id) } });
   }
 
   onDeleteClick(id: string) {
-    
+
   }
 
 
@@ -90,19 +91,26 @@ export class MultipleViewComponent implements OnInit {
 
 
 
+  hasService(service: SERVICES | string) {
+    return this.meta.auth.services.includes(service);
+  }
 
+  serviceSearch() {
+    return this.hasService(SERVICES.SEARCH);
+  }
 
   /**
    * Enable and disable the buttons based on user's authorization!
    */
 
   hasAccess(access: ACCESSES | string) {
-    return this.meta.meta.accesses.includes(access);
+    return this.meta.auth.accesses.includes(access);
 
   }
 
+
   accessCreate() {
-    return this.hasAccess('CREATE');
+    return this.hasAccess(ACCESSES.CREATE);
   }
 
   accessDelete() {

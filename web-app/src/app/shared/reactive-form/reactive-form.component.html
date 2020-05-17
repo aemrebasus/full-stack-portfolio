@@ -1,70 +1,69 @@
-<div class="container">
-    <div class="card">
+<div class="card main-card">
 
-        <div class="card-header">
-            <div class="card-title">{{meta.formName}}</div>
-        </div>
+    <div class="card-header">
+        <div class="card-title">{{meta.formName}}</div>
+    </div>
 
-        <div class="card-body">
-            <form class="" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="card-body">
+        <form class="" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-                <div class="form-group" *ngFor="let input of meta.inputs">
-                    <label for={{input.name}}> {{input.label}} </label>
-                    <input type="text" id={{input.name}} formControlName={{input.name}} class="form-control"
-                        autocomplete={{input.autocomplete}} [class.is-invalid]="invalid(input.name)"
-                        [class.is-valid]="valid(input.name)" />
-                    <small class="form-text text-muted">{{input.helperText}}</small>
+            <div class="form-group" *ngFor="let input of meta.inputs">
+                <label for={{input.name}}> {{input.label}} </label>
+                <input type="text" id={{input.name}} formControlName={{input.name}} class="form-control"
+                    autocomplete={{input.autocomplete}} [class.is-invalid]="invalid(input.name)"
+                    [class.is-valid]="valid(input.name)" />
+                <small class="form-text text-muted">{{input.helperText}}</small>
 
-                    <div *ngIf="invalid(input.name)" class="alert alert-danger">
+                <div *ngIf="invalid(input.name)" class="alert alert-danger">
 
-                        <div *ngIf="errors(input.name).required">
-                            {{input.name}} is required.
-                        </div>
-                        <div *ngIf="errors(input.name).minlength">
-                            {{input.name}} does not meet the minimum-length requirement.
-                        </div>
-                        <div *ngIf="errors(input.name).forbiddenName">
-                            {{value(input.name)}} is not allowed .
-                        </div>
-
+                    <div *ngIf="errors(input.name).required">
+                        {{input.name}} is required.
+                    </div>
+                    <div *ngIf="errors(input.name).minlength">
+                        {{input.name}} does not meet the minimum-length requirement.
+                    </div>
+                    <div *ngIf="errors(input.name).forbiddenName">
+                        {{value(input.name)}} is not allowed .
                     </div>
 
                 </div>
 
-                <!-- Submitting  -->
-                <button class="btn btn-light mr-2" (click)="goBack()">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    Back
-                </button>
+            </div>
 
-                <a class="btn btn-danger text-white mr-2" type="button" data-toggle="modal"
-                    href="#{{deleteConfirmation.id}}" *ngIf="meta.editForm">Delete</a>
+            <!-- Submitting  -->
+            <button class="btn btn-light mr-2" (click)="goBack()">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                Back
+            </button>
 
-                <input class="btn btn-info mr-2" type="reset" value="Reset form" (click)="onReset()" />
+            <a class="btn btn-danger text-white mr-2" type="button" data-toggle="modal"
+                href="#{{deleteConfirmation.id}}" *ngIf="meta.editForm">Delete</a>
+
+            <input class="btn btn-info mr-2" type="reset" value="Reset form" (click)="onReset()" />
 
 
-                <a class="btn btn-warning mr-2" type="button" data-toggle="modal" href="#{{editConfirmation.id}}"
-                    *ngIf="form.valid && form.dirty">
-                    {{meta.submitLabel}}
-                </a>
-            </form>
-        </div>
+            <a class="btn btn-warning mr-2" type="button" data-toggle="modal" href="#{{editConfirmation.id}}"
+                *ngIf="form.valid && form.dirty">
+                {{meta.submitLabel}}
+            </a>
+        </form>
+    </div>
 
-        <div class="card-footer">
-            <div class="card">
-                <div class="card-header">
-                    <h6>Form Status</h6>
-                </div>
-                <!-- <div class="card-body">
+    <div class="card-footer">
+        <div class="card">
+            <div class="card-header">
+                <h6>Form Status</h6>
+            </div>
+            <!-- <div class="card-body">
                     <p class="card-title">Form Data: {{form.value | json}}</p>
                     <p class="card-text">Form Validation : {{form.status}}</p>
                 </div> -->
-            </div>
         </div>
-
-
     </div>
+
+
 </div>
+
 
 
 <hr>

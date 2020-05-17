@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: rgb(230, 227, 227);
+}

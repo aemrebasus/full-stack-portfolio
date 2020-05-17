@@ -8,24 +8,30 @@ export class LoggerService {
 
   constructor(private httpService: HttpClient) { }
 
-  private error(relative: any, err: Error) {
+  private error(where: any, err: Error) {
     const e: ILog = {
-      message: `${err.message} <${relative}> : ${err}`,
+      message: `${err.message} <${where}> : ${err}`,
       stack: err.stack,
       meta: {
-        relative
+        where
       }
     };
     // TODO send the server.
     console.log(e);
   }
 
-  errProjectRetrival(relative: any = '', err: Error) {
-    this.error(relative, err);
-  }
 
 
 
+}
+
+interface ILoggerService {
+
+  /**
+   * 1- send the error to the server
+   * @param param ILog
+   */
+  error(param: any): any;
 
 }
 

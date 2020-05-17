@@ -1,0 +1,25 @@
+
+.badge {
+    width: 100px;
+    text-align: center;
+}
+
+.badge > .badge {
+    box-shadow: 0px 0px 3px black;
+    width: 30px;
+    display: inline-block;
+}
+
+
+.list-item{ 
+    cursor: pointer;
+
+}
+
+.list-item:hover{ 
+    border-left: 10px solid gray;
+}
+
+*{ 
+    transition: all ease-in-out 400ms;
+}
