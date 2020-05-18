@@ -23,16 +23,15 @@
     </div>
 
 
-
     <!-- Left Area (menu and links) -->
     <div class=" me-col-3  ">
-        <app-left-menu></app-left-menu>
+        <app-left-menu [data]="leftMenu" (clicked)="menuClick($event)"></app-left-menu>
     </div>
 
     <!-- Middle area -->
     <div class="me-col-6 ">
         <!-- middleArea -->
-        <app-middle-area></app-middle-area>
+        <app-middle-area [data]="middleArea"></app-middle-area>
     </div>
 
     <!-- Right Area -->

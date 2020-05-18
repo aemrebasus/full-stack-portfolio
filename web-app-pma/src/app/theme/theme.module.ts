@@ -38,10 +38,7 @@ import { FooterComponent } from './footer/footer.component';
     BannerComponent,
     FooterComponent,
   ],
-  imports: [
-    CommonModule,
-
-  ],
+  imports: [CommonModule],
   exports: [
     NavbarComponent,
     LeftMenuComponent,
@@ -51,10 +48,14 @@ import { FooterComponent } from './footer/footer.component';
     LoadingComponent,
     PromotionComponent,
     BodyComponent,
+    ContactLinksComponent,
     PieChartComponent,
     BarChartComponent,
-    NotificationComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SearchResultComponent,
+    DarkModeComponent,
+    BannerComponent,
+    FooterComponent,
   ]
 })
 export class ThemeModule { }

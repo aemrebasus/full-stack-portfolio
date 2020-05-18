@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-middle-area',
   templateUrl: './middle-area.component.html',
   styleUrls: ['./middle-area.component.scss']
 })
-export class MiddleAreaComponent implements OnInit {
+export class MiddleAreaComponent {
+  @Input() name = 'middleArea';
+  @Input() data: IMiddleAreaData;
+}
 
-  constructor() { }
+type IHeaders = string[];
+type IItems = string[][];
 
-  ngOnInit(): void {
-  }
-
+export interface IMiddleAreaData {
+  headers: IHeaders;
+  items: IItems;
 }
