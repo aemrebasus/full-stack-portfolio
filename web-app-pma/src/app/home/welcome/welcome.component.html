@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+    <a class="navbar-brand" routerLink="/">PMA</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+
+
+            <li class="nav-item dropdown">
+                <!-- Open Main Menu -->
+                <a class="nav-link " routerLink="/pma" id="menuButton" aria-haspopup="true" aria-expanded="false">Sign
+                    In</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <!-- Open Main Menu -->
+                <a class="nav-link " href="#" id="menuButton" aria-haspopup="true" aria-expanded="false">Sign
+                    Up</a>
+            </li>
+
+
+        </ul>
+
+    </div>
+</nav>
+<div class="body bg-dark">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <main role="main" class="inner cover">
+            <h1 class="cover-heading">{{greeting}}</h1>
+            <p class="lead">I developed an application for you!</p>
+            <p class="lead">
+                <a href="https://app.pluralsight.com/profile/ahmet-emrebas" target="_blank"
+                    class="btn btn-lg  btn-dark">Would you like to learn more about me?</a>
+            </p>
+
+        </main>
+
+        <footer>
+            <p>
+                Application is built by <a href="https://www.linkedin.com/in/ahmet-emrebas/"> @Ahmet
+                    Emrebas</a>
+            </p>
+
+        </footer>
+    </div>
+</div>

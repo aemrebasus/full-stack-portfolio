@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { ThemeModule } from '../theme/theme.module';
+import { ThemeModule } from '../themes/theme/theme.module';
 
 
 @NgModule({
@@ -11,7 +11,7 @@ import { ThemeModule } from '../theme/theme.module';
     CommonModule,
     ThemeModule,
     RouterModule.forChild([
-      { path: '', component: MainComponent }
+      { path: '', component: MainComponent, pathMatch: 'full' }
     ])
   ]
 })

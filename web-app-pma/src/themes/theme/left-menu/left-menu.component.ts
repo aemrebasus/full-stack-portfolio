@@ -10,19 +10,19 @@ export class LeftMenuComponent {
   name = 'leftMenu';
 
   @Input() data: ILeftMenuData;
-  @Output() clicked = new EventEmitter<any>();
+  @Output() menuClick = new EventEmitter<any>();
 
   pillColors = ['success', 'danger', 'secondary', 'success'];
 
   click(item: ILeftMenuSingleData) {
-    this.clicked.emit(item);
+    this.menuClick.emit(item);
   }
 
 }
 
 export interface ILeftMenuSingleData {
   name?: string;
-  pills?: [number?, number?, number?];
+  pills?: number[];
 }
 
 export type ILeftMenuData = ILeftMenuSingleData[];

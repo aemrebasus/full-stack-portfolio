@@ -2,7 +2,7 @@
     <ng-content></ng-content>
     <!-- ########################### 1st  Layer ######################### -->
     <div class="me-col-12">
-        <app-navbar></app-navbar>
+        <app-navbar [navs]="navs" (navClick)="navClick($event)"></app-navbar>
     </div>
 
     <!-- ################ Search Bar ################## -->
@@ -25,7 +25,7 @@
 
     <!-- Left Area (menu and links) -->
     <div class=" me-col-3  ">
-        <app-left-menu [data]="leftMenu" (clicked)="menuClick($event)"></app-left-menu>
+        <app-left-menu [data]="leftMenu" (menuClick)="menuClick($event)"></app-left-menu>
     </div>
 
     <!-- Middle area -->
