@@ -15,6 +15,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { DarkModeComponent } from './dark-mode/dark-mode.component';
 import { BannerComponent } from './banner/banner.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -35,6 +36,7 @@ import { BannerComponent } from './banner/banner.component';
     SearchResultComponent,
     DarkModeComponent,
     BannerComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,

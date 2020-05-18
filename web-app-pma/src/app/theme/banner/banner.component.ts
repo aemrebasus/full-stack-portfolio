@@ -7,18 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
 
-  banners = ['Ahmet just posted an issue', 'JD solved the issue #55', 'Myk posted a new comment on issue #55', 'Jayda needs help on his task #78', 'Ahmet just posted an issue']
-
+  banners = ['Ahmet just posted an issue', 'JD solved the issue #55',
+    'Myk posted a new comment on issue #55', 'Jayda needs help on his task #78', 'Ahmet just posted an issue']
+    
   banner = 'Ahmet just posted an issues.';
 
   loop = true;
+
+  colors = ['light', 'dark', 'warning', 'light', 'danger', 'primary', 'light'];
+
+  textColor = 'light';
+
+  bgColor = 'dark';
+
 
   constructor() { }
 
   ngOnInit(): void {
     setInterval(() => {
       if (this.loop) {
-        this.banner = this.banners[this.banners.indexOf(this.banner) + 1]
+        this.banner = this.banners[this.banners.indexOf(this.banner) + 1];
+        this.textColor = this.colors[this.colors.indexOf(this.textColor) + 1];
+        this.bgColor = this.colors[this.colors.indexOf(this.bgColor) + 1];
       }
     }, 2000);
   }
