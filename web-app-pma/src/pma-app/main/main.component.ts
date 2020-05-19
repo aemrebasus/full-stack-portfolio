@@ -4,6 +4,7 @@ import { ILeftMenuData, ILeftMenuSingleData } from 'src/themes/theme/left-menu/l
 import { ThemeDataService } from '../services/theme/theme-data.service';
 import { DataService } from '../services/data/data.service';
 import { INavbar } from 'src/themes/theme/navbar/navbar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +20,7 @@ export class MainComponent implements OnInit {
   navs: INavbar;
 
 
-  constructor(private dataService: DataService, private themeDataService: ThemeDataService) { }
+  constructor(private dataService: DataService, private themeDataService: ThemeDataService, private router: Router) { }
 
   ngOnInit(): void {
     this.leftMenu = this.dataService.projects();
@@ -40,7 +41,10 @@ export class MainComponent implements OnInit {
   }
 
   navClick(event) {
-    console.log('Navbar Click: ', event)
+    console.log('Navbar Click: ', event);
+    if (event === 'New Project') {
+      this.router.navigate([{ outlets: { 'right-area': ['new-project'] } }]);
+    }
   }
 
 }

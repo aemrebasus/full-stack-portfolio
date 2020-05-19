@@ -1,21 +1,20 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
-    <a class="navbar-brand" routerLink="/">PMA</a>
+    <a class="navbar-brand" [routerLink]="['']">Project Management Application</a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
         aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-
-
             <li class="nav-item dropdown">
                 <!-- Open Main Menu -->
-                <a class="nav-link " routerLink="/pma" id="menuButton" aria-haspopup="true" aria-expanded="false">Sign
-                    In</a>
+                <a class="nav-link " type="button" [routerLink]="['pma']" id="menuButton" aria-haspopup="true"
+                    aria-expanded="false">Go to app</a>
             </li>
 
             <li class="nav-item dropdown">
                 <!-- Open Main Menu -->
-                <a class="nav-link " href="#" id="menuButton" aria-haspopup="true" aria-expanded="false">Sign
+                <a class="nav-link " type="button" href="#" id="menuButton" aria-haspopup="true"
+                    aria-expanded="false">Sign
                     Up</a>
             </li>
 

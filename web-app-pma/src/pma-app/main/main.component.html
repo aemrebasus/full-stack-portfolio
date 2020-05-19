@@ -1,5 +1,7 @@
 <div class="flex-row-stretch">
-    <ng-content></ng-content>
+    <!-- <a [routerLink]="[{outlets:{'right-area':['contact-list']}}]">Go TO Contact List</a> -->
+
+
     <!-- ########################### 1st  Layer ######################### -->
     <div class="me-col-12">
         <app-navbar [navs]="navs" (navClick)="navClick($event)"></app-navbar>
@@ -36,7 +38,7 @@
 
     <!-- Right Area -->
     <div class="me-col-3   ">
-        <app-right-area></app-right-area>
+        <router-outlet name="right-area"></router-outlet>
     </div>
 
     <!-- Statistics  1-->
@@ -55,7 +57,7 @@
 
     <!-- Links Component (Under the menu)-->
     <div class="me-col-12 ">
-        <app-contact-links></app-contact-links>
+        <!-- <app-contact-links></app-contact-links> -->
     </div>
 
 

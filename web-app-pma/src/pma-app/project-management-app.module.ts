@@ -5,14 +5,24 @@ import { MainComponent } from './main/main.component';
 import { ThemeModule } from '../themes/theme/theme.module';
 
 
+
 @NgModule({
-  declarations: [MainComponent],
+  declarations: [
+    MainComponent
+  ],
   imports: [
     CommonModule,
     ThemeModule,
     RouterModule.forChild([
-      { path: '', component: MainComponent, pathMatch: 'full' }
+      { path: '', redirectTo: 'home' },
+      {
+        path: 'home', component: MainComponent,
+        children: [
+          { path: 'new-project', component: null, outlet: 'right-area' }
+        ]
+      },
+
     ])
   ]
 })
-export class ProjectModule { }
+export class ProjectManagementApp { }

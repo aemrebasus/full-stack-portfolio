@@ -13,13 +13,13 @@
                     aria-haspopup="true" aria-expanded="false" (click)="click(nav.name)">{{nav.name}}</a>
 
                 <!-- Sum items  -->
-                <div class="dropdown-menu" aria-labelledby="dropdownId" id="{{nav.name}}" *ngIf="nav.subs">
+                <div class="dropdown-menu bg-dark" aria-labelledby="dropdownId" id="{{nav.name}}" *ngIf="nav.subs">
                     <!-- Home route -->
                     <!-- <a class="dropdown-item" routerLink="/welcome" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact:true}">Home </a>
                     <hr> -->
 
-                    <a class="dropdown-item" *ngFor="let sub of nav.subs" (click)="click(sub)">{{sub}}</a>
+                    <a class="dropdown-item text-white" *ngFor="let sub of nav.subs" (click)="click(sub)">{{sub}}</a>
 
 
                 </div>

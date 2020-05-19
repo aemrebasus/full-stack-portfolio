@@ -1,0 +1,106 @@
+<div class="card ">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-1">
+                <a class="btn" type="button" *ngIf="accessCreate()">
+                    <i class="fa fa-plus-circle fa-2x text-primary" aria-hidden="true" title="Create New User"></i>
+                </a>
+            </div>
+            <div class="col-md-11 text-right text-primary">
+                <h4>{{meta.meta.title}}</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search bar -->
+    <div class="card-header">
+
+        <div class="input-group" *ngIf="serviceSearch()">
+
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                    <i class="fa fa-search fa-1x" aria-hidden="true"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control search-control" #filterBy placeholder="Find {{meta.meta.type}}"
+                aria-label="Username" aria-describedby="basic-addon1" (input)="onInput(filterBy.value)">
+        </div>
+    </div>
+    <!-- Search bar -->
+    <div class="card-body card-table-header text-left mb-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th *ngFor="let head of thead">{{head  | uppercase}}</th>
+
+                    <th>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <hr>
+                </tr>
+                <tr>
+                    <hr>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+    <div class="card-body card-table text-left mb-2">
+        <table class="table ">
+
+
+            <tbody>
+                <tr *ngFor="let item of filteredData">
+
+
+                    <td *ngFor="let field of item">{{field[1]}}</td>
+
+                    <!-- If the current data has less field than the previous one then equalize them
+                                if you you are sending data that contains header then set the header value true in the meta data.
+                                otherwise code will be do it by itself.
+                            -->
+                    <td [attr.colspan]="thead.length-item.length+1">
+                        <div class="btn-group d-flex flex-row-reverse " role="group">
+
+                            <a id="dropdownId" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false" style="padding-left: 20px;">
+                                <i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <button class="dropdown-item btn" (click)="onViewClick(item[0][1])"
+                                    *ngIf="accessView()">View</button>
+                                <button class="dropdown-item btn" (click)="onEditClick(item[0][1])"
+                                    *ngIf="accessEdit()">Edit</button>
+                                <button class="dropdown-item btn" (click)="onDeleteClick(item[0][1])"
+                                    *ngIf="accessDelete()">Delete</button>
+
+
+                            </div>
+                        </div>
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+    <div class="card card-footer">
+        <!-- Error message -->
+        <div class="alert alert-danger" role="alert" *ngIf="meta.meta?.errorMessage">
+            <strong>{{meta.meta.errorMessage}}</strong>
+        </div>
+    </div>
+
+
+</div>
+<hr>
