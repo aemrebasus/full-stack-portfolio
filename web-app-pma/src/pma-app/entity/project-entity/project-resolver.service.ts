@@ -56,8 +56,6 @@ export class ProjectResolverService implements Resolve<any> {
                         validators: []
                     },
                 ],
-            },
-            data: {
             }
         };
         return of(sentData);

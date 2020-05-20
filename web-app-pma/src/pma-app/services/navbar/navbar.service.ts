@@ -6,19 +6,19 @@ export const NavBarData: INavbar | any = [
     {
         path: 'Document', subs: [
             {
-                outlet: 'forms', path: 'New Project',
+                outlet: 'dialog', path: 'New Project',
                 loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
             },
             {
-                outlet: 'forms', path: 'New Issue',
+                outlet: 'dialog', path: 'New Issue',
                 loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
             },
             {
-                outlet: 'forms', path: 'Open Project',
+                outlet: 'dialog', path: 'Open Project',
                 loadChildren: () => import('@pma/open-dialog/open-dialog.module').then(m => m.OpenDialogModule),
             },
             {
-                outlet: 'forms', path: 'Open Issue',
+                outlet: 'dialog', path: 'Open Issue',
                 loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
             },
 
@@ -27,35 +27,35 @@ export const NavBarData: INavbar | any = [
     {
         path: 'User', subs: [
             {
-                outlet: 'forms', path: 'New User',
+                outlet: 'dialog', path: 'New User',
                 loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
             },
 
             {
-                outlet: 'forms', path: 'View User',
+                outlet: 'dialog', path: 'View User',
                 loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
             },
         ]
     },
     {
         path: 'Inbox',
-        outlet: 'forms',
+        outlet: 'dialog',
         loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
 
     },
     {
         path: 'Setting', subs: [
             {
-                outlet: 'forms', path: 'Profile',
+                outlet: 'dialog', path: 'Profile',
                 loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
             },
             {},
             {
-                outlet: 'forms', path: 'Account',
+                outlet: 'dialog', path: 'Account',
                 loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
             },
             {
-                outlet: 'forms', path: 'Notifications',
+                outlet: 'dialog', path: 'Notifications',
                 loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
             },
         ]

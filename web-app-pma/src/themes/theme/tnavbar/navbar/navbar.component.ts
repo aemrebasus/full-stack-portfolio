@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { RoutingService } from '../../zzservices/routing/routting.service';
 
 
 @Component({
@@ -15,29 +15,14 @@ export class NavbarComponent {
 
   @Output() navClick = new EventEmitter<string>();
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-
-  }
+  constructor(private routingService: RoutingService) { }
 
   click(event: INavbarItem) {
     this.openOutlet(event);
   }
 
-  /**
-   * close the outlet and route back with queryParams that contains INavbarItem
-   * @param event INavbarItem
-   */
   openOutlet(event: INavbarItem) {
-
-    const outlets = {};
-
-    outlets[event.outlet] = event.path;
-    
-    this.router.navigate(
-      [this.router.url, { outlets }],
-      { queryParams: { path: event.path, outlet: event.outlet } }
-    ).catch(err => { });
-
+    this.routingService.openOutlet(event.outlet, event.path);
   }
 
 }

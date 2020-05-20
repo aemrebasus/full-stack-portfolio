@@ -7,7 +7,8 @@ import {
 } from './reactive-form.interfaces';
 
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { RoutingService } from '../../zzservices/routing/routting.service';
 
 
 @Component({
@@ -21,6 +22,9 @@ export class ReactiveFormComponent
   IEventHandlers,
   IFormController, OnInit {
 
+  name = 'form';
+
+
   /**
    * Forms' title, controls, controls'validators etc.
    */
@@ -33,21 +37,11 @@ export class ReactiveFormComponent
 
   @Output() routerEvent = new EventEmitter();
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private routingService: RoutingService) { }
 
-  waiting = 1000;
-
-  
-  renderSlow() {
-    this.waiting += 1000;
-    return new Promise((res, rej) => {
-      setTimeout(() => {
-        res(true);
-      }, this.waiting);
-    });
-  }
 
   ngOnInit(): void {
+
     this.route.data.subscribe(resolvedData => {
       this.meta = resolvedData.resolved.meta;
       this.init(this.meta);
@@ -181,7 +175,7 @@ export class ReactiveFormComponent
     try {
       this.meta.events.goBack(this.form.value);
     } catch (err) {
-      throw new Error('goBack method could not be found in the meta object. Please make sure to pass a handler function for goBack.')
+      this.routingService.closeOutlet();
     }
   }
 
@@ -195,12 +189,6 @@ export class ReactiveFormComponent
     }
   }
 
-
-
-  closeOutlet() {
-    this.router.navigate(['../pma/home', { outlets: { forms: null } }]);
-    console.log('CLicked Close')
-  }
 
 }
 

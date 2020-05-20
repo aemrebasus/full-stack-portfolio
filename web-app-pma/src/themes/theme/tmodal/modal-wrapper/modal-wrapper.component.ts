@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { RoutingService } from '../../zzservices/routing/routting.service';
 
 @Component({
   selector: 'app-modal-wrapper',
@@ -12,16 +12,14 @@ export class ModalWrapperComponent implements OnInit {
   @Input() textColor = 'white';
   @Input() title = 'No Title (bgColor? textColor? title?)';
 
-  
 
-
-  constructor(private router: Router) { }
+  constructor(private routingService: RoutingService) { }
 
   ngOnInit(): void {
   }
 
   closeOutlet() {
-    this.router.navigate(['../pma/home', { outlets: { forms: null } }]);
+    this.routingService.closeOutlet();
   }
 
 

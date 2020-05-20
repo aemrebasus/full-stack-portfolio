@@ -45,8 +45,8 @@ export interface IInput {
 }
 
 export interface IFormData {
-    meta: IFormMeta;
-    data: any;
+    meta?: IFormMeta;
+    data?: any;
 }
 
 
