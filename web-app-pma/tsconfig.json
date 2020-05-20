@@ -33,6 +33,9 @@
       "@ttable/*": [
         "src/themes/theme/ttable/*"
       ],
+      "@tmodal/*": [
+        "src/themes/theme/tmodal/*"
+      ],
       "@pma-services/*": [
         "src/pma-app/services/*"
       ],

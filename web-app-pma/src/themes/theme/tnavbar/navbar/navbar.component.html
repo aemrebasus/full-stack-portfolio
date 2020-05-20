@@ -6,7 +6,7 @@
         aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
+           
             <li class="nav-item dropdown" *ngFor="let nav of navs">
 
                 <!-- Open Drop Down -->
@@ -15,7 +15,7 @@
 
                 <!-- Drom Down Menu -->
                 <div class="dropdown-menu bg-dark" aria-labelledby="dropdownId" id="{{nav.name}}" *ngIf="nav.subs">
-                    <a class="dropdown-item text-white" *ngFor="let sub of nav.subs" 
+                    <a class="dropdown-item text-white" *ngFor="let sub of nav.subs"
                         (click)="click(sub)">{{sub.path}}</a>
                 </div>
             </li>

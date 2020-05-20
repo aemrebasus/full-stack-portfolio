@@ -6,8 +6,8 @@ import {
   IFormController,
 } from './reactive-form.interfaces';
 
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -31,8 +31,9 @@ export class ReactiveFormComponent
    */
   @Input() form: FormGroup;
 
+  @Output() routerEvent = new EventEmitter();
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(resolvedData => {
@@ -184,6 +185,10 @@ export class ReactiveFormComponent
 
 
 
+  closeOutlet() {
+    this.router.navigate(['../pma/home', { outlets: { forms: null } }]);
+    console.log('CLicked Close')
+  }
 
 }
 

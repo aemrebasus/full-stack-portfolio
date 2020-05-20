@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { Outlets } from './services/navbar.service';
+import { Outlets } from '@pma-services/navbar/navbar.service';
 
 
 const routes: Routes = [
     { path: '', redirectTo: 'home' },
     {
-        path: 'home', component: MainComponent,
+        path: 'home',
+        component: MainComponent,
         children: Outlets
-
-
     },
 ];
 

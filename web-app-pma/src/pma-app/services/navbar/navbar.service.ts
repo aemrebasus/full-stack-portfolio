@@ -4,7 +4,7 @@ export const NavBarData: INavbar | any = [
     {
         path: 'Document', subs: [
             {
-                outlet: 'right-area', path: 'New Project',
+                outlet: 'forms', path: 'New Project',
                 loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
             }
         ]

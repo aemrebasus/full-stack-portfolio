@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -9,31 +9,29 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
+  currentOutlet: string = null;
+
   @Input() navs: INavbar;
 
   @Output() navClick = new EventEmitter<string>();
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
 
   }
 
   click(event: INavbarItem) {
+    this.openOutlet(event);
+  }
+
+  openOutlet(event: INavbarItem) {
 
     const outlets = {};
-
-    try { outlets[event.outlet] = null; } catch (err) {
-      // Ignore this error
-    }
-
-    this.router.navigate([{ outlets }]).catch(err => { });
-
-    try { outlets[event.outlet] = [event.path]; } catch (err) {
-      // Ignore this error
-    }
-
+    outlets[event.outlet] = event.path;
     this.router.navigate([this.router.url, { outlets }]).catch(err => { });
 
-
+  }
+  closeOutlet(event) {
+    this.router.navigate([this.router.url, { 'right-area': null }]).catch(err => { });
 
   }
 

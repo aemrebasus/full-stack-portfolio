@@ -1,5 +1,7 @@
 <div class="flex-row-stretch">
 
+    <router-outlet name="forms"></router-outlet>
+
 
 
     <!-- NAVBAR ################### -->
@@ -7,41 +9,38 @@
         <app-navbar [navs]="navs"></app-navbar>
     </div>
 
-    
-    
+
+
     <!-- ################ Search Bar ################## -->
     <div class="me-col-3 ">
         <!-- <app-search-bar></app-search-bar> -->
     </div>
-    
+
     <!-- ########### Banner ################# -->
     <div class="me-col-6 ">
         <!-- <app-banner></app-banner> -->
     </div>
-    
-    
+
+
     <!-- ######### Dark Mode ######### -->
-    
+
     <div class="me-col-3 ">
         <!-- <app-dark-mode></app-dark-mode> -->
     </div>
-    
-    
+
+
     <!-- Left Area (menu and links) -->
     <div class=" me-col-3  ">
         <!-- <app-left-menu [data]="leftMenu" (menuClick)="menuClick($event)"></app-left-menu> -->
     </div>
-    
+
     <!-- Middle area -->
     <div class="me-col-6 ">
         <router-outlet name="middle-area"></router-outlet>
-        <!-- middleArea -->
-        <!-- <app-middle-area [data]="middleArea"></app-middle-area> -->
     </div>
 
     <!-- Right Area -->
     <div class="me-col-3   ">
-        <router-outlet name="right-area"></router-outlet>
         <!-- <router-outlet name="right-area"></router-outlet> -->
     </div>
 

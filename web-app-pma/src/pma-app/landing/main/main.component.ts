@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data/data.service';
-import { INavbar, INavbarItem } from 'src/themes/theme/tnavbar/navbar/navbar.component';
+
 import { Router, } from '@angular/router';
 import { IMiddleAreaData } from '@ttable/middle-area/middle-area.component';
 import { ILeftMenuData } from '@tmain-list/left-menu/left-menu.component';
-import { NavBarData } from '../services/navbar.service';
+import { NavBarData } from '@pma-services/navbar/navbar.service';
+import { INavbar } from '@tnavbar/navbar/navbar.component';
+import { DataService } from '@pma-services/data/data.service';
+
 
 @Component({
   selector: 'app-main',
