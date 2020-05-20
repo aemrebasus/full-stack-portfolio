@@ -1,0 +1,57 @@
+* {
+    font-size: $g-font-size;
+    text-shadow: 0px 0px $text-shadow-size black;
+    border-radius: $border-radius-size;
+    transition: all ease-in-out 400ms;
+}
+
+*::selection {
+    background-color: orangered;
+    color: white;
+    font-size: 15px;
+    text-shadow: 0px 0px 1px black;
+}
+
+.flex-row-stretch {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    border: $root-container-border-size solid $root-container-border-color;
+    padding: 1px;
+}
+
+[class^="me-col"] {
+    border: $container-border-size solid $container-border-color;
+}
+
+select,
+.btn,
+.dropdown,
+.dropdown-item,
+.dropdown-menu,
+.nav-item,
+.navbar,
+label,
+.card-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+.dropdown-item:hover {
+    background-color: $navbar-button-hover-color;
+}
+
+.card {
+    box-shadow: 0px 0px $box-shadow-size black;
+}
+
+.card-header {
+    background-color: $form-header-bg-color;
+    color: $form-header-color;
+}
+
+[class^="me-col"] {
+    box-shadow: inset 0px 0px $box-shadow-inset-size black;
+    padding: 10px;
+}

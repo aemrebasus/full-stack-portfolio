@@ -1,0 +1,65 @@
+<div class="card">
+
+    <div class="card-header bg-{{meta.formColor}}">
+        <h3 class="card-title">{{meta.formTitle}}</h3>
+    </div>
+
+    <div class="card-body">
+        <form class="" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <div class="form-group" *ngFor="let input of meta.inputs">
+                <label for={{input.name}}>{{input.label}}</label>
+
+                <input [formControlName]="input.name" type="text" id={{input.name}} class="form-control"
+                    autocomplete={{input.autocomplete}} [class.is-invalid]="invalid(input.name)"
+                    [class.is-valid]="valid(input.name)" [placeholder]="input.placeholder" />
+                <small class="form-text text-muted">{{input.helperText}}</small>
+
+                <div *ngIf="invalid(input.name)" class="alert alert-danger">
+
+                    <div *ngIf="errors(input.name).required">
+                        {{input.name}} is required.
+                    </div>
+                    <div *ngIf="errors(input.name).minLength">
+                        {{input.name}} does not meet the minimum-length requirement.
+                    </div>
+                    <div *ngIf="errors(input.name).forbiddenName">
+                        {{value(input.name)}} is not allowed .
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Submitting  -->
+            <button class="btn btn-dark mr-2" (click)="goBack()">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                Back
+            </button>
+
+            <button class="btn btn-danger text-white mr-2" type="button" data-toggle="modal"
+                *ngIf="meta.editForm">Delete</button>
+
+            <button class="btn btn-secondary mr-2" type="button" (click)="onReset()">Reset form</button>
+
+
+            <button class="btn btn-warning mr-2" type="button" data-toggle="modal" *ngIf="form.valid && form.dirty">
+                {{meta.submitLabel}}
+            </button>
+        </form>
+    </div>
+
+    <div class="card-footer">
+        <div class="card">
+            <div class="card-header">
+                <h6>Form Status</h6>
+            </div>
+            <!-- <div class="card-body">
+                    <p class="card-title">Form Data: {{form.value | json}}</p>
+                    <p class="card-text">Form Validation : {{form.status}}</p>
+                </div> -->
+        </div>
+    </div>
+
+
+</div>

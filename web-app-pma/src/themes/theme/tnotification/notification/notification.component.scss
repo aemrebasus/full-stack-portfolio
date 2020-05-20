@@ -1,0 +1,16 @@
+@import "../../style/all.scss";
+.notification {
+    width: 300px;
+}
+
+.notification-list {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+}
+
+.title{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

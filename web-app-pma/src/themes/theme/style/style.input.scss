@@ -1,0 +1,40 @@
+input,
+select,
+input:focus,
+input:active,
+select:active {
+    border: thin solid $input-border-color;
+    color: $input-color;
+}
+
+input {
+    background-color: $input-bg-color;
+    color: $input-color;
+    box-shadow: none;
+}
+
+input,
+button {
+    box-shadow: 0px 0px $box-shadow-size black;
+}
+
+
+$a123123: rgba(rgb(71, 71, 71), 0.4);
+input:focus,
+input:active {
+    box-shadow: 3px 3px 0px $a123123, -3px 3px 0px $a123123, 3px -3px 0px $a123123, -3px -3px 0px $a123123;
+}
+
+select,
+option,
+option * {
+    cursor: pointer;
+}
+
+select {
+    max-width: 150px;
+}
+
+i {
+    color: $icon-color;
+}

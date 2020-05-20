@@ -1,0 +1,28 @@
+@import "../../style/all.scss";
+.card {
+    position: relative;
+    height: 600px;
+}
+.card-table {
+    margin-top: 30px;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    min-height: 200px;
+}
+
+.card-table-header {
+    overflow: hidden;
+}
+
+.search-control,
+.search-control:focus,
+.search-control:active {
+    box-shadow: none;
+    border: none;
+    border-bottom: 3px solid gray;
+}
+
+.search-control:focus {
+    border-bottom: 3px solid rgb(11, 59, 59);
+}

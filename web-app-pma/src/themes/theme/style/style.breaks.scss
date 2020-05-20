@@ -1,0 +1,11 @@
+@media (min-width: 1500px) and (max-width: 3000px) {
+    .notification {
+        width: 250px;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 1500px) {
+    [class^="me-col"] {
+        width: 100%;
+    }
+}

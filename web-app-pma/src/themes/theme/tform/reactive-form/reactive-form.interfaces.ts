@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, ValidatorFn } from '@angular/forms';
 
 export interface IOperationEvent {
     type: string;
@@ -9,12 +9,39 @@ export interface IOperationEvent {
  * Use this interface to initialize the inputs in the
  */
 export interface IInput {
+    /**
+     * Like text, range, data, password etc.
+     */
     type?: string;
+    /**
+     * muted text shown under the input box
+     */
     helperText?: string;
+
+
+    placeholder: string;
+    /**
+     * input label
+     */
     label?: string;
+    /**
+     * programatic name of this input.
+     * @important must match the passed FormGroup's controls' name field.
+     */
     name?: string;
+    /**
+     * like address, email, password, name etc.
+     */
     autocomplete?: string;
-    validators?: { name: string, value: any }[]
+
+    /**
+     * @NotImplemented useless for now.
+     * 
+     */
+    validators?: ValidatorFn[];
+
+
+
 }
 
 export interface IFormData {
@@ -35,6 +62,7 @@ export interface IFormMeta {
     formTitle?: string;
 
 
+    formColor?: string;
     /**
      * This is the value of submit button
      */
@@ -49,6 +77,7 @@ export interface IFormMeta {
     /**
      * Allows us to build connections between form controls and html elements
      * Make sure the name value matches the name of the controller in form!
+     * @important make sure the values of inputs matches the FormGroup's.
      */
     inputs?: IInput[];
 
@@ -57,6 +86,7 @@ export interface IFormMeta {
 
     /**
      * This stores the current id of the viewed item
+     * @For edit forms
      */
     currentItemId?: string | number;
 
@@ -75,7 +105,11 @@ export interface IFormMeta {
 
 
 
+    events?: IEventHandlers;
+
+
 }
+
 
 
 export interface IAlertMessage {
@@ -116,23 +150,23 @@ export interface IEventHandlers {
     /**
      * runs when the form submitted.
      */
-    onSubmit(): void;
+    onSubmit(formValue?: any): void;
 
     /**
      * runs when the form delete button clicked.
      */
-    onDelete(): void;
+    onDelete(formValue?: any): void;
 
     /**
      * When the Back button clicked on the form do this.
      */
-    goBack(): void;
+    goBack(formValue?: any): void;
 
     /**
      * When Reset button clicked
      *  clean the form and restore id back.
      */
-    onReset(): void;
+    onReset(formValue?: any): void;
 }
 
 
