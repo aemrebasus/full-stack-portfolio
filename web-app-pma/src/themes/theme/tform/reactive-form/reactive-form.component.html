@@ -6,10 +6,12 @@
         <div class="card-header bg-{{meta.formColor}} d-flex flex-row justify-content-between">
 
             <h3 class="card-title">{{meta.formTitle}}</h3>
-            <a type="button" class="btn btn-danger">
-                <i class="fa fa-window-close fa-2x" aria-hidden="true" (click)="closeOutlet()"></i>
+
+            <a type="button" class="btn btn-danger" (click)="closeOutlet()">
+                <i class="fa fa-window-close fa-2x" aria-hidden="true"></i>
             </a>
-            <!--  -->
+         
+            
         </div>
 
         <div class="card-body">
