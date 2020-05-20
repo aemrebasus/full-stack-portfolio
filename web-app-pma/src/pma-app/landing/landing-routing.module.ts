@@ -9,7 +9,7 @@ const routes: Routes = [
     {
         path: 'home',
         component: MainComponent,
-        children: Outlets
+        children: Outlets()
     },
 ];
 
