@@ -35,6 +35,18 @@ export class ReactiveFormComponent
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
+  waiting = 1000;
+
+  
+  renderSlow() {
+    this.waiting += 1000;
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res(true);
+      }, this.waiting);
+    });
+  }
+
   ngOnInit(): void {
     this.route.data.subscribe(resolvedData => {
       this.meta = resolvedData.resolved.meta;

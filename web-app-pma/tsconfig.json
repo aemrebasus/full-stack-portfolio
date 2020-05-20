@@ -36,6 +36,12 @@
       "@tmodal/*": [
         "src/themes/theme/tmodal/*"
       ],
+      "@tdialog/*": [
+        "src/themes/theme/tdialog/*"
+      ],
+      "@pma/*": [
+        "src/pma-app/*"
+      ],
       "@pma-services/*": [
         "src/pma-app/services/*"
       ],

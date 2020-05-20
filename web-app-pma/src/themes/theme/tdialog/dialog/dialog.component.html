@@ -1,0 +1,14 @@
+<app-modal-wrapper [title]="title()" [bgColor]="bgColor()" [textColor]="textColor()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <input [formControlName]="name" type="text" [id]="name" class="form-control" list="data" placeholder="Search . . ." required/>
+            <datalist id="data">
+                <option *ngFor="let o of data()" [value]="o.name"></option>
+            </datalist>
+        </div>
+
+        <button class="btn btn-warning mr-2" type="button" *ngIf="form.valid && form.dirty"> Open </button>
+    </form>
+
+</app-modal-wrapper>

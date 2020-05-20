@@ -2,7 +2,18 @@
     <div class="row col-md-12 pt-5">
         <div class="col-md-4"></div>
         <div class="col-md-4 pt-5">
-            <ng-content></ng-content>
+            <div class="card">
+                <div class="card-header bg-{{bgColor}} d-flex flex-row justify-content-between">
+                    <h3 class="card-title text-{{textColor}}">{{title}}</h3>
+
+                    <a type="button" class="btn" (click)="closeOutlet()">
+                        <i class="fa fa-times-circle text-{{textColor}}"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <ng-content></ng-content>
+                </div>
+            </div>
         </div>
         <div class="col-md-4"></div>
     </div>

@@ -1,5 +1,7 @@
 import { INavbar } from '@tnavbar/navbar/navbar.component';
 
+
+
 export const NavBarData: INavbar | any = [
     {
         path: 'Document', subs: [
@@ -13,7 +15,7 @@ export const NavBarData: INavbar | any = [
             },
             {
                 outlet: 'forms', path: 'Open Project',
-                loadChildren: () => import('@pma-entity-modules/project-entity/project-entity.module').then(m => m.ProjectEntityModule),
+                loadChildren: () => import('@pma/open-dialog/open-dialog.module').then(m => m.OpenDialogModule),
             },
             {
                 outlet: 'forms', path: 'Open Issue',

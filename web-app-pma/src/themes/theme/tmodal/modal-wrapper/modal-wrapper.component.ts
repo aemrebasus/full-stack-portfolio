@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-wrapper',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalWrapperComponent implements OnInit {
 
-  constructor() { }
+  @Input() bgColor = 'Secondary';
+  @Input() textColor = 'white';
+  @Input() title = 'No Title (bgColor? textColor? title?)';
+
+  
+
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  closeOutlet() {
+    this.router.navigate(['../pma/home', { outlets: { forms: null } }]);
+  }
+
 
 }
