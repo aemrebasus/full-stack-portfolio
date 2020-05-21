@@ -42,9 +42,6 @@
       "@tservices/*": [
         "src/themes/theme/zzservices/*"
       ],
-      "@pma/*": [
-        "src/pma-app/*"
-      ],
       "@pma-services/*": [
         "src/pma-app/services/*"
       ],
@@ -53,6 +50,9 @@
       ],
       "@pma-entity-modules/*": [
         "src/pma-app/open-form/*"
+      ],
+      "@pma/*": [
+        "src/pma-app/*"
       ]
     },
     "outDir": "./dist/out-tsc",

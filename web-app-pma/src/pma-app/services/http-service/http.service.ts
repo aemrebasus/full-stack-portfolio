@@ -12,6 +12,7 @@ import { of } from 'rxjs';
 export class HttpClientService {
   private client: HttpClient;
 
+
   constructor() {
     this.client = new HttpClient(null);
 
@@ -30,7 +31,7 @@ export class HttpClientService {
   projects() {
     return this.get<IProject[]>(PROJECTS, [
       {
-        meta: { id: 1, orgId: 1, },
+        meta: { id: 1, orgId: 1, current: true },
         name: 'Project 1',
         summary: 'Summary of the project 1'
       },
@@ -39,21 +40,43 @@ export class HttpClientService {
         name: 'Project 2',
         summary: 'Summary of the project 2'
       },
+      {
+        meta: { id: 3, orgId: 1, },
+        name: 'Project 3',
+        summary: 'Summary of the project 2'
+      },
 
     ]);
   }
 
+
+
   issues() {
     return this.get<IIssue[]>(ISSUES, [
       {
-        meta: { id: 1, orgId: 1, projectId: 1 },
+        meta: { id: 1, orgId: 1, projectId: 1, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
         title: 'First issue',
         description: ' First Description',
       },
       {
-        meta: { id: 2, orgId: 1, projectId: 1 },
+        meta: { id: 2, orgId: 1, projectId: 1, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
+        title: 'Second issue',
+        description: ' First Description',
+      },
+      {
+        meta: { id: 3, orgId: 1, projectId: 1, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
+        title: 'Third issue',
+        description: ' First Description',
+      },
+      {
+        meta: { id: 2, orgId: 1, projectId: 2, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
         title: 'Second Issue',
         description: 'Second Description',
+      },
+      {
+        meta: { id: 3, orgId: 1, projectId: 2, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
+        title: 'Third Issue',
+        description: 'THird Description',
       },
 
     ]);

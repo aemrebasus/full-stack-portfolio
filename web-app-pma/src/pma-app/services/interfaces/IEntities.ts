@@ -24,6 +24,7 @@ export interface IEntityMeta {
     email?: string;
     password?: string;
     current?: boolean;
+    tags?: string[];
 }
 
 /**

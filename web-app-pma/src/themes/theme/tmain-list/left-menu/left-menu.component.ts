@@ -1,39 +1,43 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-left-menu',
   templateUrl: './left-menu.component.html',
   styleUrls: ['./left-menu.component.scss']
 })
-export class LeftMenuComponent {
+export class LeftMenuComponent implements OnInit {
 
   name = 'leftMenu';
+
   @Input() title = 'Menu Title';
 
 
-  @Input() data: ILeftMenuData = [
-    { values: ['Menu item', 'anogher one'], pills: [1, 2, 3] },
-    { values: ['Menu item', 'anogher one'], pills: [1, 2, 3] },
-    { values: ['Menu item', 'anogher one'], pills: [1, 2, 3] },
-    { values: ['Menu item', 'anogher one'], pills: [1, 2, 3] },
-    { values: ['Menu item', 'anogher one'], pills: [1, 2, 3] },
-    { values: ['Menu item', 'anogher one'], pills: [1, 2, 3] },
-    { values: ['Menu item', 'anogher one'], pills: [1, 2, 3] },
-    { values: ['Menu item', 'anogher one'], pills: [1, 2, 3] },
-    { values: ['Menu item', 'anogher one'], pills: [1, 2, 3] },
-  ];
+  @Input() data: ILeftMenuData;
 
-  filteredData: ILeftMenuData = this.data;
+  filteredData: ILeftMenuData;
 
   @Output() menuClick = new EventEmitter<any>();
 
-  pillColors = ['success', 'danger', 'secondary', 'success'];
+
+  statusColors = {
+    todo: 'warning',
+    inprogress: 'info',
+    done: 'success',
+    complete: 'success',
+    enhancement: 'info',
+    feature: 'primary',
+    task: 'secondary',
+    bug: 'danger',
+  }
 
   click(item: ILeftMenuSingleData) {
     this.menuClick.emit(item);
   }
 
 
+  ngOnInit(): void {
+    this.filteredData = this.data;
+  }
 
 
   filter(event: ILeftMenuData) {
@@ -44,7 +48,7 @@ export class LeftMenuComponent {
 
 export interface ILeftMenuSingleData {
   values?: string[];
-  pills?: number[];
+  pills?: (number | string)[];
 }
 
 export type ILeftMenuData = ILeftMenuSingleData[];
