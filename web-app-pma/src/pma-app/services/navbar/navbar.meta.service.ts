@@ -25,7 +25,7 @@ export class NavbarMetaService {
                     },
                     {
                         outlet: 'dialog', path: 'Open Issue',
-                        loadChildren: () => import('@pma/open-form/open-form.module').then(m => m.OpenFormModule),
+                        loadChildren: () => import('@pma/open-dialog/open-dialog.module').then(m => m.OpenDialogModule),
                     },
 
                 ]

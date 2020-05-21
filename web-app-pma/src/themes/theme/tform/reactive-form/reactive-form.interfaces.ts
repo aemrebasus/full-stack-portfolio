@@ -1,4 +1,5 @@
 import { FormControl, ValidatorFn } from '@angular/forms';
+import { IConfirmationResult } from '@tconfirmation/confirm/confirm.interfaces';
 
 export interface IOperationEvent {
     type: string;
@@ -145,28 +146,29 @@ export interface IAlertUtility {
 
 
 
+
 export interface IEventHandlers {
 
     /**
      * runs when the form submitted.
      */
-    onSubmit(formValue?: any): void;
+    onSubmit(formValue?: any, event?: IConfirmationResult): void;
 
     /**
      * runs when the form delete button clicked.
      */
-    onDelete(formValue?: any): void;
+    onDelete(formValue?: any, event?: IConfirmationResult): void;
 
     /**
      * When the Back button clicked on the form do this.
      */
-    goBack(formValue?: any): void;
+    onBack(formValue?: any, event?: IConfirmationResult): void;
 
     /**
      * When Reset button clicked
      *  clean the form and restore id back.
      */
-    onReset(formValue?: any): void;
+    onReset(formValue?: any, event?: IConfirmationResult): void;
 }
 
 

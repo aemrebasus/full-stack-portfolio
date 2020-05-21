@@ -6,12 +6,20 @@
                 <div class="card-header bg-{{bgColor}} d-flex flex-row justify-content-between">
                     <h3 class="card-title text-{{textColor}}">{{title}}</h3>
 
-                    <a type="button" class="btn" (click)="closeOutlet()">
+                    <button type="button" class="btn" data-toggle="modal" data-target="#close">
                         <i class="fa fa-times-circle text-{{textColor}}"></i>
-                    </a>
+                    </button>
                 </div>
                 <div class="card-body">
-                    <ng-content></ng-content>
+
+
+                    <app-confirm [meta]="cm" (response)="confirm($event)"
+                        *ngFor="let cm of confirmationMetas">
+                    </app-confirm>
+
+
+                    <ng-content> </ng-content>
+
                 </div>
             </div>
         </div>

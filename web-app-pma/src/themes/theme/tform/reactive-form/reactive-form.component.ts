@@ -9,6 +9,8 @@ import {
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RoutingService } from '../../zzservices/routing/routting.service';
+import { IConfirmMeta, ConfirmationMetas, IConfirmationResult } from '@tconfirmation/confirm/confirm.interfaces';
+
 
 
 @Component({
@@ -25,6 +27,10 @@ export class ReactiveFormComponent
   name = 'form';
 
 
+  confirmed = false;
+  confirmationMetas: IConfirmMeta[] = ConfirmationMetas.all();
+
+
   /**
    * Forms' title, controls, controls'validators etc.
    */
@@ -36,6 +42,9 @@ export class ReactiveFormComponent
   @Input() form: FormGroup;
 
   @Output() routerEvent = new EventEmitter();
+
+
+
 
   constructor(private route: ActivatedRoute, private routingService: RoutingService) { }
 
@@ -161,27 +170,71 @@ export class ReactiveFormComponent
 
 
 
+
+
+  // confirmation
+  confirm(event: IConfirmationResult) {
+    if (event.status) {
+
+      switch (event.type) {
+        case 'back': this.onBack(event); break;
+        case 'reset': this.onReset(event); break;
+        case 'cancel': this.onBack(event); break;
+        case 'close': this.onBack(event); break;
+        case 'save': this.onSubmit(event); break;
+        case 'delete': this.onDelete(event); break;
+        case 'update': this.onSubmit(event); break;
+        default: this.alertInfo(`The event type does not match with any of events! ${event.type}`);
+      }
+
+
+
+
+    } else {
+      // If Not Confirmed/Canceled
+    }
+
+  }
+
   // Event handlers
-  onSubmit() {
-    this.meta.events.onSubmit(this.form.value);
-  }
-
-  onDelete() {
-    this.meta.events.onDelete(this.form.value);
-  }
-
-
-  goBack() {
+  onSubmit(event: IConfirmationResult) {
     try {
-      this.meta.events.goBack(this.form.value);
+      this.meta.events.onSubmit(this.form.value, event);
     } catch (err) {
-      this.routingService.closeOutlet();
+      alert('Pass the on submit handler with meta.events!!!')
+      this.closeOutlet()
+    }
+
+
+
+  }
+
+  onDelete(event: IConfirmationResult) {
+    try {
+      this.meta.events.onDelete(this.form.value, event);
+    } catch (err) {
+      alert('Pass the on submit handler with meta.events!!!')
+      this.closeOutlet();
     }
   }
 
-  onReset() {
+
+
+  onBack(event: IConfirmationResult) {
     try {
-      this.meta.events.onReset(this.form.value);
+      // if any handler function provided!
+      this.meta.events.onBack(this.form.value, event);
+    } catch (err) {
+      // else go back to the home page
+      alert('Pass the onBack handler with meta.events!!!');
+      this.closeOutlet();
+    }
+
+  }
+
+  onReset(event: IConfirmationResult) {
+    try {
+      this.meta.events.onReset(this.form.value, event);
     } catch (err) {
       Object.entries(this.form.controls).forEach(e => {
         this.form.controls[e[0]].reset('', { invalid: null, valid: null, dirty: null, touched: null });
@@ -189,6 +242,9 @@ export class ReactiveFormComponent
     }
   }
 
+  closeOutlet() {
+    this.routingService.closeOutlet();
+  }
 
 }
 

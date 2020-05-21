@@ -1,32 +1,41 @@
-<app-modal-wrapper [bgColor]="meta.formColor" [title]="meta.formTitle">
+<app-modal-wrapper [bgColor]="meta.formColor" [title]="meta.formTitle | titlecase" (confirmEvent)="confirm($event)">
+    <div class="card-body bg-info">
+        {{form.value | json}}
+    </div>
 
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form">
 
         <div class="form-group" *ngFor="let input of meta.inputs">
 
 
-            <label for={{input.name}}>{{input.label}}</label>
+            <label for={{input.name}}>{{input.label | titlecase}}</label>
 
             <input [formControlName]="input.name" type="text" [id]="input.name" class="form-control"
                 [class.is-invalid]="invalid(input.name)" [class.is-valid]="valid(input.name)"
-                [placeholder]="input.placeholder" autocomplete="off" />
+                [placeholder]="input.placeholder | titlecase" autocomplete="off" />
+
             <small class="form-text text-muted">{{input.helperText}}</small>
 
+            <!-- Validaton Errors  -->
             <div *ngIf="invalid(input.name)" class="alert alert-danger">
 
                 <div *ngIf="errors(input.name).required">
-                    {{input.name}} is required.
+                    {{input.name | titlecase}} is required.
                 </div>
+
                 <div *ngIf="errors(input.name).minLength">
-                    {{input.name}} does not meet the minimum-length requirement.
+                    {{input.name | titlecase}} does not meet the minimum-length requirement.
                 </div>
+
                 <div *ngIf="errors(input.name).forbiddenName">
-                    {{value(input.name)}} is not allowed .
+                    {{value(input.name | titlecase)}} is not allowed .
                 </div>
+
                 <div *ngIf="errors(input.name).NaN">
-                    {{value(input.name)}} is not a number .
+                    {{value(input.name | titlecase)}} is not a number .
                 </div>
+
                 <div *ngIf="errors(input.name).email">
                     {{value(input.name)}} is not an email .
                 </div>
@@ -39,24 +48,26 @@
 
 
 
-        <!-- Submitting  -->
-        <button class="btn btn-dark mr-2" (click)="goBack()">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-            Back
-        </button>
-
-        <button class="btn btn-danger text-white mr-2" type="button" data-toggle="modal"
-            *ngIf="meta.editForm">Delete</button>
-
-        <button class="btn btn-secondary mr-2" type="button" (click)="onReset()">Reset form</button>
 
 
-        <button class="btn btn-warning mr-2" type="button" data-toggle="modal" *ngIf="form.valid && form.dirty">
-            {{meta.submitLabel}}
-        </button>
+
     </form>
 
-    <div class="card-body bg-info">
-        {{form.value | json}}
-    </div>
+    <button class="btn btn-dark mr-2" data-toggle="modal" data-target="#back">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Back
+    </button>
+
+    <button class="btn btn-dark mr-2" type="button" data-toggle="modal" data-target="#reset" *ngIf="form.dirty">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        Reset form
+    </button>
+    <button class="btn btn-danger text-white mr-2" type="button" data-toggle="modal" *ngIf="meta.editForm"
+        data-target="#delete">Delete</button>
+
+    <button class="btn btn-warning mr-2" type="button" data-toggle="modal" *ngIf="form.valid && form.dirty"
+        data-target="#save">
+        {{meta.submitLabel | titlecase}}
+    </button>
+
 </app-modal-wrapper>

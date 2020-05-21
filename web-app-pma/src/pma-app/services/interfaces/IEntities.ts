@@ -23,6 +23,7 @@ export interface IEntityMeta {
     lastName?: string;
     email?: string;
     password?: string;
+    current?: boolean;
 }
 
 /**

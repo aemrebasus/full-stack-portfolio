@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalWrapperComponent } from './modal-wrapper/modal-wrapper.component';
-import { RouterModule } from '@angular/router';
+import { TconfirmationModule } from '@tconfirmation/tconfirmation.module';
 
 
 
@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
   declarations: [ModalWrapperComponent],
   imports: [
     CommonModule,
+    TconfirmationModule
   ],
   exports: [
     ModalWrapperComponent

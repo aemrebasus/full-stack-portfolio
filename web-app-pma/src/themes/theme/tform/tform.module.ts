@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { TmodalModule } from '../tmodal/tmodal.module';
 import { InputControlComponent } from './input-control/input-control.component';
 import { WaitForPipe } from './wait/wait-for.pipe';
+import { TconfirmationModule } from '@tconfirmation/tconfirmation.module';
 
 
 
@@ -19,14 +20,11 @@ import { WaitForPipe } from './wait/wait-for.pipe';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    TconfirmationModule,
     TmodalModule,
     RouterModule.forChild([
       { path: '', component: ReactiveFormComponent }
     ])
-  ],
-  exports: [
-    ReactiveFormComponent,
-    InputControlComponent
   ]
 })
 export class TformModule { }

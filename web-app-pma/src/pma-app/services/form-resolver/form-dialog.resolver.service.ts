@@ -30,7 +30,11 @@ export class FormDialogResolverService implements Resolve<any> {
 
         } else if (path === 'new issue') {
             return of(this.componentService.formCreateIssue());
-        } else {
+        } else if (path === 'new user') {
+            return of(this.componentService.formCreateUser())
+        }
+
+        else {
             const msg = `Could not find any route matching with ${path}`;
             this.logger.error(msg);
         }

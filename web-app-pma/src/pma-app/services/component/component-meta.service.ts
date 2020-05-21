@@ -7,6 +7,12 @@ import { IFormData } from '@tform/reactive-form/reactive-form.interfaces';
 import { ValidatorService } from '../validator/validator.service';
 
 
+/** 
+ * #### All forms and dialogs are built with these data.
+ */
+
+
+
 /**
  * Provides Meta data for components.
  */
@@ -16,7 +22,6 @@ import { ValidatorService } from '../validator/validator.service';
 export class ComponentMetaService {
 
   constructor(private validators: ValidatorService) { }
-
 
 
   /**
@@ -76,6 +81,42 @@ export class ComponentMetaService {
           },
           {
             type: 'text', name: 'description', label: 'Description', placeholder: 'issue description',
+            validators: [this.validators.validators().longText]
+          },
+        ],
+      }
+    }
+
+    return form;
+  }
+  /**
+   * Issue-Create form will be generated from this object.
+   * @issueForm
+   */
+  formCreateUser() {
+
+    const form: IFormData = {
+      meta: {
+        formTitle: 'create user',
+        formName: 'user',
+        submitLabel: 'save user',
+        inputs: [
+          {
+            type: 'text', name: 'id', label: 'ID', placeholder: 'user ID',
+            validators: [
+              (c) => (isNaN(c.value) ? ({ NaN: true }) : null)
+            ]
+          },
+          {
+            type: 'text', name: 'first name', label: 'first name', placeholder: 'user first name',
+            validators: [(c) => (c.value.length < 2) ? ({ minLength: true }) : null]
+          },
+          {
+            type: 'text', name: 'last name', label: 'last name', placeholder: 'user last name',
+            validators: [(c) => (c.value.length < 2) ? ({ minLength: true }) : null]
+          },
+          {
+            type: 'text', name: 'description', label: 'Description', placeholder: 'user description',
             validators: [this.validators.validators().longText]
           },
         ],

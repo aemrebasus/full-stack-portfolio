@@ -10,11 +10,13 @@ import { NavbarMetaService } from '@pma/services/navbar/navbar.meta.service';
 export class MainComponent implements OnInit {
 
   navs: INavbar;
+  banners = ['Ahmet', 'Emrebas', 'Ahmet'];
   constructor(private navbarMetaService: NavbarMetaService) {
 
   }
   ngOnInit(): void {
     this.navs = this.navbarMetaService.settings();
+    
   }
 
 }

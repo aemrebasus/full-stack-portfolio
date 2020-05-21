@@ -1,11 +1,11 @@
 <div class="modal fade" id={{meta.id}} tabindex="-1" role="dialog" aria-labelledby="id" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-{{bgColor}} text-{{textColor}} d-flex flex-row justify-content-between">
                 <h5 class="modal-title">{{meta.title}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <a type="button" class="btn" data-dismiss="modal">
+                    <i class="fa fa-times-circle text-{{textColor}}"></i>
+                </a>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -15,7 +15,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"
                     (click)="cancel()">{{meta.cancelLabel}}</button>
-                <button type="button" class="btn btn-primary" (click)="confirm()"
+                    
+                <button type="button" class="btn btn-{{bgColor}} text-{{textColor}}" (click)="confirm()"
                     data-dismiss="modal">{{meta.confirmLabel}}</button>
             </div>
         </div>

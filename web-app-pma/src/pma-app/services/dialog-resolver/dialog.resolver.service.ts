@@ -11,7 +11,7 @@ export class OpenDialogResolverService implements Resolve<any> {
     constructor(private httpService: HttpClientService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        let data = null;
+        let data;
         this.httpService.projects().subscribe((result) => {
             data = result;
         });

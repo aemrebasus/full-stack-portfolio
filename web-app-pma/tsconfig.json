@@ -39,6 +39,9 @@
       "@tdialog/*": [
         "src/themes/theme/tdialog/*"
       ],
+      "@tservices/*": [
+        "src/themes/theme/zzservices/*"
+      ],
       "@pma/*": [
         "src/pma-app/*"
       ],

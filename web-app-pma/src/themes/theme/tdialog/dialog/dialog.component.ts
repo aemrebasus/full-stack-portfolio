@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { IConfirmationResult } from '@tconfirmation/confirm/confirm.interfaces';
+import { RoutingService } from '../../zzservices/routing/routting.service';
+import { IEventHandlers } from '@tform/reactive-form/reactive-form.interfaces';
 
 @Component({
   selector: 'app-dialog',
@@ -10,21 +13,20 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class DialogComponent implements OnInit {
   name = 'dialog';
 
-  meta: IDialogMeta = {
-    bgColor: 'secondary',
-    textColor: 'white',
-    title: 'No title (title?)',
-    data: [
-      { id: '1', name: 'No data' },
-      { id: '2', name: 'No data' },
-      { id: '3', name: 'No data' },
-      { id: '4', name: 'No data' },
-    ]
-  };
+  meta: IDialogMeta;
+  //{
+  //   bgColor: 'secondary',
+  //   textColor: 'white',
+  //   title: 'No title (title?)',
+  //   events:EventHandler
+  //   data: [
+  //     { id: '1', name: 'No data' },
+  //   ]
+  // };
 
   form: FormGroup = new FormGroup({});
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private routingService: RoutingService) { }
 
   ngOnInit(): void {
 
@@ -44,8 +46,35 @@ export class DialogComponent implements OnInit {
 
   }
 
-  onSubmit() {
 
+  confirm(event: IConfirmationResult) {
+    if (event.status) {
+
+      switch (event.type) {
+        case 'open':
+          this.onSubmit(event);
+          break;
+        case 'close':
+          this.routingService.closeOutlet();
+          break;
+        default:
+          alert(`Event type does not match with any of events ${event.type}`)
+      }
+
+    } else {
+      // canceled...
+    }
+  }
+
+  onSubmit(event: IConfirmationResult) {
+    try {
+
+      this.meta.events.onSubmit(this.form.value, event);
+      this.closeOutlet();
+    } catch (err) {
+      alert('Pass the onSubmit handler witht he meta.events.')
+      this.closeOutlet();
+    }
   }
 
   bgColor() {
@@ -64,6 +93,10 @@ export class DialogComponent implements OnInit {
     return this.meta.data;
   }
 
+  closeOutlet() {
+    this.routingService.closeOutlet();
+  }
+
 }
 
 /**
@@ -76,6 +109,7 @@ export interface IDialogMeta {
   bgColor?: string;
   textColor?: string;
   title?: string;
+  events?: IEventHandlers;
   data?: {
     id?: string | number;
     name?: string;

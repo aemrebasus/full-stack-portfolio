@@ -1,16 +1,21 @@
+<!-- Loading Spinner -->
+<app-loading></app-loading>
+
 <div class="flex-row-stretch">
 
+    <!-- Forms and dialogs will use this outlet -->
     <router-outlet name="dialog"></router-outlet>
+
 
     <!-- NAVBAR ################### -->
     <div class="me-col-12">
         <app-navbar [navs]="navs"></app-navbar>
+        <app-banner [(banners)]="banners"></app-banner>
     </div>
-
-
 
     <!-- ################ Search Bar ################## -->
     <div class="me-col-3 ">
+        <app-left-menu></app-left-menu>
         <!-- <app-search-bar></app-search-bar> -->
     </div>
 

@@ -1,15 +1,21 @@
 <ul class="list-group " *ngIf="data">
-    <li class="list-item list-group-item bg-dark text-white  mt-1">Projects</li>
+    <li class="list-item list-group-item bg-dark text-white p-1 pr-2 pl-2">
+
+        <div class="d-flex justify-content-between align-items-center p-0">
+            <h3>{{title}}</h3>
+            <app-searchbar [data]="data" (filter)="filter($event)"></app-searchbar>
+        </div>
+
+    </li>
+
 </ul>
+
 <ul class="list list-group  pr-2">
     <li type="button" class="list-item list-group-item d-flex justify-content-between align-items-center  mt-1"
-        *ngFor="let item of data" 
-        
-        
-        (click)="click(item)">
-
-
-        <a type="button" class="text-dark">{{item.name}}</a>
+        *ngFor="let item of filteredData" (click)="click(item)">
+        <ul class="list list-group">
+            <li *ngFor="let value of item.values">{{value}}</li>
+        </ul>
         <div class="badge" *ngIf="item.pills">
             <span class="badge badge-{{pillColors[item.pills.indexOf(pill)]}} badge-pill mr-1 ml-1 "
                 *ngFor="let pill of item.pills">{{pill}}</span>
