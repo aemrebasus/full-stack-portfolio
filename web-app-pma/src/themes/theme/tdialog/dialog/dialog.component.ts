@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -27,12 +27,21 @@ export class DialogComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+
     const control = new FormControl('');
     this.form.addControl(this.name, control);
 
     this.route.data.subscribe(data => {
-      this.meta = data.resolved[this.name];
-    })
+
+      this.meta = data.resolved;
+
+      if (!data.resolved) {
+        throw new Error('Please provide the data for dialog!');
+      }
+    });
+
+
   }
 
   onSubmit() {

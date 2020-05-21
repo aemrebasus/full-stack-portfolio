@@ -10,7 +10,7 @@
 
             <input [formControlName]="input.name" type="text" [id]="input.name" class="form-control"
                 [class.is-invalid]="invalid(input.name)" [class.is-valid]="valid(input.name)"
-                [placeholder]="input.placeholder" />
+                [placeholder]="input.placeholder" autocomplete="off" />
             <small class="form-text text-muted">{{input.helperText}}</small>
 
             <div *ngIf="invalid(input.name)" class="alert alert-danger">
@@ -24,7 +24,15 @@
                 <div *ngIf="errors(input.name).forbiddenName">
                     {{value(input.name)}} is not allowed .
                 </div>
+                <div *ngIf="errors(input.name).NaN">
+                    {{value(input.name)}} is not a number .
+                </div>
+                <div *ngIf="errors(input.name).email">
+                    {{value(input.name)}} is not an email .
+                </div>
 
+
+                <!-- Add any validation error message here -->
             </div>
 
         </div>

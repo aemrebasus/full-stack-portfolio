@@ -49,7 +49,7 @@
         "src/pma-app/*"
       ],
       "@pma-entity-modules/*": [
-        "src/pma-app/entity/*"
+        "src/pma-app/open-form/*"
       ]
     },
     "outDir": "./dist/out-tsc",

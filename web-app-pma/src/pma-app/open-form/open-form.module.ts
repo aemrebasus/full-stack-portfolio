@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ProjectResolverService } from './project-resolver.service';
-
+import { FormDialogResolverService } from '@pma/services/form-resolver/form-dialog.resolver.service';
 
 @NgModule({
   declarations: [],
@@ -12,9 +11,10 @@ import { ProjectResolverService } from './project-resolver.service';
       {
         path: '',
         loadChildren: () => import('@tform/tform.module').then(m => m.TformModule),
-        resolve: { resolved: ProjectResolverService }
+        resolve: { resolved: FormDialogResolverService }
       }
     ])
-  ]
+  ],
+  providers: []
 })
-export class ProjectEntityModule { }
+export class OpenFormModule { }

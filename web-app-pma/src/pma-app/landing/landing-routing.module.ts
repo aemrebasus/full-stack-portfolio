@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { Outlets } from '@pma-services/navbar/navbar.service';
+import { NavbarMetaService } from '@pma/services/navbar/navbar.meta.service';
 
 
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
     {
         path: 'home',
         component: MainComponent,
-        children: Outlets()
+        children: NavbarMetaService.staticOutlets()
     },
 ];
 

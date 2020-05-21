@@ -45,7 +45,8 @@ export class RoutingService {
       [
         '../' + PMA_BASE_ROUTE,
         this.toOutletObject(this.outlet(), null)
-      ]
+        // replaceUrl delete the route from the history so that when user click Back-Navigation-Button, nothing happens!
+      ], { replaceUrl: true }
     );
   }
 }

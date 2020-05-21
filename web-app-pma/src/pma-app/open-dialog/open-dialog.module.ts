@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { OpenDialogResolver } from './open-dialog.resolver';
+import { OpenDialogResolverService } from '@pma/services/dialog-resolver/dialog.resolver.service';
 
 
 
@@ -13,7 +13,7 @@ import { OpenDialogResolver } from './open-dialog.resolver';
       {
         path: '',
         loadChildren: () => import('@tdialog/tdialog.module').then(m => m.TdialogModule),
-        resolve: { resolved: OpenDialogResolver }
+        resolve: { resolved: OpenDialogResolverService }
       }
     ])
   ]
