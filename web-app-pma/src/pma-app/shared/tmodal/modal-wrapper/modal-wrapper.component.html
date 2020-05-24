@@ -1,0 +1,28 @@
+<div class="modal-wrapper pt-5">
+    <div class="row col-md-12 pt-5">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 pt-5">
+            <div class="card">
+                <div class="card-header bg-{{bgColor}} d-flex flex-row justify-content-between">
+                    <h3 class="card-title text-{{textColor}}">{{title}}</h3>
+
+                    <button type="button" class="btn" data-toggle="modal" data-target="#close">
+                        <i class="fa fa-times-circle text-{{textColor}}"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+
+                    <!-- Confirmation Modals... -->
+                    <app-confirm [meta]="cm" (response)="confirm($event)"
+                        *ngFor="let cm of confirmationMetas">
+                    </app-confirm>
+
+
+                    <ng-content> </ng-content>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

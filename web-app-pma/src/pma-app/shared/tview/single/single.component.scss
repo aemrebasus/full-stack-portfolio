@@ -1,0 +1,19 @@
+@import "../../style/all.scss";
+.badge{  
+    color: rgb(27, 23, 23);
+}
+.badge-todo {
+    background-color: rgb(235, 219, 0);
+}
+
+.badge-enhancement {
+    background-color: aqua;
+}
+
+.badge-bug {
+    background-color: tomato;
+}
+
+.badge-feature {
+    @extend .badge-enhancement;
+}

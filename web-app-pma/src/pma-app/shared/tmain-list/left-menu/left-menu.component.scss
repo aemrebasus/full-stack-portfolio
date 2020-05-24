@@ -1,0 +1,19 @@
+@import "../../style/all.scss";
+
+.list-item:hover {
+    background-color: rgb(58, 178, 248);
+}
+
+.list {
+    max-height: $max-height-second-layer;
+    overflow-y: auto;
+}
+
+.list-item{ 
+  
+}
+
+
+.badge-pill {
+  margin-left: 1px;
+}

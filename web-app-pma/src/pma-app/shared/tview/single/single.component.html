@@ -1,0 +1,156 @@
+<!-- 
+/**
+* @name_ ?: string;
+* @summary ?: string;
+*/
+export interface IProject extends IEntity {
+   name?: string;
+   summary?: string;
+}
+
+
+/**
+* @title ?: string;
+* @description ?: string;
+*/
+export interface IIssue extends IEntity {
+   title?: string;
+   description?: string;
+}
+
+export interface IOrganization extends IEntity {
+   name?: string;
+}
+
+/**
+* @firstName ?: string;
+* @lastName ?: string;
+* @email ?: string;
+* @role ?: string;
+*/
+export interface IUser extends IEntity {
+   firstName?: string;
+   lastName?: string;
+   email?: string;
+   role?: string;
+}
+
+/**
+* @comment ?: string;
+*/
+export interface IComment extends IEntity {
+   comment?: string;
+} -->
+
+
+<div class="card text-left" *ngIf="data">
+    <div class="card-header">
+        <h3>{{name}} ({{data.meta.status}})</h3>
+    </div>
+    <div class="card-body">
+
+        <!-- <div class="row" *ngIf="data.name"><div class="col-3"><strong style="text-transform: capitalize;">name: </strong></div><div class="col-8">{{data.name}}</div></div> -->
+        <div class="row" *ngIf="data.name">
+            <div class="col-3"><strong style="text-transform: capitalize;">name: </strong></div>
+            <div class="col-8">{{data.name}}</div>
+        </div>
+        <div class="row" *ngIf="data.summary">
+            <div class="col-3"><strong style="text-transform: capitalize;">summary: </strong></div>
+            <div class="col-8">{{data.summary}}</div>
+        </div>
+        <div class="row" *ngIf="data.title">
+            <div class="col-8">
+                <h3><strong> {{data.title}}</strong></h3>
+            </div>
+        </div>
+        <div class="row" *ngIf="data.description">
+            <div class="col-3"><strong style="text-transform: capitalize;">description: </strong></div>
+            <div class="col-8">{{data.description}}</div>
+        </div>
+        <div class="row" *ngIf="data.name">
+            <div class="col-3"><strong style="text-transform: capitalize;">name: </strong></div>
+            <div class="col-8">{{data.name}}</div>
+        </div>
+        <div class="row" *ngIf="data.firstName">
+            <div class="col-3"><strong style="text-transform: capitalize;">firstName: </strong></div>
+            <div class="col-8">{{data.firstName}}</div>
+        </div>
+        <div class="row" *ngIf="data.lastName">
+            <div class="col-3"><strong style="text-transform: capitalize;">lastName: </strong></div>
+            <div class="col-8">{{data.lastName}}</div>
+        </div>
+        <div class="row" *ngIf="data.email">
+            <div class="col-3"><strong style="text-transform: capitalize;">email: </strong></div>
+            <div class="col-8">{{data.email}}</div>
+        </div>
+        <div class="row" *ngIf="data.role">
+            <div class="col-3"><strong style="text-transform: capitalize;">role: </strong></div>
+            <div class="col-8">{{data.role}}</div>
+        </div>
+        <div class="row" *ngIf="data.comment">
+            <div class="col-3"><strong style="text-transform: capitalize;">comment: </strong></div>
+            <div class="col-8">{{data.comment}}</div>
+        </div>
+
+    </div>
+
+    <div class="m-2">
+        <div class="btn btn-warning ml-1 float-right" (click)="click('edit')">edit</div>
+        <div class="btn btn-secondary ml-1 float-right" (click)="click('close')">close</div>
+        <div class="btn btn-success ml-1 float-right" (click)="click('assign')">assign</div>
+        <div class="btn btn-danger ml-1 float-right" (click)="click('delete')">delete</div>
+    </div>
+
+
+</div>
+
+<div class="card text-left  bg-light text-secondary mt-3" *ngIf="data && data.meta">
+    <div class="card-header"><strong>Meta Data</strong></div>
+    <div class="card-body">
+        <div *ngIf="data.meta.id" class="row">
+            <div class="col-3"><span><strong>id:</strong></span></div>
+            <div class="col-8"> {{data.meta.id}}</div>
+        </div>
+        <div *ngIf="data.meta.userId" class="row">
+            <div class="col-3"><span><strong>userId: </strong></span></div>
+            <div class="col-8"> {{data.meta.userId}}</div>
+        </div>
+        <div *ngIf="data.meta.orgId" class="row">
+            <div class="col-3"><span><strong>orgId: </strong></span></div>
+            <div class="col-8"> {{data.meta.orgId}}</div>
+        </div>
+        <div *ngIf="data.meta.projectId" class="row">
+            <div class="col-3"><span><strong>projectId: </strong></span></div>
+            <div class="col-8"> {{data.meta.projectId}} </div>
+        </div>
+        <div *ngIf="data.meta.issueId" class="row">
+            <div class="col-3"><span><strong>issueId: </strong></span></div>
+            <div class="col-8"> {{data.meta.issueId}}</div>
+        </div>
+        <div *ngIf="data.meta.status" class="row">
+            <div class="col-3"><span><strong>status: </strong></span></div>
+            <div class="col-8">
+                <span class="badge badge-pill badge-{{data.meta.status}} border border-1 m-1">
+                    {{data.meta.status}}
+                </span>
+            </div>
+        </div>
+        <div *ngIf="data.meta.createdAt" class="row">
+            <div class="col-3"><span><strong>createdAt: </strong></span></div>
+            <div class="col-8"> {{data.meta.createdAt}}</div>
+        </div>
+        <div *ngIf="data.meta.current" class="row">
+            <div class="col-3"><span><strong>current: </strong></span></div>
+            <div class="col-8"> {{data.meta.current}}</div>
+        </div>
+        <div *ngIf="data.meta.tags" class="row">
+            <div class="col-3"><span><strong>tags: </strong></span></div>
+            <div class="col-8">
+                <span class="badge badge-pill badge-{{tag}} border border-1 m-1"
+                    *ngFor="let tag of data.meta.tags">{{tag}}
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>

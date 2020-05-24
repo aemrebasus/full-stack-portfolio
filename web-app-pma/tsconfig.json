@@ -3,56 +3,20 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@tbanner/*": [
-        "src/themes/theme/tbanner/*"
-      ],
-      "@tchart/*": [
-        "src/themes/theme/tchart/*"
-      ],
-      "@tconfirmation/*": [
-        "src/themes/theme/tconfirmation/*"
-      ],
-      "@tform/*": [
-        "src/themes/theme/tform/*"
-      ],
-      "@tmain-list/*": [
-        "src/themes/theme/tmain-list/*"
-      ],
-      "@tnavbar/*": [
-        "src/themes/theme/tnavbar/*"
-      ],
-      "@tnotification/*": [
-        "src/themes/theme/tnotification/*"
-      ],
-      "@tpromotion/*": [
-        "src/themes/theme/tpromotion/*"
-      ],
-      "@tsearchbar/*": [
-        "src/themes/theme/tsearchbar/*"
-      ],
-      "@ttable/*": [
-        "src/themes/theme/ttable/*"
-      ],
-      "@tmodal/*": [
-        "src/themes/theme/tmodal/*"
-      ],
-      "@tdialog/*": [
-        "src/themes/theme/tdialog/*"
-      ],
-      "@tservices/*": [
-        "src/themes/theme/zzservices/*"
+      "@shared/*": [
+        "src/pma-app/shared/*"
       ],
       "@pma-services/*": [
         "src/pma-app/services/*"
       ],
-      "@pma-module/*": [
-        "src/pma-app/*"
-      ],
       "@pma-entity-modules/*": [
-        "src/pma-app/open-form/*"
+        "src/pma-app/entities/*"
       ],
       "@pma/*": [
         "src/pma-app/*"
+      ],
+      "@style/*": [
+        "src/pma-app/shared/style/*"
       ]
     },
     "outDir": "./dist/out-tsc",

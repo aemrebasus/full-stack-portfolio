@@ -1,0 +1,16 @@
+<!-- Loading  -->
+
+<div class="loading" *ngIf="loading">
+    <div class="spinner spinner-border text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<div #state class="state" >
+    <strong>Location:</strong> {{currentLocation}}<br>
+    <strong>Activity:</strong> {{activity}}<br>
+    <strong>Outlet:</strong> {{outlet}}<br>
+    <hr>
+    <strong>Loading Performance: </strong> {{performance}}ms
+</div>

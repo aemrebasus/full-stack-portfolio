@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forChild([
       { path: '', component: WelcomeComponent },
-      { path: 'pma', loadChildren: () => import('../../pma-app/project-management-app.module').then(m => m.ProjectManagementApp) }
+      { path: 'pma', loadChildren: () => import('../../pma-app/pma-app.module').then(m => m.ProjectManagementAppModule) }
     ])
   ],
   exports: [

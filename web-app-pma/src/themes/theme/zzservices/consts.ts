@@ -1,1 +1,0 @@
-export const PMA_BASE_ROUTE = '/pma/home'; 

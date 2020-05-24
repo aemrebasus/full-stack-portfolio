@@ -3,26 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { PROJECTS, ISSUES, USERS } from './route-map';
 import { environment } from 'src/environments/environment';
 
-import { IProject, IUser, IIssue } from '../interfaces/IEntities';
+import { IProject, IUser, IIssue } from '../../core/IEntities';
 import { of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class HttpClientService {
-  private client: HttpClient;
 
-
-  constructor() {
-    this.client = new HttpClient(null);
-
-  }
+  constructor(private client: HttpClient) { }
 
   get<T>(path: string, someData: T) {
     if (environment.production) {
       return this.client.get<T>(path);
     } else {
-
       return of(someData);
     }
   }
@@ -49,8 +43,6 @@ export class HttpClientService {
     ]);
   }
 
-
-
   issues() {
     return this.get<IIssue[]>(ISSUES, [
       {
@@ -61,21 +53,21 @@ export class HttpClientService {
       {
         meta: { id: 2, orgId: 1, projectId: 1, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
         title: 'Second issue',
-        description: ' First Description',
+        description: ' Second Description',
       },
       {
         meta: { id: 3, orgId: 1, projectId: 1, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
         title: 'Third issue',
-        description: ' First Description',
+        description: ' Third Description',
       },
       {
-        meta: { id: 2, orgId: 1, projectId: 2, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
-        title: 'Second Issue',
+        meta: { id: 4, orgId: 1, projectId: 2, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
+        title: 'Furth Issue',
         description: 'Second Description',
       },
       {
-        meta: { id: 3, orgId: 1, projectId: 2, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
-        title: 'Third Issue',
+        meta: { id: 5, orgId: 1, projectId: 2, tags: ['enhancement', 'bug', 'todo', 'feature'], status: 'todo' },
+        title: 'Fifth Issue',
         description: 'THird Description',
       },
 
@@ -92,7 +84,7 @@ export class HttpClientService {
         role: 'Admin',
       },
       {
-        meta: { id: 1, orgId: 1, },
+        meta: { id: 2, orgId: 1, },
         email: 'onurer@gmail.com',
         firstName: 'Onur',
         lastName: 'Er',
