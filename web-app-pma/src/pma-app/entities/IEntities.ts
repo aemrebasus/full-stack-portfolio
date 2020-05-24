@@ -80,6 +80,7 @@ export interface IComment extends IEntity {
 
 
 
+export interface IEntityAll extends IIssue, IProject, IUser, IComment, IOrganization { }
 
 
 

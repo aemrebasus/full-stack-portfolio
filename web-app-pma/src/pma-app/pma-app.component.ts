@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { projectNavbarConfig } from '@pma-entity-modules/project/navbar.config';
 import { INavbarComponent } from '@shared/tnavbar/navbar/navbar.interface';
 import { StateService } from '@pma/state/applicatin.state';
-import { IIssue } from './core/IEntities';
+import { IIssue } from './entities/IEntities';
 
 
 @Component({

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IProject, IIssue, IUser, IEntity } from '@pma/core/IEntities';
+import { IProject, IIssue, IUser, IEntity } from '@pma-entity-modules/IEntities';
 import { HttpClientService } from '@pma-services/http-service/http.service';
 import { IViewEventArg } from '../core/core';
 

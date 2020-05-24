@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IIssue } from '@pma/core/IEntities';
+import { IIssue } from '@pma-entity-modules/IEntities';
 import { StateService } from '@pma/state/applicatin.state';
-import { IViewEventArg } from '@pma/core/core';
+
 @Component({
   selector: 'app-issue-view',
   templateUrl: './template.html',
@@ -17,7 +17,7 @@ export class IssueViewComponent implements OnInit {
 
   }
 
-  click(event: IViewEventArg) {
+  click(event) {
     this.stateService.dispatch(event);
   }
 

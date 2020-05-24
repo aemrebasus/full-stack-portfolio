@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { PROJECTS, ISSUES, USERS } from './route-map';
 import { environment } from 'src/environments/environment';
 
-import { IProject, IUser, IIssue } from '../../core/IEntities';
+import { IProject, IUser, IIssue } from '../../entities/IEntities';
 import { of } from 'rxjs';
 
 @Injectable({

@@ -6,9 +6,6 @@ export class Pane {
 
 }
 
-
-
-
 @Component({
   selector: 'example-app',
   templateUrl: './view-child.component.html'

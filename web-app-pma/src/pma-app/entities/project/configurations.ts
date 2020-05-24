@@ -1,6 +1,5 @@
-import { IConfirmationResult } from '@shared/tconfirmation/confirm/confirm.interfaces';
-import { IProject } from '@pma/core/IEntities';
-import { ViewConfiguration, IViewConfiguration, IViewConfigurationFields, IViewEventArg } from '@pma/core/core';
+import { IProject } from '@pma-entity-modules/IEntities';
+import { ViewConfiguration, IViewEventArg } from '@pma/core/core';
 import { Injectable } from '@angular/core';
 import { StateService } from '@pma/state/applicatin.state';
 
