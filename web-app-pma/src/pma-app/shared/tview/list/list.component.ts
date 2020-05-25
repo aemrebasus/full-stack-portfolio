@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IViewConfiguration } from '@pma/core/core';
 
 @Component({
   selector: 'app-list',
@@ -8,7 +7,7 @@ import { IViewConfiguration } from '@pma/core/core';
 })
 export class ListComponent implements OnInit {
 
-  @Input() data: IViewConfiguration;
+  @Input() data: any;
 
 
   constructor() { }

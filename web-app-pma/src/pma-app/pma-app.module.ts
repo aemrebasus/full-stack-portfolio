@@ -8,7 +8,7 @@ import { TbannerModule } from './shared/tbanner/tbanner.module';
 import { TmainListModule } from './shared/tmain-list/tmain-list.module';
 import { TloadingModule } from './shared/tloading/tloading.module';
 import { IssueModule } from '@pma-entity-modules/issue/module';
-import { ProjectModule } from '@pma-entity-modules/project/module';
+import { ProjectModule } from '@pma-entity-modules/project/project.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppStateModule } from './state/module';
 import { IssueListComponent } from './entities/issue/issue-list/issue-list.component';

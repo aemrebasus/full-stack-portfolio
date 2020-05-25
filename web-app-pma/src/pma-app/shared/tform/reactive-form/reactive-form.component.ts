@@ -1,12 +1,9 @@
 import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { IFormController } from './reactive-form.interfaces';
-
 import { Component, Input, OnInit, } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IConfirmMeta, ConfirmationMetas, IConfirmationResult } from '@shared/tconfirmation/confirm/confirm.interfaces';
 import { RouterControl } from '@pma-services/common/router.control';
-import { IViewConfiguration } from '@pma/core/core';
-
 
 
 @Component({
@@ -24,7 +21,7 @@ export class ReactiveFormComponent implements IFormController, OnInit {
   /**
    * Forms' title, controls, controls'validators etc.
    */
-  @Input() config: IViewConfiguration;
+  @Input() config: any;
 
 
   /**
@@ -46,7 +43,7 @@ export class ReactiveFormComponent implements IFormController, OnInit {
     this.form = new FormGroup({});
 
 
-    this.config.toInputs().forEach(input => {
+    this.config.inputs.forEach(input => {
 
       const control = new FormControl('', input.validators);
 
@@ -61,7 +58,7 @@ export class ReactiveFormComponent implements IFormController, OnInit {
    * template helpers
    */
   submitLabel() {
-    return this.config.toMeta().submitLabel;
+    return this.config.meta.submitLabel;
   }
   isFormValid() {
     return this.form.valid && this.form.dirty;
@@ -71,14 +68,14 @@ export class ReactiveFormComponent implements IFormController, OnInit {
   }
 
   bgColor() {
-    return this.config.configuration.meta.bgColor;
+    return this.config.meta.bgColor;
   }
   title() {
-    return this.config.configuration.meta.title || this.config.configuration.meta.name;
+    return this.config.meta.title || this.config.meta.name;
   }
 
   inputs() {
-    return this.config.configuration.inputs;
+    return this.config.inputs;
   }
 
 

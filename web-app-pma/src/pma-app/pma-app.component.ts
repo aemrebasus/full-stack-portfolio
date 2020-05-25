@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { projectNavbarConfig } from '@pma-entity-modules/project/navbar.config';
 import { INavbarComponent } from '@shared/tnavbar/navbar/navbar.interface';
 import { StateService } from '@pma/state/applicatin.state';
 import { IIssue } from './entities/IEntities';
+import { ProjectService } from '@pma-entity-modules/project/project.service';
 
 
 @Component({
@@ -23,6 +23,7 @@ export class PmaAppComponent implements OnInit {
 
   constructor(
     private stateService: StateService,
+    private projectService: ProjectService,
     private router: Router
   ) {
 
@@ -42,7 +43,7 @@ export class PmaAppComponent implements OnInit {
      *  Add nav configuration of each entity.
      */
     this.navs = [
-      projectNavbarConfig(this.router),
+      this.projectService.toNavbarItem()
     ];
 
 

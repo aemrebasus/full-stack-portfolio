@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IProject, IIssue, IUser, IEntity } from '@pma-entity-modules/IEntities';
 import { HttpClientService } from '@pma-services/http-service/http.service';
-import { IViewEventArg } from '../core/core';
+import { IEventArgument } from '@pma/core/state/IEventArgument';
+import { IEventTypes } from '@pma/core/state/IEventTypes';
 
 
 
@@ -24,15 +25,15 @@ export class StateService {
 
         this.httpService.projects().subscribe(_projects => {
             this.state.projects = _projects;
-        })
+        });
 
         this.httpService.issues().subscribe(_issues => {
             this.state.issues = _issues;
-        })
+        });
 
     }
 
-    dispatch<T>(event: IViewEventArg<T>) {
+    dispatch(event: IEventArgument) {
         switch (event.type) {
             case 'open-project':
                 this.setCurrentProject(event.paylaod);

@@ -36,7 +36,7 @@ export interface IViewMeta<EventType> {
 
 
     /**
-     * When user submits a form a dialog, dispatch method will dispatch the event with this name 
+     * When user submits a form a dialog, dispatch method will dispatch the event with this name
      * so that StateManager can understand what to do!!!!
      */
     submit: EventType;

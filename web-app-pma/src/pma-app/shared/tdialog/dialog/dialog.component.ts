@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { IConfirmationResult } from '@shared/tconfirmation/confirm/confirm.interfaces';
-import { IViewConfiguration } from '@pma/core/core';
 
 @Component({
   selector: 'app-dialog',
@@ -13,7 +12,7 @@ export class DialogComponent implements OnInit {
 
   readonly name = 'name';
 
-  @Input() config: IViewConfiguration;
+  @Input() config: any;
 
 
   form: FormGroup = new FormGroup({});
@@ -28,10 +27,7 @@ export class DialogComponent implements OnInit {
     this.route.data.subscribe(data => {
 
       this.config = data.resolved;
-
-      this.config.toInputs().forEach(inputControl => {
-        this.form.addControl(inputControl.name, new FormControl(''))
-      })
+      this.form.addControl(this.name, new FormControl(''));
 
     });
 
@@ -80,7 +76,7 @@ export class DialogComponent implements OnInit {
   }
 
   meta() {
-    return this.config.configuration.meta;
+    return this.config.meta;
   }
   bgColor() {
     return this.meta().bgColor;
@@ -95,7 +91,7 @@ export class DialogComponent implements OnInit {
   }
 
   data() {
-    return this.config.configuration.data;
+    return this.config.data;
   }
 
 

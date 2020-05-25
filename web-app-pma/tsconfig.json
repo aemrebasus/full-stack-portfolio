@@ -12,6 +12,9 @@
       "@pma-entity-modules/*": [
         "src/pma-app/entities/*"
       ],
+      "@pma-core/*": [
+        "src/pma-app/core/*"
+      ],
       "@pma/*": [
         "src/pma-app/*"
       ],

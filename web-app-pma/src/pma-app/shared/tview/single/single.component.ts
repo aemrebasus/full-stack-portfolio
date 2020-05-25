@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IEntityAll } from '@pma/core/IEntityAll';
-import { IViewEventArg } from '@pma/core/core';
+
 
 @Component({
   selector: 'app-single',
@@ -9,13 +8,13 @@ import { IViewEventArg } from '@pma/core/core';
 })
 export class SingleComponent implements OnInit {
 
-  @Input() data: IEntityAll;
+  @Input() data: any;
   /**
    * Name of the data type like User, Issue, Project, or Organizatin etc.
    */
   @Input() name: string;
 
-  @Output() event = new EventEmitter<IViewEventArg>();
+  @Output() event = new EventEmitter<any>();
 
 
   constructor() { }

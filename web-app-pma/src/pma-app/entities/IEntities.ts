@@ -79,7 +79,9 @@ export interface IComment extends IEntity {
 
 
 
-
+/**
+ * @description Includes all fields inside the entities. It helps me to create an abstract class with some implementation!
+ */
 export interface IEntityAll extends IIssue, IProject, IUser, IComment, IOrganization { }
 
 
