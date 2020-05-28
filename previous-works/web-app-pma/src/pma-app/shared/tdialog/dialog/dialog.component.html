@@ -1,0 +1,18 @@
+<app-modal-wrapper [bgColor]="bgColor()" [title]="title() | titlecase" [textColor]="textColor()"
+    (confirmEvent)="confirm($event)">
+
+    <form [formGroup]="form">
+
+        <div class="form-group">
+            <input [formControlName]="name" type="text" [id]="name" class="form-control" list="data" placeholder="...."
+                required />
+            <datalist id="data">
+                <option *ngFor="let o of data()" [value]="o.name | titlecase"></option>
+            </datalist>
+        </div>
+
+        <button class="btn btn-{{bgColor()}} mr-2" type="button" *ngIf="form.valid && form.dirty" data-toggle="modal"
+            data-target="#open"> {{submitLabel()}} </button>
+    </form>
+
+</app-modal-wrapper>

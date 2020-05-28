@@ -8,6 +8,7 @@ import { UserFactory } from '@domain/UserFactory';
  * Information about the software.
  */
 export const Authentication: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
+
     try {
         verify(req.cookies.token)
             .then(user => {

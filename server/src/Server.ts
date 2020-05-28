@@ -57,13 +57,15 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     });
 });
 
-app.use('/', express.static(path.join(__dirname, '../../client/dist/client')))
+app.use('/', express.static(path.join(__dirname, '../../platform-web/dist/platform-web')))
 
 
 /**
  * Setup Routers.
  */
 app.use(BASE_ROUTE, routers);
+
+
 
 
 /**

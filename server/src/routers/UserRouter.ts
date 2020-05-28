@@ -32,10 +32,10 @@ const router = Router()
     })
 
 
-
     .put('/update/id/:id', (req, res) => {
         UpdateHelper((orgId: string, user: Admin) => user.updateUserById(orgId, req.params.id, { ...req.body, organizationId: orgId }), res);
     })
+    
     .put('/update/email/:email', (req, res) => {
         UpdateHelper((orgId: string, user: Admin) => user.updateUserByEmail(orgId, req.params.email, { ...req.body, organizationId: orgId }), res);
     })
