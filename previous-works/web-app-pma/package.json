@@ -1,6 +1,7 @@
 {
   "name": "web-app-pma",
   "version": "0.0.0",
+  "homepage": "https://aemrebasus.github.io/web-app-pma/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
