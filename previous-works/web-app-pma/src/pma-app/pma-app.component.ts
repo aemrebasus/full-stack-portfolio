@@ -4,6 +4,7 @@ import { StateService } from '@pma/state/applicatin.state';
 import { IIssue } from './entities/IEntities';
 import { projectNavbar } from '@pma-entity-modules/project/project.resolver';
 import { Router } from '@angular/router';
+import { ILeftMenuData, ILeftMenuSingleData } from '@shared/tmain-list/left-menu/left-menu.component';
 
 
 
@@ -14,11 +15,14 @@ import { Router } from '@angular/router';
 })
 export class PmaAppComponent implements OnInit {
 
+
   navs: INavbarComponent[];
 
-  banners = ['Ahmet', 'Emrebas', 'Ahmet'];
+  banners = ['Hello', 'My Name is Ahmet', 'I am a full stack developoer', 'Angular Master', 'Creative Designer', 'Hello'];
 
-  issues: IIssue[];
+
+
+  issues: ILeftMenuData;
 
   issue: IIssue;
 
@@ -33,9 +37,6 @@ export class PmaAppComponent implements OnInit {
 
 
 
-
-
-
   ngOnInit(): void {
 
     /**
@@ -46,17 +47,28 @@ export class PmaAppComponent implements OnInit {
     ];
 
 
+
+    this.issues = this.stateService.getIssues().map<ILeftMenuSingleData>(e => {
+      return { id: e.id, values: [e.title, e.description], pills: e.meta.tags } as ILeftMenuSingleData;
+    });
+
   }
 
 
 
-  menuClick(event: IIssue) {
-    this.stateService.setCurrentIssue(event);
+  // Returned id
+  menuClick(event: string) {
+    // this.stateService.setCurrentIssue(event);
+    alert(event);
+    this.issue = this.stateService.getCurrentIssue();
   }
 
 
 
 
+  projectName() {
+    return this.stateService.getCurrentProject().name + ' - Issues';
+  }
 
 
 

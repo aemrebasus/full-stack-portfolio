@@ -50,11 +50,15 @@ export class DialogComponent implements OnInit {
 
         this.router.navigate(['/pma']);
 
+      } else if (event.type === 'delete') {
+
+        this.onSubmit(event);
+
       }
     }
   }
 
- 
+
   onSubmit(event: IConfirmationResult) {
     try {
 
@@ -72,6 +76,10 @@ export class DialogComponent implements OnInit {
     }
   }
 
+
+  submitType() {
+    return `#${this.submitLabel().split(' ')[0].toLowerCase()}`;
+  }
 
   meta() {
     return this.config.meta;

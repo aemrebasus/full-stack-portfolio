@@ -19,7 +19,9 @@
     "@angular/platform-browser-dynamic": "~9.0.5",
     "@angular/router": "~9.0.5",
     "@types/chart.js": "^2.9.20",
+    "@types/faker": "^4.1.12",
     "chart.js": "^2.9.3",
+    "faker": "^4.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

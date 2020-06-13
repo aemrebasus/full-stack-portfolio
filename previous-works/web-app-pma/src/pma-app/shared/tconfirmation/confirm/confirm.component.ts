@@ -18,7 +18,7 @@ export class ConfirmComponent implements OnInit {
   // Add the event name to the first array in the colorMap.
   colorMap = [
     [['save', 'open'], ['success', 'white']],
-    [['edit', 'back', 'close', 'reset'], ['warning', 'dark']],
+    [['edit', 'back', 'close', 'reset', 'update'], ['warning', 'dark']],
     [['delete'], ['danger', 'white']]
   ];
 

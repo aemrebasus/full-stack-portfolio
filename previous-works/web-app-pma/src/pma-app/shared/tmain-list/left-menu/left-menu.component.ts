@@ -8,9 +8,13 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 })
 export class LeftMenuComponent implements OnInit {
 
-  @Input() config: any;
+  // @Input() config: any;
 
-  @Input() data: any;
+  // @Input() data: any;
+
+
+  @Input() data: ILeftMenuData;
+  @Input() title: string;
 
   filteredData: ILeftMenuData;
 
@@ -29,15 +33,17 @@ export class LeftMenuComponent implements OnInit {
   };
 
 
-  ngOnInit(): void {
-    this.data = this.config.data.toInteractiveListView();
 
+  ngOnInit(): void {
+    // this.data = this.config.toInteractiveListView();
+    this.filteredData = this.data;
   }
 
 
 
+  // Emit the id of the clicked element.
   click(item: ILeftMenuSingleData) {
-
+    this.menuClick.emit(item.id);
   }
 
   filter(event: ILeftMenuData) {

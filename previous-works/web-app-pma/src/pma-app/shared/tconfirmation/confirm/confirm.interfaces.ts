@@ -28,7 +28,9 @@ export class ConfirmationMetas {
             ConfirmationMetas.edit(),
             ConfirmationMetas.close(),
             ConfirmationMetas.reset(),
-            ConfirmationMetas.open()
+            ConfirmationMetas.open(),
+            ConfirmationMetas.update(),
+
         ];
     }
     static delete() {
@@ -53,6 +55,17 @@ export class ConfirmationMetas {
             type: 'edit',
             title: 'Confirmation of Updating',
             message: 'Would you like to edit the item?',
+        };
+        return editConfirmation;
+    }
+    static update() {
+
+        const editConfirmation: IConfirmMeta = {
+            ...ConfirmationMetas.delete(),
+            id: 'update',
+            type: 'update',
+            title: 'Confirmation of Updating',
+            message: 'Would you like to update the item?',
         };
         return editConfirmation;
     }

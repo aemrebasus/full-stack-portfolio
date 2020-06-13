@@ -12,7 +12,7 @@
         </div>
 
         <button class="btn btn-{{bgColor()}} mr-2" type="button" *ngIf="form.valid && form.dirty" data-toggle="modal"
-            data-target="#open"> {{submitLabel()}} </button>
+            [attr.data-target]="submitType()"> {{submitLabel()}} </button>
     </form>
 
 </app-modal-wrapper>

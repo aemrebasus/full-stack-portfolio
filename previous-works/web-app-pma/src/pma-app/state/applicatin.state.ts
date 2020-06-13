@@ -3,6 +3,7 @@ import { IProject, IIssue, IUser, IEntity } from '@pma-entity-modules/IEntities'
 import { HttpClientService } from '@pma-services/http-service/http.service';
 import { IEventArgument } from '@pma/core/state/IEventArgument';
 import { IStateHandler } from '@pma-core/state/IStateHandler';
+import { random } from 'faker';
 
 
 
@@ -38,9 +39,7 @@ export class StateService implements IStateHandler<IEventArgument<any>> {
 
 
             case 'open-project':
-                console.log('Opening Project....')
                 this.setCurrentProject(this.getProjectByName(event.paylaod.name));
-                this.getIssues();
                 break;
 
 
@@ -48,27 +47,57 @@ export class StateService implements IStateHandler<IEventArgument<any>> {
                 console.log('Creating Project....')
                 this.createProject({
                     meta: {
-                        id: Math.floor(Math.random() * 10000000000 + 99999999999)
+                        id: random.uuid()
                     },
+                    id: random.uuid,
                     ...event.paylaod
                 });
                 break;
 
             case 'update-project':
-                console.log('Updating project')
                 this.updateProject(event.paylaod);
+                break;
+
+
+            case 'delete-project':
+                this.deleteProject();
                 break;
         }
     }
 
     createProject(project: IProject) {
         this.setProjects([...this.getProjects(), project]);
-
+        this.state.issues.push({
+            meta: {
+                projectId: project.id
+            },
+            id: random.uuid(),
+            title: 'Initial Task',
+            description: 'Initial Task Description'
+        });
+        this.setCurrentProject(project);
     }
 
     updateProject(project: IProject) {
-        console.log(project)
+        const p = this.getCurrentProject();
+
+        p.name = project.name;
+        p.summary = project.summary;
     }
+
+    deleteProject() {
+
+        this.state.projects = this.state.projects.filter(p => p.id !== this.getCurrentProject().id);
+        this.setCurrentProject(this.state.projects[0]);
+        if (this.state.projects.length === 0) {
+            this.createProject({
+                id: '0000',
+                name: 'Create a project',
+                summary: '----------------'
+            })
+        }
+    }
+
 
 
     getProjects() {
@@ -83,17 +112,19 @@ export class StateService implements IStateHandler<IEventArgument<any>> {
     }
 
     getProjectByName(name: string) {
-        return this.getProjects().find(p => p.name == name);
+        return this.getProjects().find(p => p.name.toLowerCase() === name.toLowerCase());
     }
 
+    getProjectById(id: string | number) {
+        return this.getProjects().find(p => p.id === id);
+    }
 
     setProjects(projects: IProject[]) {
         this.state.projects = projects;
     }
 
     getIssues() {
-        const result = this.state.issues.filter(i => this.getCurrentProject().meta.id === i.meta.projectId);
-        console.log(result);
+        const result = this.state.issues.filter(is => is.meta.projectId === this.getCurrentProject().id);
         return result;
     }
 

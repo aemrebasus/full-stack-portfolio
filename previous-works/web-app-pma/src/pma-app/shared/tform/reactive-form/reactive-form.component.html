@@ -58,7 +58,7 @@
         Reset form
     </button>
 
-    <button class="btn btn-warning mr-2" type="button" data-toggle="modal" *ngIf="isFormValid()" data-target="#save">
+    <button class="btn btn-warning mr-2" type="button" data-toggle="modal" *ngIf="isFormValid()" [attr.data-target]="submitType()">
         {{submitLabel() | titlecase}}
     </button>
 

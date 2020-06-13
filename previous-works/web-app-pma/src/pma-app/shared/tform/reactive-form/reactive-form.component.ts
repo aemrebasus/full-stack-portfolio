@@ -73,6 +73,13 @@ export class ReactiveFormComponent implements IFormController, OnInit {
   submitLabel() {
     return this.config.meta.submitLabel;
   }
+
+  // Helper for comfirmatoin | converts the submit label to the selector for Confirmation modal so that when use clicks the submit button 
+  // corresboding Modal shows up.
+  submitType() {
+    return `#${this.submitLabel().split(' ')[0].toLowerCase()}`;
+  }
+
   isFormValid() {
     return this.form.valid && this.form.dirty;
   }
