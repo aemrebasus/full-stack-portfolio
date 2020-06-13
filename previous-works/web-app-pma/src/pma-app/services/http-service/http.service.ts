@@ -16,11 +16,11 @@ export class HttpClientService {
   constructor(private client: HttpClient) { }
 
   private get<T>(path: string, someData: T) {
-    if (environment.production) {
-      return this.client.get<T>(path);
-    } else {
-      return of(someData);
-    }
+    // if (environment.production) {
+    // return this.client.get<T>(path);
+    // } else {
+    return of(someData);
+    // }
   }
 
 
