@@ -9,16 +9,19 @@ import { Router } from '@angular/router';
 export class WelcomeComponent implements OnInit {
 
   greetings = [
-    'Hi, My name is Ahmet!',
-    'I love programming!',
-    'I am a full stack software engineer!',
-    'My passion is my power!',
-    'I am an Angular 9 master!',
-    'I have 2 years of IT experience Yeah!',
-    'Java! Himmm!',
-    'Angular! OOOO!',
-    'JavaScript! Yummy Yummy Yummy!',
-    'Hi, My name is Ahmet!',
+    'Hi, there!',
+    'My Name is Ahmet',
+    'I am a full stack developer',
+    'My passion is my power',
+    'Angular (expert)',
+    'JavaScript (Very Good)',
+    'TypeScript (Excellent)',
+    'NodeJS (It is Huge)',
+    'Java (Certified)',
+    'OOP & Generic Programming Genius',
+    'MongoDB, Mongoose, MySql, MariaDB, any DBs :)',
+    'Click the button below to see my cute application.',
+    'Hi, there!',
   ];
 
   greeting = this.greetings[0];

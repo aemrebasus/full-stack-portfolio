@@ -73,10 +73,12 @@ export class ProjectResolver implements
                     },
                     events: {
                         submit: (event: IEventArgument<IProject>) => {
-                            this.stateService.dispatch({
-                                type: 'create-project',
-                                paylaod: event.paylaod
-                            });
+                            if (event.type !== 'back') {
+                                this.stateService.dispatch({
+                                    type: 'create-project',
+                                    paylaod: event.paylaod
+                                });
+                            }
                         }
                     },
                     inputs: [
@@ -106,10 +108,12 @@ export class ProjectResolver implements
                     },
                     events: {
                         submit: (event: IEventArgument<IProject>) => {
+
                             this.stateService.dispatch({
                                 type: 'update-project',
                                 paylaod: event.paylaod
                             });
+
                         }
                     },
                     inputs: [
@@ -151,10 +155,12 @@ export class ProjectResolver implements
                     })),
                     events: {
                         submit: (event: IEventArgument<ISelectDialogInput>) => {
+
                             this.stateService.dispatch({
                                 type: 'delete-project',
                                 paylaod: event.paylaod
                             })
+
                         }
                     },
                     input: { type: 'text', placeholder: '....', validators: [(c) => c.value.length > 3 ? null : { minLength: true }] }
