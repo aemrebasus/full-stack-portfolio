@@ -56,11 +56,16 @@ export class PmaAppComponent implements OnInit {
 
 
 
-  // Returned id
+  // event is id of the issue.
   menuClick(event: string) {
-    // this.stateService.setCurrentIssue(event);
-    alert(event);
-    this.issue = this.stateService.getCurrentIssue();
+    // const pID = this.stateService.getCurrentProject().id;
+    this.issue = this.stateService.getIssueByID(event);
+
+  }
+
+  // event is the passed data to the single-view component.
+  issueHandler(event: any) {
+
   }
 
 
@@ -69,6 +74,8 @@ export class PmaAppComponent implements OnInit {
   projectName() {
     return this.stateService.getCurrentProject().name + ' - Issues';
   }
+
+
 
 
 

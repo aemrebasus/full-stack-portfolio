@@ -62,6 +62,11 @@ export class StateService implements IStateHandler<IEventArgument<any>> {
             case 'delete-project':
                 this.deleteProject();
                 break;
+
+
+            case 'delete-issue':
+                this.deleteIssue(event.paylaod);
+                break;
         }
     }
 
@@ -99,6 +104,12 @@ export class StateService implements IStateHandler<IEventArgument<any>> {
     }
 
 
+    deleteIssue(issue: IIssue) {
+        console.log(issue);
+        this.state.issues.find(isu => isu.id == issue.id).meta.status = 'deleted'; 
+    }
+
+
 
     getProjects() {
         if (this.state.projects && this.state.projects.length >= 0) {
@@ -123,9 +134,19 @@ export class StateService implements IStateHandler<IEventArgument<any>> {
         this.state.projects = projects;
     }
 
-    getIssues() {
-        const result = this.state.issues.filter(is => is.meta.projectId === this.getCurrentProject().id);
-        return result;
+    getIssues(): IIssue[] {
+        if (this.getCurrentProject()) {
+
+            const result = this.state.issues.filter(iss => iss.meta.projectId === this.getCurrentProject().id);
+            return result;
+        } else {
+            this.setCurrentIssue(this.getProjects()[0]);
+            return this.getIssues();
+        }
+    }
+
+    getIssueByID(id: string | number): IIssue {
+        return this.getIssues().find(i => i.id === id && i.meta.projectId === this.getCurrentProject().id);
     }
 
     setIssues(issues: IIssue[]) {
