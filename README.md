@@ -10,6 +10,7 @@
 - Angular Modules
 - Angular Reactive Form 
 - Angular Resolver Service 
+- Searching Items
 - Custom State Management (My own implementation)
 - HTTPService 
 - Angular Services 
