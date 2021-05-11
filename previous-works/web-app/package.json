@@ -24,7 +24,7 @@
     "@types/moment": "^2.13.0",
     "@types/sugar": "^2.0.2",
     "chart.js": "^2.9.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.25.3",
     "rxjs": "~6.5.4",
     "sugar": "^2.0.6",
